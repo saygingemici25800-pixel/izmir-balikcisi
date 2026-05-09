@@ -79,13 +79,13 @@ function WaterMesh() {
   const uniforms = useMemo(
     () => ({
       uTime:            { value: 0 },
-      uWaveAmplitude:   { value: 0.18 },
-      uWaveSpeed:       { value: 0.55 },
-      uDepthColor:      { value: new THREE.Color('#1A90C4') },
-      uSurfaceColor:    { value: new THREE.Color('#8DCAE8') },
-      uFoamColor:       { value: new THREE.Color('#EDF6FB') },
-      uColorOffset:     { value: 0.18 },
-      uColorMultiplier: { value: 4.0 },
+      uWaveAmplitude:   { value: 0.22 },
+      uWaveSpeed:       { value: 0.45 },
+      uDepthColor:      { value: new THREE.Color('#064E78') },
+      uSurfaceColor:    { value: new THREE.Color('#1A90C4') },
+      uFoamColor:       { value: new THREE.Color('#BDE0F5') },
+      uColorOffset:     { value: 0.20 },
+      uColorMultiplier: { value: 5.0 },
     }),
     []
   );
@@ -180,26 +180,26 @@ function SceneLights() {
 
   return (
     <>
-      {/* Sabah güneşi — sıcak sarı-turuncu */}
+      {/* Sabah güneşi — sıcak altın */}
       <directionalLight
         ref={dirLightRef}
-        position={[5, 8, 3]}
-        intensity={2.2}
-        color="#FFE4B5"
+        position={[6, 10, 4]}
+        intensity={2.8}
+        color="#FFD580"
         castShadow
       />
       {/* Gökyüzü ambient — açık mavi */}
-      <ambientLight intensity={0.9} color="#C8E6F5" />
-      {/* Deniz yansıması — alttan yukarı */}
+      <ambientLight intensity={0.8} color="#BDE0F5" />
+      {/* Deniz derinliği — koyu mavi */}
       <pointLight
-        position={[0, -1, 0]}
-        intensity={0.8}
-        color="#4DAED9"
-        distance={12}
+        position={[0, -2, 0]}
+        intensity={1.0}
+        color="#0A6DA0"
+        distance={15}
       />
-      {/* Ufuk ışığı */}
+      {/* Ufuk — altın-pembe */}
       <hemisphereLight
-        args={['#87CEEB', '#1A90C4', 0.6]}
+        args={['#87CEEB', '#064E78', 0.5]}
       />
     </>
   );

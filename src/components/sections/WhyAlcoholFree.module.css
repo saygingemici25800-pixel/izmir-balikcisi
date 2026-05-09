@@ -34,14 +34,14 @@
   font-weight: var(--weight-semibold);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--green-400);
+  color: var(--gold-400);
 }
 
 .labelLine {
   display: inline-block;
   width: 28px;
   height: 1.5px;
-  background: var(--green-300);
+  background: var(--gold-300);
 }
 
 .title {
@@ -53,7 +53,7 @@
 }
 
 .titleAccent {
-  color: var(--green-400);
+  color: var(--gold-400);
   font-style: italic;
 }
 
@@ -92,8 +92,8 @@
 }
 
 .card_green {
-  background: var(--green-50);
-  border-color: var(--green-100);
+  background: var(--gold-50);
+  border-color: var(--gold-100);
 }
 
 .card_sea {
@@ -102,8 +102,8 @@
 }
 
 .card_sand {
-  background: var(--sand-100);
-  border-color: var(--sand-200);
+  background: var(--amber-100);
+  border-color: var(--amber-200);
 }
 
 .cardIcon {

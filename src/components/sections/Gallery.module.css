@@ -99,7 +99,7 @@
 }
 
 .cell:nth-child(3n) .cellInner {
-  background: linear-gradient(135deg, var(--green-100) 0%, var(--sea-100) 100%);
+  background: linear-gradient(135deg, var(--gold-100) 0%, var(--sea-100) 100%);
 }
 
 .cell:hover .cellInner { transform: scale(1.04); }

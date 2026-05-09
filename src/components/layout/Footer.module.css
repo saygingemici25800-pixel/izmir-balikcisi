@@ -60,14 +60,14 @@
   gap: var(--space-2);
   font-size: var(--text-xs);
   font-weight: var(--weight-semibold);
-  color: var(--green-300);
+  color: var(--gold-300);
   letter-spacing: 0.04em;
 }
 
 .badgeDot {
   width: 6px;
   height: 6px;
-  background: var(--green-300);
+  background: var(--gold-300);
   border-radius: 50%;
   animation: pulse-dot 2.5s ease-in-out infinite;
 }

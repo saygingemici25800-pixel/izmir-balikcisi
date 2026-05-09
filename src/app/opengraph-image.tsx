@@ -124,7 +124,7 @@ export default async function Image() {
                 width: 8,
                 height: 8,
                 borderRadius: '50%',
-                background: '#5AAF53',
+                background: 'var(--gold-400)',
               }}
             />
             <div
