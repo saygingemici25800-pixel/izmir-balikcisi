@@ -1,0 +1,417 @@
+/* ─── Hero ────────────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── 3D Canvas ───────────────────────────────────────────────────────────── */
+
+.canvas {
+  position: absolute;
+  inset: -10% 0;
+  width: 100%;
+  height: 120%;
+  will-change: transform;
+}
+
+/* ─── Gradient Overlay ────────────────────────────────────────────────────── */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    /* Üst kısım — gökyüzü */
+    linear-gradient(
+      to bottom,
+      rgba(200, 230, 245, 0.55) 0%,
+      rgba(140, 202, 232, 0.25) 35%,
+      rgba(26, 144, 196, 0.15) 60%,
+      rgba(14, 111, 158, 0.35) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Işık Huzmeleri ──────────────────────────────────────────────────────── */
+
+.rays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.ray {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 240, 200, 0.35) 0%,
+    transparent 70%
+  );
+  transform-origin: top center;
+  filter: blur(8px);
+}
+
+.ray:nth-child(1) {
+  transform: translateX(-120px) rotate(-15deg);
+  opacity: 0.6;
+  animation: rayPulse 4s ease-in-out infinite;
+}
+
+.ray:nth-child(2) {
+  transform: translateX(0px) rotate(0deg);
+  width: 4px;
+  opacity: 0.4;
+  animation: rayPulse 4s ease-in-out infinite 1.3s;
+}
+
+.ray:nth-child(3) {
+  transform: translateX(140px) rotate(18deg);
+  opacity: 0.5;
+  animation: rayPulse 4s ease-in-out infinite 2.6s;
+}
+
+@keyframes rayPulse {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.7; }
+}
+
+/* ─── İçerik ──────────────────────────────────────────────────────────────── */
+
+.content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  max-width: 900px;
+}
+
+/* ─── Üst Etiket ──────────────────────────────────────────────────────────── */
+
+.topLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.labelText {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 8px rgba(14, 111, 158, 0.5);
+}
+
+.labelLine {
+  display: block;
+  width: 32px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.6);
+  transform-origin: left center;
+}
+
+/* ─── Başlık ──────────────────────────────────────────────────────────────── */
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.titleTop {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: var(--weight-light);
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 20px rgba(14, 111, 158, 0.4);
+  margin-bottom: 0.1em;
+}
+
+.titleMain {
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-weight: var(--weight-extrabold);
+  color: var(--white);
+  text-shadow:
+    0 4px 32px rgba(14, 111, 158, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.3);
+  line-height: 0.92;
+
+  /* Işıltılı gradient */
+  background: linear-gradient(
+    160deg,
+    #ffffff 0%,
+    #e8f6ff 30%,
+    #c8e6f5 60%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Tagline ─────────────────────────────────────────────────────────────── */
+
+.tagline {
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 1px 12px rgba(14, 111, 158, 0.5);
+}
+
+/* ─── Açıklama ────────────────────────────────────────────────────────────── */
+
+.description {
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+  text-shadow: 0 1px 8px rgba(14, 111, 158, 0.4);
+}
+
+/* ─── CTA Butonları ───────────────────────────────────────────────────────── */
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: var(--sea-500);
+  color: var(--white);
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(14, 111, 158, 0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btnPrimary:hover {
+  background: var(--sea-400);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(14, 111, 158, 0.55);
+}
+
+.btnPrimary svg {
+  transition: transform 200ms ease;
+}
+
+.btnPrimary:hover svg {
+  transform: translateX(3px);
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btnOutline:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-3px);
+}
+
+/* ─── Kardeş Mekan ────────────────────────────────────────────────────────── */
+
+.sisterLink {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sisterText {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: var(--weight-regular);
+}
+
+.sisterBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 1px;
+  letter-spacing: 0.02em;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.sisterBtn:hover {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* ─── Floating Badge ──────────────────────────────────────────────────────── */
+
+.badge {
+  position: absolute;
+  top: clamp(-180px, -22vh, -120px);
+  right: clamp(1rem, 8vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 0.875rem 1.125rem;
+  cursor: default;
+}
+
+.badgeIcon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.badgeText {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--white);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ─── Scroll Indicator ────────────────────────────────────────────────────── */
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.scrollDot {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
+
+.scrollText {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+}
+
+/* ─── Alt Dalga Geçişi ────────────────────────────────────────────────────── */
+
+.waveBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  line-height: 0;
+}
+
+.waveBottom svg {
+  width: 100%;
+  height: clamp(40px, 6vw, 80px);
+  display: block;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .badge {
+    top: auto;
+    bottom: 6rem;
+    right: 1.25rem;
+    padding: 0.625rem 0.875rem;
+  }
+
+  .badgeIcon {
+    font-size: 1.25rem;
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btnPrimary,
+  .btnOutline {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .titleTop {
+    letter-spacing: 0.18em;
+  }
+
+  .description {
+    font-size: var(--text-sm);
+  }
+}
