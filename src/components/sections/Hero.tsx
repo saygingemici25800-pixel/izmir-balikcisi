@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import Link from 'next/link';
-import OceanScene from '@/components/3d/OceanSceneClient';
 import { RESTAURANT, SISTER_VENUE } from '@/data/constants';
 import styles from './Hero.module.css';
 
@@ -82,23 +81,11 @@ function AlkholsuzbBadge() {
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
-
-  // Scroll ile 3D sahne + içerik parallax
-  const sceneY       = useTransform(scrollY, [0, 600], [0, 120]);
   const contentY     = useTransform(scrollY, [0, 600], [0, -60]);
   const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   return (
     <section ref={heroRef} className={styles.hero} aria-label="Ana Hero">
-
-      {/* ── 3D Arka Plan ── */}
-      <motion.div
-        className={styles.canvas}
-        style={{ y: sceneY }}
-        aria-hidden="true"
-      >
-        <OceanScene />
-      </motion.div>
 
       {/* ── Gradient Overlay ── */}
       <div className={styles.overlay} aria-hidden="true" />

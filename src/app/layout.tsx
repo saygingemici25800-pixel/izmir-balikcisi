@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { SEO, RESTAURANT } from "@/data/constants";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import OceanBackground from "@/components/layout/OceanBackground";
 
 export const metadata: Metadata = {
   title: {
@@ -104,6 +105,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <OceanBackground />
         <Navbar />
         {children}
         <Footer />

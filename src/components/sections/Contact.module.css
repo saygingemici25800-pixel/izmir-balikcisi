@@ -1,7 +1,9 @@
 /* ─── Contact ─────────────────────────────────────────────────────────────── */
 
 .section {
-  background: var(--ink-900);
+  background: rgba(26, 42, 31, 0.72);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   padding-block: clamp(5rem, 10vw, 8rem);
   position: relative;
   overflow: hidden;

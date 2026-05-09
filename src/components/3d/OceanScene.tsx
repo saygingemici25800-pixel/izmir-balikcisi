@@ -210,11 +210,11 @@ function SceneLights() {
 function CameraRig() {
   useFrame(({ camera, mouse, clock }) => {
     const t = clock.getElapsedTime();
-    // Yavaş sallantı
-    camera.position.x += (mouse.x * 0.4 - camera.position.x) * 0.03;
-    camera.position.y += (mouse.y * 0.2 + 2.5 - camera.position.y) * 0.03;
-    camera.position.z = 5 + Math.sin(t * 0.15) * 0.3;
-    camera.lookAt(0, -0.3, 0);
+    // Çok yavaş, huzurlu sallantı — tüm sayfa için
+    camera.position.x += (mouse.x * 0.25 - camera.position.x) * 0.015;
+    camera.position.y += (mouse.y * 0.12 + 4.5 - camera.position.y) * 0.015;
+    camera.position.z = 7 + Math.sin(t * 0.08) * 0.5;
+    camera.lookAt(0, 0, 0);
   });
   return null;
 }
@@ -224,7 +224,7 @@ function CameraRig() {
 export default function OceanScene() {
   return (
     <Canvas
-      camera={{ position: [0, 2.5, 5], fov: 55, near: 0.1, far: 100 }}
+      camera={{ position: [0, 4.5, 7], fov: 65, near: 0.1, far: 100 }}
       gl={{
         antialias: true,
         alpha: true,

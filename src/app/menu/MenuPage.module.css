@@ -2,7 +2,7 @@
 
 .page {
   min-height: 100vh;
-  background: var(--cream-50);
+  background: transparent;
 }
 
 /* ─── Hero ────────────────────────────────────────────────────────────────── */
@@ -136,6 +136,9 @@
   grid-template-columns: 260px 1fr;
   gap: clamp(2rem, 4vw, 4rem);
   align-items: start;
+  background: rgba(253, 250, 244, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* ─── Sidebar ─────────────────────────────────────────────────────────────── */
@@ -458,7 +461,9 @@
 /* ─── Alt CTA ─────────────────────────────────────────────────────────────── */
 
 .bottomCta {
-  background: var(--ink-900);
+  background: rgba(26, 42, 31, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding-block: clamp(3rem, 6vw, 5rem);
 }
 
