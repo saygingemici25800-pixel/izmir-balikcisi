@@ -1,0 +1,97 @@
+.footer {
+  position: relative;
+  padding: clamp(3rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3.5rem) var(--s-5);
+  border-top: 1px solid var(--c-line);
+  background: rgba(5, 11, 22, 0.7);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  font-size: var(--t-small);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-cream);
+  isolation: isolate;
+}
+
+.colophon {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2rem, 6vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--c-bone);
+  text-transform: none;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+  max-width: 22ch;
+}
+.colophon em { font-style: normal; color: var(--c-gold); }
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  border-top: 1px solid var(--c-line);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.col h4 {
+  font-size: var(--t-small);
+  letter-spacing: 0.22em;
+  color: var(--c-gold);
+  margin-bottom: var(--s-3);
+  font-weight: 500;
+}
+.col ul { list-style: none; display: flex; flex-direction: column; gap: var(--s-2); }
+.col li a {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--c-bone);
+  opacity: 0.88;
+}
+.col li a:hover { color: var(--c-gold); }
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.markLg {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--c-bone);
+  text-transform: none;
+}
+.brandCopy {
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  line-height: 1.55;
+  color: var(--c-cream);
+  opacity: 0.7;
+  max-width: 38ch;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--s-5);
+  padding-top: var(--s-5);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--c-line);
+  opacity: 0.7;
+}
+.bottom .rule { height: 1px; background: var(--c-line); }
+
+@media (max-width: 860px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .brand { grid-column: 1 / -1; }
+  .bottom { grid-template-columns: 1fr; text-align: left; }
+}

@@ -1,0 +1,236 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-top: clamp(5rem, 9vw, 7.5rem);
+  padding-bottom: var(--s-7);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Top editorial meta strip ---------------------------------------------- */
+.topMeta {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--s-5);
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  font-size: var(--t-small);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-cream);
+  opacity: 0.7;
+}
+.topMeta .rule {
+  height: 1px;
+  background: var(--c-line);
+}
+.topMeta .pin {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.topMeta .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-gold-hi);
+  animation: pulse 2.2s infinite ease-in-out;
+}
+
+/* Massive type ---------------------------------------------------------- */
+.typeBlock {
+  align-self: center;
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  position: relative;
+}
+
+.line {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: var(--t-mega);
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Aqua-fill text: water flowing inside the letterforms */
+.aqua {
+  background: linear-gradient(
+    180deg,
+    #f7f1e3 0%,
+    #ecc170 18%,
+    #d8a44a 36%,
+    #4f6f95 60%,
+    #1c3a5e 88%
+  );
+  background-size: 100% 220%;
+  background-position: 50% 0%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  animation: tide 9s ease-in-out infinite alternate;
+  filter: drop-shadow(0 12px 28px rgba(216, 164, 74, 0.08));
+}
+
+@keyframes tide {
+  0%   { background-position: 50% 0%; }
+  100% { background-position: 50% 100%; }
+}
+
+.outline {
+  -webkit-text-stroke: 1px var(--c-cream);
+  color: transparent;
+  opacity: 0.42;
+}
+
+.lineB {
+  justify-content: flex-end;
+  margin-top: clamp(-1.6rem, -2.6vw, -3rem);
+}
+
+.char {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.charSpace { display: inline-block; width: 0.22em; }
+
+/* Side label rotated -------------------------------------------------- */
+.sideLabel {
+  position: absolute;
+  right: clamp(1.25rem, 4vw, 3.5rem);
+  top: 40%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right top;
+  font-size: var(--t-small);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeIn 1.6s var(--ease-out) 1.4s forwards;
+}
+
+/* Subline (asymmetric, glass card) ------------------------------------ */
+.sub {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 32%);
+  gap: var(--s-7);
+  align-items: flex-end;
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  margin-top: clamp(2rem, 5vw, 4rem);
+}
+
+.lede {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-size: var(--t-lead);
+  line-height: 1.35;
+  max-width: 36ch;
+  color: var(--c-bone);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 1s var(--ease-out) 1.2s forwards;
+}
+.lede em {
+  font-style: normal;
+  color: var(--c-gold);
+}
+
+.card {
+  padding: var(--s-5);
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-4) var(--s-5);
+  font-size: var(--t-small);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-cream);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 1s var(--ease-out) 1.4s forwards;
+}
+.card dt { color: var(--c-gold); }
+.card dd { font-family: var(--f-display); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--c-bone); }
+
+/* Bottom meta + scroll cue -------------------------------------------- */
+.bottomMeta {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: flex-end;
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  gap: var(--s-5);
+  font-size: var(--t-small);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-cream);
+  opacity: 0;
+  animation: fadeIn 1.4s var(--ease-out) 1.6s forwards;
+}
+.bottomMeta .col2 { display: flex; align-items: center; gap: var(--s-3); }
+.bottomMeta .col3 { text-align: right; }
+
+.scrollCue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  color: var(--c-gold);
+}
+.scrollLine {
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background: var(--c-gold);
+  position: relative;
+  overflow: hidden;
+}
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--c-cream);
+  transform: translateX(-100%);
+  animation: drip 2.2s ease-in-out infinite;
+}
+
+@keyframes drip {
+  0%, 100% { transform: translateX(-100%); }
+  50%      { transform: translateX(100%); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.7); }
+}
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  to { opacity: 0.78; }
+}
+
+/* Glow ribbon — runs vertically along right edge to anchor composition */
+.ribbon {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, var(--c-gold) 40%, var(--c-gold) 60%, transparent 100%);
+  opacity: 0.35;
+}
+
+/* Responsive ---------------------------------------------------------- */
+@media (max-width: 860px) {
+  .topMeta { grid-template-columns: 1fr auto; }
+  .topMeta .rule { display: none; }
+  .sub { grid-template-columns: 1fr; }
+  .sideLabel { display: none; }
+  .bottomMeta { grid-template-columns: 1fr; text-align: left; }
+  .bottomMeta .col3 { text-align: left; }
+  .lineB { justify-content: flex-start; }
+}

@@ -1,0 +1,105 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--s-6);
+  padding: var(--s-4) clamp(1.25rem, 4vw, 3.5rem);
+  background: linear-gradient(180deg, rgba(5,11,22,0.55), rgba(5,11,22,0));
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.scrolled {
+  background: rgba(5, 11, 22, 0.62);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.brand {
+  font-family: var(--f-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.brandMark {
+  display: inline-block;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--c-gold-hi), var(--c-gold-lo));
+  box-shadow: 0 0 14px rgba(216, 164, 74, 0.45);
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-7);
+}
+
+.link {
+  font-family: var(--f-body);
+  font-size: var(--t-small);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--c-cream);
+  opacity: 0.78;
+  position: relative;
+  padding-block: var(--s-2);
+}
+.link:hover { opacity: 1; color: var(--c-gold-hi); }
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--c-gold);
+  transition: right 0.5s var(--ease-out);
+}
+.link:hover::after { right: 0; }
+
+.cta {
+  font-family: var(--f-body);
+  font-size: var(--t-small);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  padding: var(--s-3) var(--s-5);
+  border: 1px solid var(--c-line-strong);
+  border-radius: 999px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.cta:hover {
+  background: var(--c-gold);
+  color: var(--c-abyss);
+  border-color: var(--c-gold);
+}
+
+.menuBtn {
+  display: none;
+  width: 38px; height: 38px;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 50%;
+  position: relative;
+}
+.menuBtn::before, .menuBtn::after {
+  content: '';
+  position: absolute;
+  left: 25%; right: 25%;
+  height: 1px;
+  background: var(--c-cream);
+}
+.menuBtn::before { top: 42%; }
+.menuBtn::after  { bottom: 42%; }
+
+@media (max-width: 860px) {
+  .links { display: none; }
+  .cta { display: none; }
+  .menuBtn { display: block; }
+}
