@@ -1,0 +1,78 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-top, 400);
+  mix-blend-mode: difference;
+}
+
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fefefe;
+  transform: translate3d(-50%, -50%, 0);
+  transition: width var(--duration-base, 250ms) var(--ease-out, ease-out),
+    height var(--duration-base, 250ms) var(--ease-out, ease-out),
+    opacity var(--duration-fast, 150ms);
+  will-change: transform;
+}
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #fefefe;
+  transform: translate3d(-50%, -50%, 0);
+  transition: width var(--duration-slow, 400ms) var(--ease-out, ease-out),
+    height var(--duration-slow, 400ms) var(--ease-out, ease-out),
+    border-color var(--duration-slow, 400ms) var(--ease-out, ease-out),
+    opacity var(--duration-fast, 150ms);
+  will-change: transform;
+}
+
+.hover .dot {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.hover .ring {
+  width: 70px;
+  height: 70px;
+}
+
+.text {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate3d(-50%, -50%, 0);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fefefe;
+  opacity: 0;
+  transition: opacity var(--duration-fast, 150ms);
+  white-space: nowrap;
+}
+.hover .text {
+  opacity: 1;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .layer {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    display: none;
+  }
+}

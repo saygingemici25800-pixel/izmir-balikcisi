@@ -4,6 +4,8 @@ import { SEO, RESTAURANT } from "@/data/constants";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OceanBackground from "@/components/layout/OceanBackground";
+import SmoothScroll from "@/components/layout/SmoothScroll/SmoothScroll";
+import MagneticCursor from "@/components/layout/MagneticCursor/MagneticCursor";
 
 export const metadata: Metadata = {
   title: {
@@ -107,9 +109,12 @@ export default function RootLayout({
       </head>
       <body>
         <OceanBackground />
-        <Navbar />
-        {children}
-        <Footer />
+        <MagneticCursor />
+        <SmoothScroll>
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
