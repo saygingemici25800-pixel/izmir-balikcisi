@@ -54,7 +54,8 @@ const jsonLd = {
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "İzmir",
+    addressLocality: "Fethiye",
+    addressRegion: "Muğla",
     addressCountry: "TR",
   },
   geo: {

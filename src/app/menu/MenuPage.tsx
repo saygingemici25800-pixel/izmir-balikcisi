@@ -63,7 +63,7 @@ function MenuHero() {
         >
           <span className={styles.heroBadge}>🌿 100% Alkolsüz</span>
           <span className={styles.heroBadge}>🐟 {MENU_DATA.reduce((a, c) => a + c.items.length, 0)}+ Çeşit</span>
-          <span className={styles.heroBadge}>📍 İzmir</span>
+          <span className={styles.heroBadge}>📍 Fethiye</span>
         </motion.div>
       </div>
 

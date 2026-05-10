@@ -5,22 +5,22 @@ export const RESTAURANT = {
   name: "İzmir Balıkçısı",
   tagline: "Taze Deniz, Temiz Sofra",
   description:
-    "İzmir'in kalbinde, alkolsüz ve aile dostu bir deniz ürünleri deneyimi. Her gün taze gelen balıklar, sevgi dolu eller.",
-  address: "TBD — Adres netleşince eklenecek",
+    "Fethiye / Muğla'da, alkolsüz ve aile dostu bir deniz ürünleri deneyimi. Her gün taze gelen balıklar, sevgi dolu eller.",
+  address: "TBD — Adres netleşince eklenecek (Fethiye / Muğla)",
   phone: "TBD — Telefon netleşince eklenecek",
-  email: "info@izmirbalıkcisi.com", // netleşince güncelle
+  email: "info@izmirbalikcisi.com", // netleşince güncelle
   hours: {
     weekdays: "11:00 – 22:00",
     weekends: "10:00 – 23:00",
   },
   social: {
-    instagram: "https://instagram.com/izmirbalıkcisi", // güncelle
+    instagram: "https://instagram.com/izmirbalikcisi", // güncelle
     facebook: "",
     google: "",
   },
   location: {
-    lat: 38.4192,
-    lng: 27.1287,
+    lat: 36.6536,
+    lng: 29.1268,
     mapsUrl: "https://maps.google.com", // kesin link ekle
   },
 } as const;
@@ -49,13 +49,15 @@ export const NAV_LINKS = [
 export const SEO = {
   title: "İzmir Balıkçısı — Alkolsüz Taze Deniz Ürünleri Restoranı",
   description:
-    "İzmir'de alkolsüz, aile dostu, taze deniz ürünleri restoranı. Karşıyaka, Alsancak ve çevresi için en iyi balık restoranı.",
+    "Fethiye / Muğla'da alkolsüz, aile dostu, taze deniz ürünleri restoranı. Bölgenin en iyi balık restoranı.",
   keywords: [
-    "izmir balık restoranı",
+    "izmir balıkçısı",
+    "izmir balıkçısı fethiye",
+    "fethiye balık restoranı",
+    "muğla balık",
     "alkolsüz balık",
-    "aile dostu restoran izmir",
+    "aile dostu restoran fethiye",
     "taze deniz ürünleri",
-    "izmir balıkçı",
   ],
   ogImage: "/og-image.jpg",
   url: "https://izmir-balikcisi.vercel.app", // güncelle

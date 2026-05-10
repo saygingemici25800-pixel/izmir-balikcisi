@@ -112,7 +112,7 @@ export default function Hero() {
           {/* Üst etiket */}
           <motion.div className={styles.topLabel} variants={itemVariants}>
             <motion.span className={styles.labelLine} variants={lineVariants} />
-            <span className={styles.labelText}>İzmir · Taze · Aile Dostu</span>
+            <span className={styles.labelText}>Fethiye · Taze · Aile Dostu</span>
             <motion.span className={styles.labelLine} variants={lineVariants} />
           </motion.div>
 
@@ -129,7 +129,7 @@ export default function Hero() {
 
           {/* Açıklama */}
           <motion.p className={styles.description} variants={itemVariants}>
-            Denizin taze nefesi, sofranıza yansıyor.<br />
+            Her gün taze tabaklar, sıcak bir sofra.<br />
             Alkolsüz, huzurlu, aile sofrası.
           </motion.p>
 

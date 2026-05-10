@@ -14,7 +14,7 @@ const stats = [
 ];
 
 const values = [
-  { icon: '🌊', title: 'Taze & Doğal', desc: 'Her sabah İzmir körfezinden gelen taze deniz ürünleri, kimyasal katkısız.' },
+  { icon: '🌊', title: 'Taze & Doğal', desc: 'Her sabah Ege\'den gelen taze deniz ürünleri, kimyasal katkısız.' },
   { icon: '👨‍👩‍👧‍👦', title: 'Aile Dostu', desc: 'Çocuklar dahil herkesin kendini rahat hissedeceği huzurlu bir sofra ortamı.' },
   { icon: '🌿', title: 'Alkolsüz Seçim', desc: 'Sağlıklı yaşamı destekleyen, herkesin rahatlıkla gelebileceği şeffaf bir mekan.' },
 ];
@@ -46,9 +46,9 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: easeOut, delay: 0.1 }}
           >
-            İzmir&apos;in<br />
-            <span className={styles.titleAccent}>kalbinde</span>,<br />
-            denizin tazesinde
+            Muğla&apos;nın<br />
+            <span className={styles.titleAccent}>sofrasında</span>,<br />
+            her gün taze
           </motion.h2>
 
           <motion.p
@@ -57,10 +57,10 @@ export default function About() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: easeOut, delay: 0.2 }}
           >
-            İzmir Balıkçısı olarak yıllardır şehrin en taze deniz ürünlerini
-            sofralarınıza taşıyoruz. Fethiye&apos;deki kardeş mekanımız Çalış
-            Balıkçısı ile aynı kalite anlayışını, İzmir&apos;in aydınlık ruhuna
-            uygun açık ve sıcak bir atmosferle sunuyoruz.
+            İzmir Balıkçısı olarak yıllardır bölgenin en taze deniz ürünlerini
+            sofralarınıza taşıyoruz. Kardeş mekanımız Çalış Balıkçısı ile aynı
+            kalite anlayışını, Muğla&apos;nın aydınlık ruhuna uygun açık ve
+            sıcak bir atmosferle sunuyoruz.
           </motion.p>
 
           <motion.p

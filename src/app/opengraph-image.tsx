@@ -78,7 +78,7 @@ export default async function Image() {
               textTransform: 'uppercase',
             }}
           >
-            İZMİR · TAZE · AİLE DOSTU
+            FETHİYE · TAZE · AİLE DOSTU
           </div>
 
           {/* Ana başlık */}

@@ -19,7 +19,7 @@ export default function Footer() {
               <span className={styles.logoText}>İzmir Balıkçısı</span>
             </Link>
             <p className={styles.brandDesc}>
-              İzmir&apos;in kalbinde, her gün taze deniz ürünleri.
+              Fethiye / Muğla&apos;da, her gün taze deniz ürünleri.
               Alkolsüz, aile dostu, huzurlu bir sofra.
             </p>
             <div className={styles.badge}>

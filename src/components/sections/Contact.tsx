@@ -140,7 +140,7 @@ export default function Contact() {
           >
             <div className={styles.mapPlaceholder}>
               <span className={styles.mapPin}>📍</span>
-              <p className={styles.mapText}>İzmir Haritası</p>
+              <p className={styles.mapText}>Fethiye Haritası</p>
               <p className={styles.mapSub}>Adres netleşince Google Maps eklenecek</p>
               <a
                 href={RESTAURANT.location.mapsUrl}
