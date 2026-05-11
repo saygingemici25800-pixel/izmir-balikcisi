@@ -1,4 +1,9 @@
 import styles from './Footer.module.css';
+import { RESTAURANT } from '@/lib/constants';
+
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  RESTAURANT.address.full
+)}`;
 
 export function Footer() {
   return (
@@ -30,16 +35,16 @@ export function Footer() {
         <div className={styles.col}>
           <h4>İletişim</h4>
           <ul>
-            <li><a href="tel:+902520000000">+90 252 000 00 00</a></li>
-            <li><a href="mailto:merhaba@izmirbalikcisi.example">merhaba@izmirbalikcisi.example</a></li>
-            <li><a href="https://maps.google.com" target="_blank" rel="noreferrer">Fethiye / Muğla</a></li>
+            <li><a href={`tel:${RESTAURANT.phoneE164}`}>{RESTAURANT.phoneDisplay}</a></li>
+            <li><a href={`mailto:${RESTAURANT.email}`}>{RESTAURANT.email}</a></li>
+            <li><a href={MAPS_URL} target="_blank" rel="noreferrer">Tuzla · Fethiye / Muğla</a></li>
           </ul>
         </div>
 
         <div className={styles.col}>
           <h4>Sosyal</h4>
           <ul>
-            <li><a href="#" target="_blank" rel="noreferrer">Instagram</a></li>
+            <li><a href={RESTAURANT.social.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
             <li><a href="#" target="_blank" rel="noreferrer">TripAdvisor</a></li>
             <li><a href="https://calis-balikcisi.vercel.app" target="_blank" rel="noreferrer">Kardeş site</a></li>
           </ul>

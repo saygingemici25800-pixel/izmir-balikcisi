@@ -1,6 +1,11 @@
 'use client';
 
 import styles from './Contact.module.css';
+import { RESTAURANT } from '@/lib/constants';
+
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  RESTAURANT.address.full
+)}`;
 
 export function Contact() {
   return (
@@ -25,15 +30,17 @@ export function Contact() {
           <dl className={styles.block}>
             <dt>Adres</dt>
             <dd>
-              Atatürk Cad. № 38<br />
-              Fethiye / Muğla
-              <span className={styles.small}>36.6536° K · 29.1268° D</span>
+              {RESTAURANT.address.street}<br />
+              {RESTAURANT.address.postalCode} {RESTAURANT.address.locality} / {RESTAURANT.address.region}
+              <span className={styles.small}>
+                {RESTAURANT.location.lat}° K · {RESTAURANT.location.lng}° D
+              </span>
             </dd>
           </dl>
           <dl className={styles.block}>
             <dt>Telefon</dt>
             <dd>
-              +90 252 000 00 00
+              {RESTAURANT.phoneDisplay}
               <span className={styles.small}>WhatsApp kabul ediyoruz</span>
             </dd>
           </dl>
@@ -54,10 +61,10 @@ export function Contact() {
           </dl>
 
           <div className={styles.ctaRow}>
-            <a className={`${styles.cta} ${styles.primary}`} href="tel:+902520000000" data-magnetic data-cursor-label="Ara">
+            <a className={`${styles.cta} ${styles.primary}`} href={`tel:${RESTAURANT.phoneE164}`} data-magnetic data-cursor-label="Ara">
               Hemen Ara <span className={styles.arrow} aria-hidden />
             </a>
-            <a className={styles.cta} href="https://maps.google.com" target="_blank" rel="noreferrer" data-magnetic data-cursor-label="Haritada">
+            <a className={styles.cta} href={MAPS_URL} target="_blank" rel="noreferrer" data-magnetic data-cursor-label="Haritada">
               Haritada gör <span className={styles.arrow} aria-hidden />
             </a>
           </div>

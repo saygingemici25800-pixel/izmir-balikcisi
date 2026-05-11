@@ -37,7 +37,6 @@ export function Nav() {
       <a href="#iletisim" className={styles.cta} data-magnetic data-cursor-label="Rezervasyon">
         Rezervasyon
       </a>
-      <button className={styles.menuBtn} aria-label="Menü" />
     </nav>
   );
 }

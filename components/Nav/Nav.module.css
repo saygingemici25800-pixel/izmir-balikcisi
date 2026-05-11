@@ -74,6 +74,7 @@
   border: 1px solid var(--c-line-strong);
   border-radius: 999px;
   transition: background 0.3s, color 0.3s, border-color 0.3s;
+  white-space: nowrap;
 }
 .cta:hover {
   background: var(--c-gold);
@@ -81,25 +82,19 @@
   border-color: var(--c-gold);
 }
 
-.menuBtn {
-  display: none;
-  width: 38px; height: 38px;
-  border: 1px solid var(--c-line-strong);
-  border-radius: 50%;
-  position: relative;
-}
-.menuBtn::before, .menuBtn::after {
-  content: '';
-  position: absolute;
-  left: 25%; right: 25%;
-  height: 1px;
-  background: var(--c-cream);
-}
-.menuBtn::before { top: 42%; }
-.menuBtn::after  { bottom: 42%; }
-
 @media (max-width: 860px) {
   .links { display: none; }
-  .cta { display: none; }
-  .menuBtn { display: block; }
+  /* keep CTA visible — primary path to reservation on mobile */
+  .cta {
+    padding: var(--s-2) var(--s-4);
+    font-size: var(--t-micro);
+    letter-spacing: 0.18em;
+  }
+  .nav { gap: var(--s-3); }
+  .brand { font-size: 0.92rem; }
+  .brandMark { width: 18px; height: 18px; }
+}
+
+@media (max-width: 380px) {
+  .brand span:last-of-type { display: none; } /* mark + lighthouse stays */
 }
