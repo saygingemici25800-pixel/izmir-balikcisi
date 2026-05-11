@@ -6,6 +6,7 @@ import { Manifesto } from '@/components/Manifesto/Manifesto';
 import { Gallery } from '@/components/Gallery/Gallery';
 import { Contact } from '@/components/Contact/Contact';
 import { Footer } from '@/components/Footer/Footer';
+import { SisterCta } from '@/components/SisterCta/SisterCta';
 
 export default function Page() {
   return (
@@ -56,6 +57,8 @@ export default function Page() {
       />
 
       <Gallery />
+
+      <SisterCta />
 
       <Contact />
 
