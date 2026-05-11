@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { MENU, itemCount } from '@/lib/menu';
 import styles from './MenuFull.module.css';
+import MenuToc from './MenuToc';
 
 export default function MenuFull() {
   return (
@@ -19,15 +20,7 @@ export default function MenuFull() {
         sakızlı muhallebiye. Burası alkolsüz bir ev — eve dönüş gibi.
       </p>
 
-      <div className={styles.tocWrap}>
-        <nav className={styles.toc} aria-label="Menü kategorileri">
-          {MENU.map((c) => (
-            <a key={c.id} href={`#${c.id}`} className={styles.tocLink}>
-              {c.title}
-            </a>
-          ))}
-        </nav>
-      </div>
+      <MenuToc />
 
       {MENU.map((cat) => (
         <section key={cat.id} id={cat.id} className={styles.category}>

@@ -4,6 +4,12 @@ import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 
+declare global {
+  interface Window {
+    lenis?: Lenis;
+  }
+}
+
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
@@ -17,6 +23,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       touchMultiplier: 1.2,
     });
     lenisRef.current = lenis;
+    window.lenis = lenis;
 
     let raf = 0;
     const tick = (time: number) => {
@@ -29,6 +36,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       cancelAnimationFrame(raf);
       lenis.destroy();
       lenisRef.current = null;
+      delete window.lenis;
     };
   }, []);
 

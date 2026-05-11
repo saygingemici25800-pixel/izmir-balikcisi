@@ -93,7 +93,7 @@
 /* Category section ----------------------------------------------------- */
 .category {
   padding-block: clamp(2.5rem, 5vw, 4rem);
-  scroll-margin-top: clamp(7rem, 12vw, 10rem);
+  scroll-margin-top: clamp(6rem, 10vw, 8.5rem);
 }
 .category + .category {
   border-top: 1px solid var(--c-line);
@@ -111,14 +111,15 @@
   font-size: clamp(2rem, 4vw, 3.4rem);
   line-height: 1;
   letter-spacing: -0.025em;
-  color: var(--c-bone);
+  color: #E8BC42;
 }
 .catSub {
   font-family: var(--f-display);
   font-weight: 300;
   font-style: italic;
   font-size: clamp(1rem, 1.4vw, 1.25rem);
-  color: var(--c-gold);
+  color: var(--c-bone);
+  opacity: 0.85;
 }
 .catCount {
   font-size: var(--t-small);
@@ -132,19 +133,23 @@
 /* Item rows ------------------------------------------------------------ */
 .list {
   display: grid;
-  gap: var(--s-5);
+  gap: 0;
 }
 
 .item {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: var(--s-4) var(--s-5);
+  column-gap: var(--s-5);
+  row-gap: var(--s-1);
   align-items: baseline;
-  padding-block: var(--s-4);
+  padding-block: var(--s-3);
   border-bottom: 1px dashed var(--c-line);
-  transition: border-color 0.3s var(--ease-out);
+  transition: border-color 0.3s var(--ease-out), background 0.3s var(--ease-out), padding-block 0.35s var(--ease-out);
 }
-.item:hover { border-bottom-color: var(--c-gold-lo); }
+.item:hover {
+  border-bottom-color: var(--c-gold-lo);
+  background: rgba(232, 188, 66, 0.04);
+}
 .item:last-child { border-bottom: none; }
 
 .itemHead {
@@ -156,8 +161,8 @@
 .itemName {
   font-family: var(--f-display);
   font-weight: 400;
-  font-size: clamp(1.2rem, 1.8vw, 1.7rem);
-  line-height: 1.1;
+  font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+  line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--c-bone);
 }
@@ -176,14 +181,37 @@
   border-radius: 999px;
 }
 
+/* Description collapsed by default; expands on hover (desktop) */
 .itemDesc {
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--c-cream);
-  opacity: 0.78;
   max-width: 56ch;
-  margin-top: var(--s-2);
   grid-column: 1 / -1;
+  /* collapsed state */
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.4s var(--ease-out),
+    opacity 0.25s var(--ease-out),
+    margin-top 0.4s var(--ease-out);
+}
+.item:hover .itemDesc,
+.item:focus-within .itemDesc {
+  max-height: 8rem;
+  opacity: 0.78;
+  margin-top: var(--s-2);
+}
+
+/* Touch / no-hover devices: descriptions always visible */
+@media (hover: none) and (pointer: coarse) {
+  .itemDesc {
+    max-height: 8rem;
+    opacity: 0.78;
+    margin-top: var(--s-2);
+  }
 }
 
 .itemPrice {
