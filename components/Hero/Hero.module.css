@@ -95,7 +95,7 @@
 
 .lineB {
   justify-content: flex-end;
-  margin-top: clamp(-1.6rem, -2.6vw, -3rem);
+  margin-top: clamp(-0.4rem, -0.6vw, -0.8rem); /* tight editorial kerning, no overlap */
 }
 
 .char {
@@ -243,5 +243,5 @@
 /* BALIKÇISI is 9 chars; narrower viewports need a tighter type scale */
 @media (max-width: 480px) {
   .line { font-size: clamp(2.6rem, 14.5vw, 4rem); letter-spacing: -0.045em; }
-  .lineB { margin-top: clamp(-1rem, -2vw, -2rem); }
+  .lineB { margin-top: 0; }
 }
