@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { MENU, itemCount } from '@/lib/menu';
 import styles from './MenuFull.module.css';
 import MenuToc from './MenuToc';
+import MenuList from './MenuList';
 
 export default function MenuFull() {
   return (
@@ -22,39 +23,7 @@ export default function MenuFull() {
 
       <MenuToc />
 
-      {MENU.map((cat) => (
-        <section key={cat.id} id={cat.id} className={styles.category}>
-          <header className={styles.catHead}>
-            <h2 className={styles.catTitle}>{cat.title}</h2>
-            {cat.subtitle && <p className={styles.catSub}>{cat.subtitle}</p>}
-            <span className={styles.catCount}>
-              {String(cat.items.length).padStart(2, '0')} tabak
-            </span>
-          </header>
-
-          <ul className={styles.list}>
-            {cat.items.map((item) => (
-              <li key={item.name} className={styles.item}>
-                <div className={styles.itemHead}>
-                  <span className={styles.itemName}>{item.name}</span>
-                  {item.tags && item.tags.length > 0 && (
-                    <span className={styles.itemTags}>
-                      {item.tags.map((t) => (
-                        <span key={t} className={styles.itemTag}>{t}</span>
-                      ))}
-                    </span>
-                  )}
-                </div>
-                <span className={styles.itemPrice}>
-                  {item.price}
-                  <small>{item.unit ?? '₺'}</small>
-                </span>
-                <p className={styles.itemDesc}>{item.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <MenuList categories={MENU} />
 
       <aside className={styles.note}>
         <span className={styles.badge}>0%</span>
