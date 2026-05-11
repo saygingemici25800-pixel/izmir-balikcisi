@@ -33,7 +33,7 @@
   --f-body:    'Satoshi', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --f-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --t-mega:  clamp(5.5rem, 17vw, 20rem);
+  --t-mega:  clamp(3.75rem, 13vw, 14rem);
   --t-h1:    clamp(3rem, 8.5vw, 8rem);
   --t-h2:    clamp(2.25rem, 5.5vw, 5.25rem);
   --t-h3:    clamp(1.5rem, 2.6vw, 2.4rem);
@@ -63,6 +63,7 @@ html {
 
 body {
   min-height: 100%;
+  max-width: 100vw; /* hard horizontal cap — defends against any descendant overflow */
   background: var(--c-abyss);
   color: var(--c-cream);
   font-family: var(--f-body);
@@ -73,6 +74,8 @@ body {
   overflow-x: clip;
   cursor: none;
 }
+
+main { overflow-x: clip; }
 
 /* Lenis adds these classes; they need explicit overflow behavior */
 html.lenis,
