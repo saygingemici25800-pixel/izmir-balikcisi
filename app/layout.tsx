@@ -102,6 +102,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr">
       <head>
+        <link
+          rel="preload"
+          href="/fonts/Panchang-Variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
