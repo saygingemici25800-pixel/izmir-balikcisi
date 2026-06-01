@@ -78,15 +78,9 @@ const jsonLd = {
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday'],
-      opens: RESTAURANT.hours.weekdays.open,
-      closes: RESTAURANT.hours.weekdays.close,
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Thursday', 'Friday', 'Saturday', 'Sunday'],
-      opens: RESTAURANT.hours.weekends.open,
-      closes: RESTAURANT.hours.weekends.close,
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: RESTAURANT.hours.everyday.open,
+      closes: RESTAURANT.hours.everyday.close,
     },
   ],
   amenityFeature: [

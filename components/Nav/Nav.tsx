@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './Nav.module.css';
+import { RESTAURANT } from '@/lib/constants';
 
 const LINKS = [
   { href: '#hikaye', label: 'Hikâye' },
@@ -34,8 +35,9 @@ export function Nav() {
           </a>
         ))}
       </div>
-      <a href="#iletisim" className={styles.cta} data-magnetic data-cursor-label="Rezervasyon">
-        Rezervasyon
+      <a href={`tel:${RESTAURANT.phoneE164}`} className={styles.cta} data-magnetic data-cursor-label="Ara">
+        <span className={styles.ctaDot} aria-hidden />
+        Ara
       </a>
     </nav>
   );

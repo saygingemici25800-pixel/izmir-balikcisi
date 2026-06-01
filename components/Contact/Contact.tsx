@@ -7,6 +7,10 @@ const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
   RESTAURANT.address.full
 )}`;
 
+const MAPS_EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(
+  RESTAURANT.address.full
+)}&z=16&output=embed`;
+
 export function Contact() {
   return (
     <section className={styles.section} id="iletisim">
@@ -15,7 +19,7 @@ export function Contact() {
           <div className={styles.eyebrowRow}>
             <span>№ 06 — İletişim</span>
             <span className={styles.ruleLong} aria-hidden />
-            <span>Açık · 12—24</span>
+            <span>Her gün · 10.30—22.30</span>
           </div>
           <h2 className={styles.title}>
             Bir <em>masa</em><br />ayırtalım.
@@ -24,14 +28,43 @@ export function Contact() {
             Telefon en hızlısı. Pencere kenarı için biraz erken arayın; en iyi
             ışık 19.30 ile 20.15 arası.
           </p>
+
+          <div className={styles.ctaRow}>
+            <a
+              className={`${styles.cta} ${styles.primary}`}
+              href={`tel:${RESTAURANT.phoneE164}`}
+              data-magnetic
+              data-cursor-label="Ara"
+            >
+              <span className={styles.ctaDot} aria-hidden />
+              {RESTAURANT.phoneDisplay} <span className={styles.arrow} aria-hidden />
+            </a>
+            <a
+              className={styles.cta}
+              href={MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              data-magnetic
+              data-cursor-label="Yol tarifi"
+            >
+              Yol tarifi al <span className={styles.arrow} aria-hidden />
+            </a>
+          </div>
         </div>
 
         <div className={styles.details}>
           <dl className={styles.block}>
             <dt>Adres</dt>
             <dd>
-              {RESTAURANT.address.street}<br />
-              {RESTAURANT.address.postalCode} {RESTAURANT.address.locality} / {RESTAURANT.address.region}
+              <a
+                className={styles.contactLink}
+                href={MAPS_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {RESTAURANT.address.street}<br />
+                {RESTAURANT.address.postalCode} {RESTAURANT.address.locality} / {RESTAURANT.address.region}
+              </a>
               <span className={styles.small}>
                 {RESTAURANT.location.lat}° K · {RESTAURANT.location.lng}° D
               </span>
@@ -40,16 +73,17 @@ export function Contact() {
           <dl className={styles.block}>
             <dt>Telefon</dt>
             <dd>
-              {RESTAURANT.phoneDisplay}
-              <span className={styles.small}>WhatsApp kabul ediyoruz</span>
+              <a className={styles.contactLink} href={`tel:${RESTAURANT.phoneE164}`}>
+                {RESTAURANT.phoneDisplay}
+              </a>
+              <span className={styles.small}>Tıkla & ara · WhatsApp kabul ediyoruz</span>
             </dd>
           </dl>
           <dl className={styles.block}>
             <dt>Saatler</dt>
             <dd>
-              Pzt — Çar · 12.00—23.00<br />
-              Per — Pzr · 12.00—00.00
-              <span className={styles.small}>Mutfak kapanışı saat dönmeden 45 dk önce</span>
+              Her gün · 10.30 — 22.30
+              <span className={styles.small}>Mutfak son sipariş 22.00</span>
             </dd>
           </dl>
           <dl className={styles.block}>
@@ -59,15 +93,29 @@ export function Contact() {
               <span className={styles.small}>Servis ücreti dahildir</span>
             </dd>
           </dl>
+        </div>
 
-          <div className={styles.ctaRow}>
-            <a className={`${styles.cta} ${styles.primary}`} href={`tel:${RESTAURANT.phoneE164}`} data-magnetic data-cursor-label="Ara">
-              Hemen Ara <span className={styles.arrow} aria-hidden />
-            </a>
-            <a className={styles.cta} href={MAPS_URL} target="_blank" rel="noreferrer" data-magnetic data-cursor-label="Haritada">
-              Haritada gör <span className={styles.arrow} aria-hidden />
-            </a>
-          </div>
+        <div className={styles.mapWrap}>
+          <iframe
+            className={styles.map}
+            src={MAPS_EMBED}
+            title={`${RESTAURANT.name} konumu — Tuzla, Fethiye / Muğla`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <div className={styles.mapGlow} aria-hidden />
+          <a
+            className={styles.mapOpen}
+            href={MAPS_URL}
+            target="_blank"
+            rel="noreferrer"
+            data-magnetic
+            data-cursor-label="Aç"
+          >
+            <span className={styles.mapPin} aria-hidden />
+            Google Maps'te aç
+          </a>
         </div>
       </div>
     </section>
