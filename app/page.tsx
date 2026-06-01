@@ -20,7 +20,7 @@ export default function Page() {
           { text: 'Aile dostu' },
           { text: 'Fethiye · Muğla', tone: 'thin' },
           { text: 'Bahar 2026' },
-          { text: 'Açık · 12—24', tone: 'gold' },
+          { text: 'Açık · 10.30—22.30', tone: 'gold' },
           { text: 'Otuz beş yıl' }
         ]}
         duration={42}

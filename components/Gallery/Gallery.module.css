@@ -56,7 +56,9 @@
 .itemImg {
   width: 100%;
   height: auto;
+  min-height: 120px; /* keep the tile tappable while the remote image is still loading */
   display: block;
+  background: var(--c-deep);
   filter: saturate(0.85) contrast(1.05);
   transition: transform 0.7s var(--ease-out), filter 0.4s var(--ease-out);
 }

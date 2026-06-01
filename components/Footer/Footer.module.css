@@ -93,5 +93,12 @@
 @media (max-width: 860px) {
   .grid { grid-template-columns: 1fr 1fr; }
   .brand { grid-column: 1 / -1; }
-  .bottom { grid-template-columns: 1fr; text-align: left; }
+  .bottom { grid-template-columns: 1fr; text-align: left; gap: var(--s-3); }
+  /* comfortable, ≥44px tap targets for footer links on touch */
+  .col ul { gap: var(--s-1); }
+  .col li a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
 }

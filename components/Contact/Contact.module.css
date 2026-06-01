@@ -239,4 +239,11 @@
   .block { grid-template-columns: 1fr; gap: var(--s-2); }
   .map { height: clamp(260px, 60vw, 360px); }
   .mapOpen { letter-spacing: 0.12em; }
+  /* comfortable ≥44px tap target for the inline phone/address links */
+  .contactLink {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 44px;
+  }
 }

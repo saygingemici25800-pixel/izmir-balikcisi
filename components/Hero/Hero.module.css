@@ -46,6 +46,7 @@
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
   position: relative;
   max-width: 100%;
+  min-width: 0; /* allow the grid item to shrink instead of forcing a wider track */
   overflow: clip;
 }
 
@@ -240,8 +241,18 @@
   .lineB { justify-content: flex-start; }
 }
 
-/* BALIKÇISI is 9 chars; narrower viewports need a tighter type scale */
+/* BALIKÇISI is 9 chars; narrow viewports need a tighter scale so the longest
+   line fits the viewport in full (no clipping). Calibrated against 375/414px. */
 @media (max-width: 480px) {
-  .line { font-size: clamp(2.6rem, 14.5vw, 4rem); letter-spacing: -0.045em; }
+  .line { font-size: clamp(1.85rem, 11.5vw, 4rem); letter-spacing: -0.045em; }
   .lineB { margin-top: 0; }
+  /* Keep İZMİR bright & legible on phones: drop the deep-water dark stops and
+     freeze the tide shift so the brand word never fades into the background. */
+  .aqua {
+    background: linear-gradient(180deg, #f7f1e3 0%, #ecc170 55%, #d8a44a 100%);
+    background-size: 100% 100%;
+    background-position: 50% 50%;
+    animation: none;
+    filter: none;
+  }
 }

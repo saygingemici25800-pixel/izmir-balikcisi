@@ -50,7 +50,7 @@
 .bigNum {
   font-family: var(--f-display);
   font-weight: 300;
-  font-size: clamp(8rem, 22vw, 22rem);
+  font-size: clamp(4rem, 19vw, 20rem); /* min lowered so 4-digit year fits ≤414px */
   line-height: 0.82;
   letter-spacing: -0.04em;
   color: transparent;
@@ -61,7 +61,7 @@
 .bigNumFill {
   font-family: var(--f-display);
   font-weight: 300;
-  font-size: clamp(8rem, 22vw, 22rem);
+  font-size: clamp(4rem, 19vw, 20rem);
   line-height: 0.82;
   letter-spacing: -0.04em;
   background: linear-gradient(180deg, var(--c-gold-hi), var(--c-gold-lo));

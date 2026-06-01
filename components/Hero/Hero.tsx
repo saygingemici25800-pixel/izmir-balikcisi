@@ -49,7 +49,7 @@ export function Hero() {
         <span>№ 001 / Est. 1989</span>
         <span className={styles.rule} aria-hidden />
         <span className={styles.pin}>
-          <span className={styles.dot} aria-hidden /> Fethiye · Açık · Bugün 12—24
+          <span className={styles.dot} aria-hidden /> Fethiye · Açık · 10.30—22.30
         </span>
       </header>
 
@@ -73,7 +73,7 @@ export function Hero() {
           <dt>Mevsim</dt>
           <dd>Kalkan başlıyor</dd>
           <dt>Saat</dt>
-          <dd>12.00 — 00.00</dd>
+          <dd>10.30 — 22.30</dd>
         </dl>
       </div>
 
