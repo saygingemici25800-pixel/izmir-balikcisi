@@ -23,6 +23,11 @@
 .canvas {
   width: 100% !important;
   height: 100% !important;
+  opacity: 0;
+  transition: opacity 1.1s var(--ease-out);
+}
+.canvasReady {
+  opacity: 1;
 }
 
 .fallback {

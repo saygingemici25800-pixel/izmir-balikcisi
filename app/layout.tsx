@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { OceanBackground } from '@/components/OceanBackground/OceanBackground';
+import { IntroLoader } from '@/components/IntroLoader/IntroLoader';
 import { MagneticCursor } from '@/components/MagneticCursor/MagneticCursor';
 import { SmoothScroll } from '@/components/SmoothScroll/SmoothScroll';
 import { Nav } from '@/components/Nav/Nav';
@@ -117,6 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <IntroLoader />
         <OceanBackground />
         <MagneticCursor />
         <SmoothScroll>

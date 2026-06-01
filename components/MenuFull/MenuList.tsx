@@ -91,6 +91,7 @@ export default function MenuList({ categories }: Props) {
 
 function DetailSheet({ item, onClose }: { item: MenuItem; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
     const t = window.setTimeout(() => closeRef.current?.focus(), 80);
@@ -162,7 +163,14 @@ function DetailSheet({ item, onClose }: { item: MenuItem; onClose: () => void })
 
           {item.img && (
             <div className={styles.sheetImage}>
-              <img src={item.img} alt={item.name} loading="lazy" />
+              <img
+                src={item.img}
+                alt={item.name}
+                loading="lazy"
+                className={imgLoaded ? styles.imgLoaded : ''}
+                onLoad={() => setImgLoaded(true)}
+                onError={() => setImgLoaded(true)}
+              />
             </div>
           )}
 

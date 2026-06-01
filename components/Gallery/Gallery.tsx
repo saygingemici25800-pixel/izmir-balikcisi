@@ -20,6 +20,8 @@ const SHOTS: Shot[] = [
 
 export function Gallery() {
   const [open, setOpen] = useState<number | null>(null);
+  const [loaded, setLoaded] = useState<Record<number, boolean>>({});
+  const markLoaded = (i: number) => setLoaded((s) => (s[i] ? s : { ...s, [i]: true }));
 
   const close = useCallback(() => setOpen(null), []);
   const prev  = useCallback(() => setOpen((i) => (i === null ? null : (i - 1 + SHOTS.length) % SHOTS.length)), []);
@@ -57,13 +59,20 @@ export function Gallery() {
           <button
             key={s.src}
             type="button"
-            className={styles.item}
+            className={`${styles.item} ${loaded[i] ? styles.itemLoaded : ''}`}
             onClick={() => setOpen(i)}
             data-magnetic
             data-cursor-label="Büyüt"
             aria-label={`${s.cap} fotoğrafını büyüt`}
           >
-            <img className={styles.itemImg} src={s.src} alt={s.cap} loading="lazy" />
+            <img
+              className={styles.itemImg}
+              src={s.src}
+              alt={s.cap}
+              loading="lazy"
+              onLoad={() => markLoaded(i)}
+              onError={() => markLoaded(i)}
+            />
             <span className={styles.itemMeta}>
               <span className={styles.itemNum}>{String(i + 1).padStart(2, '0')}</span>
               <span className={styles.itemCap}>{s.cap}</span>

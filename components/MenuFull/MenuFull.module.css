@@ -444,11 +444,20 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid var(--c-line);
+  background: var(--c-deep);
 }
 .sheetImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  filter: blur(12px) saturate(0.9);
+  transition: opacity 0.7s var(--ease-out), filter 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.sheetImage img.imgLoaded {
+  opacity: 1;
+  transform: none;
   filter: saturate(0.9) contrast(1.05);
 }
 

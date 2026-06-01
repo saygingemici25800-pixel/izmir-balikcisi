@@ -89,6 +89,7 @@ export function OceanBackground() {
   const [reduced, setReduced] = useState(false);
   const [coarse, setCoarse] = useState(false);
   const [active, setActive] = useState(true);
+  const [ready, setReady] = useState(false); // WebGL context created → fade canvas in over the gradient
 
   // capability detection (client only)
   useEffect(() => {
@@ -144,11 +145,12 @@ export function OceanBackground() {
       <div className={styles.fallback} />
       {showCanvas && (
         <Canvas
-          className={styles.canvas}
+          className={`${styles.canvas} ${ready ? styles.canvasReady : ''}`}
           dpr={coarse ? 1 : [1, 1.5]}
           gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
           camera={{ position: [0, 0, 1] }}
           frameloop="demand"
+          onCreated={() => setReady(true)}
         >
           <WaterPlane interactive={!coarse} />
           <RenderController active={active} fps={coarse ? 30 : 60} />

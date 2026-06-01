@@ -1,0 +1,84 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 80% at 50% 110%, var(--c-tide) 0%, transparent 65%),
+    radial-gradient(80% 60% at 50% 0%, var(--c-abyss) 0%, transparent 70%),
+    linear-gradient(180deg, var(--c-deep), var(--c-sea));
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.75s var(--ease-out), visibility 0s linear 0.75s;
+}
+.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.75s var(--ease-out);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  padding-inline: var(--s-5);
+  text-align: center;
+}
+
+.mark {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--c-gold-hi), var(--c-gold-lo));
+  box-shadow: 0 0 34px rgba(216, 164, 74, 0.45);
+  opacity: 0;
+  transform: scale(0.6);
+  animation: introMark 0.9s var(--ease-out) 0.1s forwards;
+}
+
+.word {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 6vw, 2.8rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-bone);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: introRise 0.9s var(--ease-out) 0.35s forwards;
+}
+
+.sub {
+  font-family: var(--f-body);
+  font-size: var(--t-small);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: introRise 0.9s var(--ease-out) 0.6s forwards;
+}
+
+.rule {
+  margin-top: var(--s-3);
+  width: clamp(120px, 40vw, 220px);
+  height: 1px;
+  background: var(--c-line);
+  overflow: hidden;
+}
+.ruleFill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--c-gold-lo), var(--c-gold-hi));
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: introBar 1.45s var(--ease-out) 0.45s forwards;
+}
+
+@keyframes introMark { to { opacity: 1; transform: scale(1); } }
+@keyframes introRise { to { opacity: 1; transform: translateY(0); } }
+@keyframes introBar  { to { transform: scaleX(1); } }
