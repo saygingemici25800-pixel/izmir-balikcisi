@@ -43,6 +43,7 @@
 }
 .col ul { list-style: none; display: flex; flex-direction: column; gap: var(--s-2); }
 .col li a {
+  position: relative;
   font-family: var(--f-display);
   font-weight: 300;
   font-size: 1.1rem;
@@ -50,8 +51,19 @@
   text-transform: none;
   color: var(--c-bone);
   opacity: 0.88;
+  transition: color var(--dur-med) var(--ease-out);
+}
+.col li a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -2px;
+  height: 1px;
+  background: var(--c-gold);
+  transition: right var(--dur-slow) var(--ease-out);
 }
 .col li a:hover { color: var(--c-gold); }
+.col li a:hover::after { right: 0; }
 
 .brand {
   display: flex;

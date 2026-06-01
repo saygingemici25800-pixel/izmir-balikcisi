@@ -85,10 +85,20 @@
   color: var(--c-cream);
   opacity: 0.65;
   padding-block: var(--s-2);
-  transition: opacity 0.2s, color 0.2s;
+  transition: opacity var(--dur-med) var(--ease-out), color var(--dur-med) var(--ease-out);
   position: relative;
 }
+.tocLink::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--c-gold);
+  transition: right var(--dur-slow) var(--ease-out);
+}
 .tocLink:hover { opacity: 1; color: var(--c-gold-hi); }
+.tocLink:hover::after { right: 0; }
 
 /* Category section ----------------------------------------------------- */
 .category {

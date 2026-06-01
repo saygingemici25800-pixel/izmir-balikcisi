@@ -49,9 +49,13 @@
   background: var(--c-deep);
   cursor: none;
   border: 1px solid var(--c-line);
-  transition: border-color 0.4s var(--ease-out);
+  transition: border-color var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
 }
-.item:hover { border-color: var(--c-gold-lo); }
+.item:hover {
+  border-color: var(--c-gold-lo);
+  transform: translateY(var(--lift-card));
+  box-shadow: var(--shadow-card-hover);
+}
 
 /* skeleton shimmer while the remote image is still loading */
 .item::after {

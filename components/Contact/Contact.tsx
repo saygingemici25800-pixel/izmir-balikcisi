@@ -1,7 +1,14 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import styles from './Contact.module.css';
 import { RESTAURANT } from '@/lib/constants';
+
+const reveal = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-10% 0px' },
+} as const;
 
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   RESTAURANT.address.full
@@ -15,7 +22,11 @@ export function Contact() {
   return (
     <section className={styles.section} id="iletisim">
       <div className={styles.frame}>
-        <div className={styles.header}>
+        <motion.div
+          className={styles.header}
+          {...reveal}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className={styles.eyebrowRow}>
             <span>№ 07 — İletişim</span>
             <span className={styles.ruleLong} aria-hidden />
@@ -50,9 +61,13 @@ export function Contact() {
               Yol tarifi al <span className={styles.arrow} aria-hidden />
             </a>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={styles.details}>
+        <motion.div
+          className={styles.details}
+          {...reveal}
+          transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+        >
           <dl className={styles.block}>
             <dt>Adres</dt>
             <dd>
@@ -93,9 +108,13 @@ export function Contact() {
               <span className={styles.small}>Servis ücreti dahildir</span>
             </dd>
           </dl>
-        </div>
+        </motion.div>
 
-        <div className={styles.mapWrap}>
+        <motion.div
+          className={styles.mapWrap}
+          {...reveal}
+          transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+        >
           <iframe
             className={styles.map}
             src={MAPS_EMBED}
@@ -116,7 +135,7 @@ export function Contact() {
             <span className={styles.mapPin} aria-hidden />
             Google Maps'te aç
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

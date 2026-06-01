@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import styles from './Nav.module.css';
 import { RESTAURANT } from '@/lib/constants';
 
@@ -14,8 +15,10 @@ const LINKS = [
 ];
 
 export function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -23,6 +26,30 @@ export function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Active-section indicator (scroll-spy). Only the home page has these anchors;
+  // on other routes no link is marked active.
+  useEffect(() => {
+    const ids = LINKS.map((l) => l.href.slice(1));
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (!els.length) {
+      setActive('');
+      return;
+    }
+    // a thin centre line: exactly one section crosses it at a time → unambiguous
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [pathname]);
 
   // ESC to close + lock body scroll while the panel is open
   useEffect(() => {
@@ -47,11 +74,21 @@ export function Nav() {
         </a>
 
         <div className={styles.links}>
-          {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className={styles.link}>
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l) => {
+            const isActive = active === l.href.slice(1);
+            return (
+              <a
+                key={l.href}
+                href={l.href}
+                className={`${styles.link} ${isActive ? styles.linkActive : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+                data-magnetic
+                data-cursor-label={l.label}
+              >
+                {l.label}
+              </a>
+            );
+          })}
         </div>
 
         <div className={styles.actions}>
@@ -96,11 +133,20 @@ export function Nav() {
         data-open={open}
       >
         <nav className={styles.panelLinks}>
-          {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className={styles.panelLink} onClick={() => setOpen(false)}>
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l) => {
+            const isActive = active === l.href.slice(1);
+            return (
+              <a
+                key={l.href}
+                href={l.href}
+                className={`${styles.panelLink} ${isActive ? styles.panelLinkActive : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </a>
+            );
+          })}
         </nav>
         <a
           href={`tel:${RESTAURANT.phoneE164}`}

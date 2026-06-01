@@ -50,13 +50,19 @@ export function Gallery() {
         <span className={styles.meta}>{SHOTS.length} kare</span>
       </header>
 
-      <h2 className={styles.title}>
+      <motion.h2
+        className={styles.title}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-10% 0px' }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
         Bir akşam, <em>dokuz kare</em>
-      </h2>
+      </motion.h2>
 
       <div className={styles.grid}>
         {SHOTS.map((s, i) => (
-          <button
+          <motion.button
             key={s.src}
             type="button"
             className={`${styles.item} ${loaded[i] ? styles.itemLoaded : ''}`}
@@ -64,6 +70,10 @@ export function Gallery() {
             data-magnetic
             data-cursor-label="Büyüt"
             aria-label={`${s.cap} fotoğrafını büyüt`}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-8% 0px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <img
               className={styles.itemImg}
@@ -77,7 +87,7 @@ export function Gallery() {
               <span className={styles.itemNum}>{String(i + 1).padStart(2, '0')}</span>
               <span className={styles.itemCap}>{s.cap}</span>
             </span>
-          </button>
+          </motion.button>
         ))}
       </div>
 

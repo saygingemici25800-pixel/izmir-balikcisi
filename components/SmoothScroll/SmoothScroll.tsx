@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { MotionConfig } from 'framer-motion';
 import Lenis from 'lenis';
 
 declare global {
@@ -46,5 +47,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     lenisRef.current?.scrollTo(0, { immediate: true });
   }, [pathname]);
 
-  return <>{children}</>;
+  // reducedMotion="user" → all framer animations below honour the OS setting
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }
