@@ -186,17 +186,19 @@
 }
 .itemTags {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: var(--s-2);
   font-size: var(--t-micro);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--c-cream);
-  opacity: 0.55;
 }
 .itemTag {
-  border: 1px solid var(--c-line);
-  padding: 3px 7px;
+  border: 1px solid var(--c-line-strong);
+  background: rgba(239, 228, 204, 0.05);
+  padding: 3px 8px;
   border-radius: 999px;
+  opacity: 0.9;
 }
 
 /* Description: hidden by default, expands on hover (desktop preview);
@@ -234,6 +236,15 @@
   text-align: right;
 }
 .itemPrice small { font-size: 0.7em; color: var(--c-cream); opacity: 0.6; margin-left: 3px; }
+/* Daily / market-priced fish: "Günlük" + a small note stacked beneath */
+.itemPriceDaily { white-space: normal; line-height: 1.05; }
+.itemPriceDaily small {
+  display: block;
+  margin-left: 0;
+  margin-top: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+}
 
 /* Note strip ----------------------------------------------------------- */
 .note {
@@ -410,6 +421,26 @@
   opacity: 0.6;
   margin-left: 4px;
   font-weight: 400;
+}
+.sheetPriceDaily { text-align: right; line-height: 1.05; }
+.sheetPriceDaily small {
+  display: block;
+  margin: 4px 0 0 auto;
+  white-space: nowrap;
+}
+/* Explicit market-price note inside the detail sheet */
+.sheetDaily {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  align-self: flex-start;
+  padding: var(--s-2) var(--s-4);
+  border: 1px solid var(--c-gold-lo);
+  border-radius: 999px;
+  background: rgba(232, 188, 66, 0.06);
+  font-size: var(--t-small);
+  letter-spacing: 0.04em;
+  color: var(--c-gold-hi);
 }
 
 .sheetTags {

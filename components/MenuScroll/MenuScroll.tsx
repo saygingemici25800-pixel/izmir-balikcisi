@@ -72,7 +72,11 @@ export function MenuScroll() {
                       ))}
                     </div>
                     <div className={styles.price}>
-                      {d.price}<span className={styles.priceSm}>{d.unit}</span>
+                      {d.daily ? (
+                        <>Günlük<span className={styles.priceSm}>kg</span></>
+                      ) : (
+                        <>{d.price}<span className={styles.priceSm}>{d.unit}</span></>
+                      )}
                     </div>
                   </div>
                   <p className={styles.desc}>{d.desc}</p>

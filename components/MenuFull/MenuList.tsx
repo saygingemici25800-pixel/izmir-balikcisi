@@ -70,10 +70,17 @@ export default function MenuList({ categories }: Props) {
                       </span>
                     )}
                   </span>
-                  <span className={styles.itemPrice}>
-                    {item.price}
-                    <small>{item.unit ?? '₺'}</small>
-                  </span>
+                  {item.daily ? (
+                    <span className={`${styles.itemPrice} ${styles.itemPriceDaily}`}>
+                      Günlük
+                      <small>kg · sorunuz</small>
+                    </span>
+                  ) : (
+                    <span className={styles.itemPrice}>
+                      {item.price}
+                      <small>{item.unit ?? '₺'}</small>
+                    </span>
+                  )}
                   <span className={styles.itemDesc}>{item.desc}</span>
                 </button>
               </li>
@@ -145,10 +152,17 @@ function DetailSheet({ item, onClose }: { item: MenuItem; onClose: () => void })
             <h3 className={styles.sheetTitle} id="menu-sheet-title">
               {item.name}
             </h3>
-            <span className={styles.sheetPrice}>
-              {item.price}
-              <small>{item.unit ?? '₺'}</small>
-            </span>
+            {item.daily ? (
+              <span className={`${styles.sheetPrice} ${styles.sheetPriceDaily}`}>
+                Günlük
+                <small>₺ / kg</small>
+              </span>
+            ) : (
+              <span className={styles.sheetPrice}>
+                {item.price}
+                <small>{item.unit ?? '₺'}</small>
+              </span>
+            )}
           </header>
 
           {item.tags && item.tags.length > 0 && (
@@ -157,6 +171,12 @@ function DetailSheet({ item, onClose }: { item: MenuItem; onClose: () => void })
                 <span key={t} className={styles.sheetTag}>{t}</span>
               ))}
             </div>
+          )}
+
+          {item.daily && (
+            <p className={styles.sheetDaily}>
+              Günlük taze — kiloyla satılır, güncel fiyat için lütfen sorunuz.
+            </p>
           )}
 
           <p className={styles.sheetDesc}>{item.desc}</p>
