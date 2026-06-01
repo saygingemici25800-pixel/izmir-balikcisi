@@ -17,7 +17,7 @@ export function Contact() {
       <div className={styles.frame}>
         <div className={styles.header}>
           <div className={styles.eyebrowRow}>
-            <span>№ 06 — İletişim</span>
+            <span>№ 07 — İletişim</span>
             <span className={styles.ruleLong} aria-hidden />
             <span>Her gün · 10.30—22.30</span>
           </div>

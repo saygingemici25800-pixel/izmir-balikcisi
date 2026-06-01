@@ -3,6 +3,7 @@ import { Marquee } from '@/components/Marquee/Marquee';
 import { About } from '@/components/About/About';
 import { MenuScroll } from '@/components/MenuScroll/MenuScroll';
 import { Manifesto } from '@/components/Manifesto/Manifesto';
+import { SocialProof } from '@/components/SocialProof/SocialProof';
 import { Gallery } from '@/components/Gallery/Gallery';
 import { Contact } from '@/components/Contact/Contact';
 import { Footer } from '@/components/Footer/Footer';
@@ -44,6 +45,8 @@ export default function Page() {
       <MenuScroll />
 
       <Manifesto />
+
+      <SocialProof />
 
       <Marquee
         items={[

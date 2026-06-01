@@ -8,6 +8,7 @@ const LINKS = [
   { href: '#hikaye', label: 'Hikâye' },
   { href: '#menu', label: 'Menü' },
   { href: '#manifesto', label: 'Manifesto' },
+  { href: '#yorumlar', label: 'Yorumlar' },
   { href: '#galeri', label: 'Galeri' },
   { href: '#iletisim', label: 'İletişim' }
 ];

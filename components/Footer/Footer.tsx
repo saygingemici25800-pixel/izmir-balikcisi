@@ -27,6 +27,7 @@ export function Footer() {
             <li><a href="#hikaye">Hikâye</a></li>
             <li><a href="#menu">Menü</a></li>
             <li><a href="#manifesto">Manifesto</a></li>
+            <li><a href="#yorumlar">Yorumlar</a></li>
             <li><a href="#galeri">Galeri</a></li>
             <li><a href="#iletisim">İletişim</a></li>
           </ul>

@@ -43,7 +43,7 @@ export function Gallery() {
   return (
     <section className={styles.section} id="galeri">
       <header className={styles.header}>
-        <span className="eyebrow">№ 05 — Galeri</span>
+        <span className="eyebrow">№ 06 — Galeri</span>
         <span className={styles.rule} aria-hidden />
         <span className={styles.meta}>{SHOTS.length} kare</span>
       </header>
