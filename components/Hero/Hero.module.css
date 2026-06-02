@@ -66,21 +66,14 @@
 
 /* Aqua-fill text: water flowing inside the letterforms */
 .aqua {
-  background: linear-gradient(
-    180deg,
-    #f7f1e3 0%,
-    #ecc170 18%,
-    #d8a44a 36%,
-    #4f6f95 60%,
-    #1c3a5e 88%
-  );
-  background-size: 100% 220%;
-  background-position: 50% 0%;
-  -webkit-background-clip: text;
-          background-clip: text;
-  color: transparent;
-  animation: tide 9s ease-in-out infinite alternate;
-  filter: drop-shadow(0 12px 28px rgba(216, 164, 74, 0.08));
+  /* Liquid-gold shimmer. Stops stay in cream→gold range (no deep navy) so the
+     brand word never sinks into the dark background at any tide position. */
+  /* Solid gold. A gradient fill here needs `background-clip:text`, which cannot
+     paint through the per-letter animated spans (each `.char` has
+     `will-change:transform`, so it composites in its own layer) — the word ends
+     up invisible in Chrome. A solid colour is inherited by the spans and always
+     renders. */
+  color: var(--c-gold-hi);
 }
 
 @keyframes tide {
@@ -246,13 +239,4 @@
 @media (max-width: 480px) {
   .line { font-size: clamp(1.85rem, 11.5vw, 4rem); letter-spacing: -0.045em; }
   .lineB { margin-top: 0; }
-  /* Keep İZMİR bright & legible on phones: drop the deep-water dark stops and
-     freeze the tide shift so the brand word never fades into the background. */
-  .aqua {
-    background: linear-gradient(180deg, #f7f1e3 0%, #ecc170 55%, #d8a44a 100%);
-    background-size: 100% 100%;
-    background-position: 50% 50%;
-    animation: none;
-    filter: none;
-  }
 }

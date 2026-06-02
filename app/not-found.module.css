@@ -98,7 +98,7 @@
 .foot {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
   padding-top: var(--s-5);
   border-top: 1px solid var(--c-line);
   font-size: var(--t-small);
