@@ -3,6 +3,42 @@
   padding-block: clamp(6rem, 12vw, 11rem);
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
   isolation: isolate;
+
+  /* ── TEST: light cream theme, scoped to the Hikâye section only.
+     Remapping the palette tokens here cascades to every descendant
+     (incl. <Timeline/>); CSS-module hashing keeps it off other sections. */
+  --c-cream: #2c2419;            /* primary text → warm ink */
+  --c-bone:  #1b1610;            /* headings → near-black ink */
+  --c-paper: #1b1610;
+  --c-gold:    #a86f1c;          /* deeper gold for contrast on cream */
+  --c-gold-hi: #c2872a;
+  --c-gold-lo: #7d5212;
+  --c-line:        rgba(27, 22, 16, 0.16);
+  --c-line-strong: rgba(27, 22, 16, 0.30);
+  --glass-bg:    rgba(255, 252, 245, 0.55);
+  --glass-bg-2:  rgba(255, 252, 245, 0.72);
+  --glass-border: rgba(27, 22, 16, 0.12);
+  --glass-blur:  blur(14px) saturate(115%);
+  --shadow-card-hover: 0 26px 60px -30px rgba(60, 40, 10, 0.4);
+  /* light scrim behind timeline copy (overrides Timeline's dark default) */
+  --scrim-c: rgba(254, 250, 242, 0.78);
+  --scrim-t: rgba(254, 250, 242, 0);
+
+  /* cream wash — the fixed 3D ocean shows ~8% through, faded */
+  background: rgba(254, 250, 242, 0.92);
+}
+
+/* Deep-sea "islands" (photo plates, video stage) keep the dark palette so
+   their labels stay light on the gradient. */
+.teamPhoto,
+.videoStage {
+  --c-cream: #efe4cc;
+  --c-bone:  #f7f1e3;
+  --c-gold:    #d8a44a;
+  --c-gold-hi: #ecc170;
+  --c-gold-lo: #a87a2a;
+  --c-line:        rgba(239, 228, 204, 0.14);
+  --c-line-strong: rgba(239, 228, 204, 0.28);
 }
 
 .header {
@@ -67,7 +103,7 @@
   color: var(--c-bone);
   max-width: 22ch;
 }
-.teamTitle em { font-style: italic; color: #E8BC42; }
+.teamTitle em { font-style: italic; color: var(--c-gold); }
 
 .teamGrid {
   display: grid;

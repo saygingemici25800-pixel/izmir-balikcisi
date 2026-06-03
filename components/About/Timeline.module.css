@@ -94,7 +94,8 @@
   position: absolute;
   z-index: -1;
   inset: -2.5rem -3.5rem;
-  background: radial-gradient(120% 100% at 32% 50%, rgba(5, 11, 22, 0.74), rgba(5, 11, 22, 0) 72%);
+  /* themeable: section may override --scrim-c/--scrim-t for a light theme */
+  background: radial-gradient(120% 100% at 32% 50%, var(--scrim-c, rgba(5, 11, 22, 0.74)), var(--scrim-t, rgba(5, 11, 22, 0)) 72%);
   pointer-events: none;
 }
 
@@ -172,6 +173,10 @@
   border: 1px solid var(--c-line-strong);
   isolation: isolate;
   box-shadow: var(--shadow-card-hover);
+  /* the plate stays a deep-sea gradient even under a light section theme →
+     keep its inner year label light (border still uses the section line). */
+  --c-bone: #f7f1e3;
+  --c-cream: #efe4cc;
 }
 .photoInner {
   position: absolute;
