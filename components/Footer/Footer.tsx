@@ -8,9 +8,40 @@ const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 export function Footer() {
   return (
     <footer className={styles.footer}>
-      <p className={styles.colophon}>
-        Otuz beş yıllık <em>sofra</em>; içkisiz, doğru saatte, doğru insanla.
-      </p>
+      <aside className={styles.sister}>
+        <a
+          className={styles.sisterCard}
+          href="https://calis-balikcisi.vercel.app"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Çalış Balıkçısı'nı ziyaret et — yeni sekmede açılır"
+          data-magnetic
+          data-cursor-label="Yeni sekme"
+        >
+          <span className={styles.sisterVisual} aria-hidden>
+            <span className={styles.sisterBadge}>Kardeş Mekân</span>
+            <span className={styles.sisterSun} />
+            <span className={styles.sisterHorizon} />
+            <span className={styles.sisterMark}>Çalış<br /><em>Balıkçısı</em></span>
+          </span>
+
+          <span className={styles.sisterCopy}>
+            <span className={styles.sisterEyebrow}>Kardeş Mekân · Çalış Sahili</span>
+            <span className={styles.sisterTitle}>
+              Aynı sofra, <em>farklı bir kıyı</em>.
+            </span>
+            <span className={styles.sisterText}>
+              Otuz beş yıllık aynı tabaklar; martı sesi, akşamüstü rüzgârı ve
+              doğrudan denize bakan masalar. İzmir Balıkçısı'nın izinden Fethiye
+              Çalış sahilinde.
+            </span>
+            <span className={styles.sisterBtn}>
+              Çalış Balıkçısı'nı Ziyaret Et
+              <span className={styles.sisterArrow} aria-hidden>→</span>
+            </span>
+          </span>
+        </a>
+      </aside>
 
       <div className={styles.grid}>
         <div className={styles.brand}>
@@ -47,7 +78,6 @@ export function Footer() {
           <ul>
             <li><a href={RESTAURANT.social.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
             <li><a href="#" target="_blank" rel="noreferrer">TripAdvisor</a></li>
-            <li><a href="https://calis-balikcisi.vercel.app" target="_blank" rel="noreferrer">Kardeş site</a></li>
           </ul>
         </div>
       </div>

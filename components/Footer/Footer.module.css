@@ -12,19 +12,148 @@
   isolation: isolate;
 }
 
-.colophon {
+/* ── Sister-venue promo (Çalış Balıkçısı) ─────────────────────────────── */
+.sister {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.sisterCard {
+  display: grid;
+  grid-template-columns: clamp(220px, 30%, 360px) 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: stretch;
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  text-transform: none;
+  letter-spacing: normal;
+  transition:
+    border-color var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out),
+    box-shadow var(--dur-slow) var(--ease-out);
+}
+.sisterCard:hover {
+  border-color: var(--c-gold-lo);
+  transform: translateY(var(--lift-card));
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* small hero visual — a sunset over the Çalış shoreline */
+.sisterVisual {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-height: clamp(150px, 16vw, 210px);
+  border: 1px solid var(--c-line);
+  background: linear-gradient(180deg, #1c3a5e 0%, #0f2340 56%, #0a1426 100%);
+  isolation: isolate;
+}
+.sisterVisual::after {
+  /* shimmering water below the horizon */
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0; top: 62%;
+  background:
+    linear-gradient(180deg, rgba(216, 164, 74, 0.2), transparent 70%),
+    repeating-linear-gradient(0deg, rgba(239, 228, 204, 0.05) 0 1px, transparent 1px 7px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.sisterSun {
+  position: absolute;
+  left: 50%; bottom: 40%;
+  width: clamp(58px, 8vw, 92px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--c-gold-hi) 0%, var(--c-gold) 58%, rgba(216, 164, 74, 0) 72%);
+}
+.sisterHorizon {
+  position: absolute;
+  left: 0; right: 0; bottom: 38%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-gold-lo), transparent);
+}
+.sisterBadge {
+  position: absolute;
+  top: var(--s-3); left: var(--s-3);
+  z-index: 2;
+  font-size: var(--t-micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  background: rgba(5, 11, 22, 0.5);
+  border: 1px solid var(--c-line);
+  padding: 4px 8px;
+}
+.sisterMark {
+  position: absolute;
+  left: var(--s-4); bottom: var(--s-4);
+  z-index: 2;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.3vw, 1.9rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--c-bone);
+}
+.sisterMark em { font-style: italic; color: var(--c-gold); }
+
+.sisterCopy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  justify-content: center;
+}
+.sisterEyebrow {
+  font-size: var(--t-small);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+.sisterTitle {
   font-family: var(--f-display);
   font-weight: 300;
-  font-style: italic;
-  font-size: clamp(2rem, 6vw, 6rem);
-  line-height: 1;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--c-bone);
-  text-transform: none;
-  margin-bottom: clamp(2rem, 5vw, 4rem);
-  max-width: 22ch;
 }
-.colophon em { font-style: normal; color: var(--c-gold); }
+.sisterTitle em { font-style: italic; color: var(--c-gold); }
+.sisterText {
+  font-family: var(--f-body);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: var(--c-cream);
+  opacity: 0.78;
+  max-width: 48ch;
+}
+.sisterBtn {
+  align-self: flex-start;
+  margin-top: var(--s-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--f-body);
+  font-weight: 500;
+  font-size: var(--t-small);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-abyss);
+  background: var(--c-gold);
+  border: 1px solid var(--c-gold);
+  padding: 12px 20px;
+  transition: background var(--dur-med) var(--ease-out);
+}
+.sisterCard:hover .sisterBtn { background: var(--c-gold-hi); }
+.sisterArrow { transition: transform var(--dur-med) var(--ease-out); }
+.sisterCard:hover .sisterArrow { transform: translateX(4px); }
+
+@media (max-width: 640px) {
+  .sisterCard { grid-template-columns: 1fr; }
+}
 
 .grid {
   display: grid;
