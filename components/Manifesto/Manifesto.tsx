@@ -5,10 +5,11 @@ import styles from './Manifesto.module.css';
 
 const LINES: { text: React.ReactNode; variant?: 'large' | 'right' }[] = [
   { text: <>Burada <em>alkol</em> yok.</>, variant: 'large' },
-  { text: <>Çünkü bir çocuğun kahkahası, bir ebeveynin sessizliği ve iyi pişmiş bir balık <em>zaten yeter</em>.</> },
-  { text: <>Akşam yemeği, kafayı bulmak değil; <em>birbirini</em> bulmaktır.</>, variant: 'right' },
-  { text: <>Tabağın asıl tadı, sandalyenin altındaki ayaklarını sallayan <em>torundadır</em>.</> },
-  { text: <>Buradayız. Adres saymaya gerek yok. <em>Sadece otur.</em></>, variant: 'large' }
+  { text: <>Çünkü bir sofrayı şenlendiren, kadehler değil; paylaşılan kahkahalar, anlatılan hikâyeler ve sıcağı sıcağına gelen <em>taze bir balıktır</em>.</> },
+  { text: <>Akşam yemeği, kafayı bulmak için değil; sevdiklerinle aynı masada <em>buluşmak</em> içindir.</>, variant: 'right' },
+  { text: <>En güzel anlar, sandalyesinde ayaklarını sallayan bir çocuğun gülüşünde, dedesiyle balık ayıklayan bir <em>torunun sabrında</em> saklıdır.</> },
+  { text: <>Otuz beş yıldır <em>aynı sofrayı</em> kuruyoruz. Sıcak, samimi ve herkese açık.</> },
+  { text: <>Buyurun, <em>soframıza bekleriz</em>.</>, variant: 'large' }
 ];
 
 const fade = {
