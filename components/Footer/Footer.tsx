@@ -1,5 +1,6 @@
 import styles from './Footer.module.css';
 import { RESTAURANT } from '@/lib/constants';
+import { SectionLink } from '@/components/SectionLink';
 
 const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   RESTAURANT.address.full
@@ -55,12 +56,12 @@ export function Footer() {
         <div className={styles.col}>
           <h4>Bölüm</h4>
           <ul>
-            <li><a href="#hikaye">Hikâye</a></li>
-            <li><a href="#menu">Menü</a></li>
-            <li><a href="#manifesto">Manifesto</a></li>
-            <li><a href="#yorumlar">Yorumlar</a></li>
-            <li><a href="#galeri">Galeri</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
+            <li><SectionLink id="hikaye">Hikâye</SectionLink></li>
+            <li><SectionLink id="menu">Menü</SectionLink></li>
+            <li><SectionLink id="manifesto">Manifesto</SectionLink></li>
+            <li><SectionLink id="yorumlar">Yorumlar</SectionLink></li>
+            <li><SectionLink id="galeri">Galeri</SectionLink></li>
+            <li><SectionLink id="iletisim">İletişim</SectionLink></li>
           </ul>
         </div>
 

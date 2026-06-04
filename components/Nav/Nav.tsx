@@ -1,17 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Nav.module.css';
 import { RESTAURANT } from '@/lib/constants';
+import { SectionLink } from '@/components/SectionLink';
 
-const LINKS = [
-  { href: '#hikaye', label: 'Hikâye' },
-  { href: '#menu', label: 'Menü' },
-  { href: '#manifesto', label: 'Manifesto' },
-  { href: '#yorumlar', label: 'Yorumlar' },
-  { href: '#galeri', label: 'Galeri' },
-  { href: '#iletisim', label: 'İletişim' }
+const LINKS: { id: string; label: string }[] = [
+  { id: 'hikaye', label: 'Hikâye' },
+  { id: 'menu', label: 'Menü' },
+  { id: 'manifesto', label: 'Manifesto' },
+  { id: 'yorumlar', label: 'Yorumlar' },
+  { id: 'galeri', label: 'Galeri' },
+  { id: 'iletisim', label: 'İletişim' },
 ];
 
 export function Nav() {
@@ -27,10 +29,13 @@ export function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Active-section indicator (scroll-spy). Only the home page has these anchors;
-  // on other routes no link is marked active.
+  // Active-section indicator (scroll-spy) — only the home page has these anchors.
   useEffect(() => {
-    const ids = LINKS.map((l) => l.href.slice(1));
+    if (pathname !== '/') {
+      setActive('');
+      return;
+    }
+    const ids = LINKS.map((l) => l.id);
     const els = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -65,28 +70,51 @@ export function Nav() {
     };
   }, [open]);
 
+  // Which nav item is highlighted: the menu page marks "Menü"; the home page
+  // uses the scroll-spy section.
+  const activeId = pathname === '/menu' ? 'menu' : active;
+
+  // Logo → always home. On the home page, smooth-scroll to top in place.
+  const goHome = (e: React.MouseEvent) => {
+    setOpen(false);
+    if (pathname === '/') {
+      e.preventDefault();
+      if (window.lenis) window.lenis.scrollTo(0, { duration: 1.1 });
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.replaceState(null, '', '/');
+    }
+  };
+
   return (
     <>
       <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${open ? styles.open : ''}`}>
-        <a href="#top" className={styles.brand} data-magnetic data-cursor-label="Yukarı" onClick={() => setOpen(false)}>
+        <Link
+          href="/"
+          scroll={false}
+          className={styles.brand}
+          aria-label="İzmir Balıkçısı — Ana sayfa"
+          data-magnetic
+          data-cursor-label={pathname === '/' ? 'Yukarı' : 'Ana sayfa'}
+          onClick={goHome}
+        >
           <span className={styles.brandMark} aria-hidden />
           <span className={styles.brandName}>İzmir Balıkçısı</span>
-        </a>
+        </Link>
 
         <div className={styles.links}>
           {LINKS.map((l) => {
-            const isActive = active === l.href.slice(1);
+            const isActive = activeId === l.id;
             return (
-              <a
-                key={l.href}
-                href={l.href}
+              <SectionLink
+                key={l.id}
+                id={l.id}
                 className={`${styles.link} ${isActive ? styles.linkActive : ''}`}
                 aria-current={isActive ? 'page' : undefined}
                 data-magnetic
                 data-cursor-label={l.label}
               >
                 {l.label}
-              </a>
+              </SectionLink>
             );
           })}
         </div>
@@ -134,17 +162,17 @@ export function Nav() {
       >
         <nav className={styles.panelLinks}>
           {LINKS.map((l) => {
-            const isActive = active === l.href.slice(1);
+            const isActive = activeId === l.id;
             return (
-              <a
-                key={l.href}
-                href={l.href}
+              <SectionLink
+                key={l.id}
+                id={l.id}
                 className={`${styles.panelLink} ${isActive ? styles.panelLinkActive : ''}`}
                 aria-current={isActive ? 'page' : undefined}
-                onClick={() => setOpen(false)}
+                onNavigate={() => setOpen(false)}
               >
                 {l.label}
-              </a>
+              </SectionLink>
             );
           })}
         </nav>
