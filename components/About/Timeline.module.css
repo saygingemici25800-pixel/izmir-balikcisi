@@ -1,11 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Hikâye — scroll-driven timeline ("Derin Hat")
-   Sticky-pinned stage; a giant year surfaces from the deep, locks, drifts
-   past, while a gold rail keeps the visitor oriented across 35 years.
+   Each era's photo is a full-screen background that crossfades + parallaxes;
+   the giant year, copy and gold rail sit over it (legibility overlay).
+   The stage re-themes to LIGHT text so it reads over the dark photos even
+   inside the section's light cream theme.
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* Full-bleed out of the section's inline padding so the year can breathe
-   off all four edges. overflow:clip on body guards the 100vw cap. */
 .scroller {
   position: relative;
   width: 100vw;
@@ -19,6 +19,55 @@
   height: 100svh;
   overflow: clip;
   isolation: isolate;
+  background: var(--c-abyss);
+  /* immersive dark photo stage → light content, regardless of section theme */
+  --c-cream: #efe4cc;
+  --c-bone: #f7f1e3;
+  --c-gold: #d8a44a;
+  --c-gold-hi: #ecc170;
+  --c-gold-lo: #a87a2a;
+  --c-line: rgba(239, 228, 204, 0.16);
+  --c-line-strong: rgba(239, 228, 204, 0.30);
+  --glass-bg: rgba(5, 11, 22, 0.42);
+  --glass-border: rgba(239, 228, 204, 0.14);
+  /* soft dark halo behind the copy so light text reads over the bright year */
+  --scrim-c: rgba(5, 11, 22, 0.58);
+  --scrim-t: rgba(5, 11, 22, 0);
+}
+
+/* ── Full-screen era photos (placeholder gradients) ────────────────────── */
+.photos {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.photoBg {
+  position: absolute;
+  inset: -6%; /* room for the Ken-Burns scale/translate so edges never show */
+  background-size: cover;
+  background-position: center;
+  transform-origin: center;
+}
+
+/* ── Legibility overlay — darker on the left (copy) + bottom vignette + grain */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(102deg, rgba(5, 11, 22, 0.82) 0%, rgba(5, 11, 22, 0.52) 42%, rgba(5, 11, 22, 0.30) 100%),
+    linear-gradient(0deg, rgba(5, 11, 22, 0.62) 0%, rgba(5, 11, 22, 0) 40%),
+    linear-gradient(180deg, rgba(5, 11, 22, 0.45) 0%, rgba(5, 11, 22, 0) 22%);
+}
+.overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ── Giant background year ─────────────────────────────────────────────── */
@@ -27,8 +76,9 @@
   inset: 0;
   display: grid;
   place-items: center;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
+  transform: translateX(8%); /* shift the giant year right, clearing the copy */
 }
 .bgYear {
   grid-area: 1 / 1;
@@ -56,45 +106,34 @@
   color: var(--c-gold);
 }
 
-/* ── Foreground panels ─────────────────────────────────────────────────── */
+/* ── Foreground copy ───────────────────────────────────────────────────── */
 .panels {
   position: absolute;
   inset: 0;
-  z-index: 2;
-  pointer-events: none; /* purely visual; rail owns interaction */
+  z-index: 3;
+  pointer-events: none;
 }
 .panel {
   position: absolute;
   inset: 0;
   display: grid;
-  place-items: center;
+  place-items: center start; /* vertical centre, left-aligned */
+  padding-block: clamp(5rem, 11vh, 8rem);
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
-  /* clear the rail on the left */
-  padding-left: clamp(4.5rem, 11vw, 9rem);
+  padding-left: clamp(5rem, 13vw, 11rem); /* clear the rail */
 }
-.panelRow {
-  width: 100%;
-  max-width: 1040px;
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(2.5rem, 6vw, 6rem);
-  align-items: center;
-}
-
 .copyCol {
   position: relative;
   display: flex;
   flex-direction: column;
+  max-width: 600px;
 }
-/* soft dark halo keeps cream copy legible over the gold ghost year.
-   z-index:-1 stays INSIDE .panels' (z2) stacking context → it paints above
-   the bg year (z0) but below the copy text. */
 .copyCol::before {
   content: '';
   position: absolute;
   z-index: -1;
   inset: -2.5rem -3.5rem;
-  /* themeable: section may override --scrim-c/--scrim-t for a light theme */
+  /* transparent on the stage (overlay handles it); themeable elsewhere */
   background: radial-gradient(120% 100% at 32% 50%, var(--scrim-c, rgba(5, 11, 22, 0.74)), var(--scrim-t, rgba(5, 11, 22, 0)) 72%);
   pointer-events: none;
 }
@@ -111,7 +150,7 @@
   border-radius: 50%;
   background: var(--c-gold);
   flex: 0 0 auto;
-  box-shadow: 0 0 0 4px rgba(216, 164, 74, 0.14);
+  box-shadow: 0 0 0 4px rgba(216, 164, 74, 0.16);
 }
 .tag {
   font-family: var(--f-body);
@@ -127,7 +166,7 @@
   font-weight: 400;
   font-size: 1.4rem;
   color: var(--c-cream);
-  opacity: 0.55;
+  opacity: 0.6;
   letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
 }
@@ -146,98 +185,33 @@
   font-style: italic;
   color: var(--c-gold);
 }
-
 .body {
   font-size: clamp(1rem, 1.15vw, 1.2rem);
   line-height: 1.65;
   color: var(--c-cream);
   max-width: 46ch;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
-/* ── Photo plate (archival placeholder, framed — no backdrop-filter so it
-   is safe to parallax) ─────────────────────────────────────────────────── */
-.photoCol {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-  align-items: flex-start;
-}
-.photo {
-  position: relative;
-  width: 100%;
-  max-width: 360px;
-  aspect-ratio: 4 / 5;
-  max-height: 64vh;
-  overflow: hidden;
-  border: 1px solid var(--c-line-strong);
-  isolation: isolate;
-  box-shadow: var(--shadow-card-hover);
-  /* the plate stays a deep-sea gradient even under a light section theme →
-     keep its inner year label light (border still uses the section line). */
-  --c-bone: #f7f1e3;
-  --c-cream: #efe4cc;
-}
-.photoInner {
+.stamp {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(70% 60% at 32% 28%, var(--c-foam) 0%, var(--c-tide) 46%, var(--c-deep) 100%);
-  transform-origin: center;
-}
-.photo::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    linear-gradient(135deg, transparent 32%, rgba(232, 188, 66, 0.16) 50%, transparent 68%),
-    radial-gradient(42% 30% at 50% 16%, rgba(247, 241, 227, 0.2), transparent 70%);
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-.photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0.06;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.photoYear {
-  position: absolute;
-  right: var(--s-4);
-  bottom: var(--s-3);
-  z-index: 2;
-  font-family: var(--f-display);
-  font-weight: 300;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--c-bone);
-  opacity: 0.32;
-  font-variant-numeric: tabular-nums;
-}
-.caption {
+  right: clamp(1.5rem, 5vw, 4rem);
+  bottom: clamp(1.5rem, 5vh, 3rem);
   font-family: var(--f-mono);
   font-size: var(--t-micro);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--c-gold);
-  opacity: 0.85;
+  color: var(--c-cream);
+  opacity: 0.7;
 }
 
 /* ── Rail ──────────────────────────────────────────────────────────────── */
-/* No transform on .rail itself — it is the ancestor of the .railEyebrow
-   glass chip, and a transformed ancestor breaks backdrop-filter in Safari.
-   Centered via flex instead. */
 .rail {
   position: absolute;
   left: clamp(1.5rem, 5vw, 4rem);
   top: 0;
   bottom: 0;
-  z-index: 3;
+  z-index: 4;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -285,7 +259,6 @@
   border: 0;
   cursor: none;
 }
-/* generous, invisible hit area around the dot + year (WCAG target size) */
 .railNode::after {
   content: '';
   position: absolute;
@@ -314,7 +287,7 @@
   font-size: 0.95rem;
   letter-spacing: 0.06em;
   color: var(--c-cream);
-  opacity: 0.5;
+  opacity: 0.55;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
   transition:
@@ -329,7 +302,7 @@
   background: var(--c-gold);
   border-color: var(--c-gold);
   transform: scale(1.35);
-  box-shadow: 0 0 0 4px rgba(216, 164, 74, 0.12);
+  box-shadow: 0 0 0 4px rgba(216, 164, 74, 0.14);
 }
 .railNode[data-state='active'] .railYear {
   color: var(--c-gold);
@@ -346,7 +319,7 @@
   left: 50%;
   bottom: clamp(1.5rem, 4vh, 3rem);
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 5;
   font-family: var(--f-body);
   font-weight: 500;
   font-size: var(--t-small);
@@ -356,26 +329,16 @@
   pointer-events: none;
 }
 
-/* Narrow desktop / tablet (still pinned, 861–1024px): single-column panel
-   that clears the rail and never crowds — keeps the breathing room. */
 @media (max-width: 1024px) {
   .panel {
-    padding-left: clamp(5rem, 13vw, 8rem);
+    padding-left: clamp(4rem, 11vw, 8rem);
   }
-  .panelRow {
-    grid-template-columns: 1fr;
-    gap: clamp(1.75rem, 4vw, 2.5rem);
-    max-width: 560px;
-  }
-  .photoCol {
-    max-width: 260px;
-  }
-  .copyCol::before {
-    inset: -1.5rem -2rem;
+  .copyCol {
+    max-width: 480px;
   }
 }
 
-/* ═══ Static fallback (SSR / reduced-motion / narrow) ═════════════════════ */
+/* ═══ Static fallback (SSR / reduced-motion / narrow) — photo banner per era */
 .staticWrap {
   position: relative;
   padding-block: clamp(1rem, 3vw, 2rem);
@@ -384,85 +347,55 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: clamp(4rem, 9vw, 7.5rem);
+  gap: clamp(3.5rem, 8vw, 6rem);
 }
 .staticItem {
-  position: relative;
-  display: grid;
-  grid-template-columns: 18px minmax(0, 1fr) clamp(180px, 28vw, 320px);
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
 }
-.staticAxis {
+.staticPhoto {
   position: relative;
-  grid-row: 1 / -1;
-  align-self: stretch;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: 58vh;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border: 1px solid var(--c-line-strong);
+  isolation: isolate;
+  /* dark photo island → keep its year label light under the section's theme */
+  --c-bone: #f7f1e3;
 }
-.staticAxis::before {
-  /* connecting line, extends down into the gap toward the next node */
+.staticPhoto::after {
   content: '';
   position: absolute;
-  left: 50%;
-  top: 0.6rem;
-  bottom: calc(-1 * clamp(4rem, 9vw, 7.5rem));
-  width: 1px;
-  transform: translateX(-50%);
-  background: var(--c-line-strong);
+  inset: 0;
+  background: linear-gradient(0deg, rgba(5, 11, 22, 0.55), transparent 55%);
 }
-.staticItem:last-child .staticAxis::before {
-  display: none;
-}
-.staticAxis::after {
-  content: '';
+.staticPhotoYear {
   position: absolute;
-  left: 50%;
-  top: 0.5rem;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  background: var(--c-gold);
-  box-shadow: 0 0 0 4px rgba(216, 164, 74, 0.14);
+  left: clamp(1rem, 3vw, 1.75rem);
+  bottom: clamp(0.75rem, 2vw, 1.25rem);
+  z-index: 1;
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-size: clamp(3rem, 9vw, 5rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--c-bone);
+  font-variant-numeric: tabular-nums;
 }
 .staticMain {
   display: flex;
   flex-direction: column;
 }
-.staticYear {
-  display: block;
-  font-family: var(--f-display);
-  font-weight: 300;
-  font-size: clamp(3.5rem, 11vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  margin: var(--s-3) 0 var(--s-5);
-  /* STATIC text → gold clip-text gradient is safe here */
-  background: linear-gradient(180deg, var(--c-gold-hi), var(--c-gold-lo));
-  -webkit-background-clip: text;
-          background-clip: text;
-  color: transparent;
-}
-
-@media (max-width: 640px) {
-  .staticItem {
-    grid-template-columns: 14px minmax(0, 1fr);
-  }
-  .staticMain {
-    grid-column: 2;
-  }
-  .staticItem .photoCol {
-    grid-column: 2;
-    margin-top: var(--s-5);
-    max-width: 300px;
-  }
-}
-
-/* High-contrast / forced-colors: clip-text gold would vanish → restore. */
-@media (forced-colors: active) {
-  .staticYear {
-    background: none;
-    -webkit-background-clip: border-box;
-            background-clip: border-box;
-    color: CanvasText;
-  }
+.caption {
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  opacity: 0.85;
+  margin-top: var(--s-4);
 }

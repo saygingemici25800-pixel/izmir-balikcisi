@@ -13,14 +13,15 @@ import {
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Timeline.module.css';
 
-/* ── Milestones — 35 yıl, baba → oğul. Centers are the scroll-progress
-   anchors (0..1) where each year locks into focus. ───────────────────── */
+/* ── Milestones — 35 yıl, baba → oğul. `photo` is a full-screen placeholder
+   background per era (swap for real url(...) images later). ─────────────── */
 type Stop = {
   year: string;
   tag: string;
   title: React.ReactNode;
   body: string;
   caption: string;
+  photo: string; // CSS background-image value
 };
 
 const STOPS: Stop[] = [
@@ -30,6 +31,8 @@ const STOPS: Stop[] = [
     title: <>İlk <em>tezgâh</em></>,
     body: 'Hasan Usta sabahın dördünde tek bir buz tezgâhıyla başladı. Ne menü vardı ne tabela — sadece o günkü deniz, bir terazi ve beklemeyi bilen iki el.',
     caption: 'Arşiv · Tuzla, 1989',
+    photo:
+      'radial-gradient(120% 90% at 72% 80%, rgba(216,164,74,0.30), transparent 52%), linear-gradient(180deg, #0a1426 0%, #0f2340 48%, #1c3a5e 100%)',
   },
   {
     year: '1995',
@@ -37,6 +40,8 @@ const STOPS: Stop[] = [
     title: <>Işıklar <em>yandı</em></>,
     body: 'Tezgâh bir salona dönüştü. Ayşe masaların sessiz sahibi oldu; akşam yedide yanan ilk ışık, hâlâ aynı kapının ardında bekleyenleri çağırıyordu.',
     caption: 'Arşiv · İlk salon, 1995',
+    photo:
+      'radial-gradient(95% 75% at 32% 32%, rgba(236,193,112,0.34), transparent 58%), linear-gradient(155deg, #16273f 0%, #1c3a5e 52%, #0a1426 100%)',
   },
   {
     year: '2008',
@@ -44,6 +49,8 @@ const STOPS: Stop[] = [
     title: <>Oğul <em>mutfakta</em></>,
     body: 'Yusuf babasının yanına geçti. Eski tarifler kaldı, eller çoğaldı — çupra ilk kez tuzun altında dinlendi, sofra hiç acele etmeden büyüdü.',
     caption: 'Arşiv · Tuzda çupra, 2008',
+    photo:
+      'radial-gradient(85% 65% at 62% 36%, rgba(111,138,174,0.50), transparent 60%), linear-gradient(205deg, #1c3a5e 0%, #2c5380 42%, #0f2340 100%)',
   },
   {
     year: '2026',
@@ -51,15 +58,47 @@ const STOPS: Stop[] = [
     title: <>Aynı <em>deniz</em></>,
     body: 'Otuz beş yıl, sıfır alkol, yüz yirmi dört koltuk. Baba hâlâ hâli ilk gezen, oğul hâlâ tuzu kıran. Deniz acele etmiyor; biz de etmiyoruz.',
     caption: 'Bugün · Mustafa Kemal Blv.',
+    photo:
+      'radial-gradient(75% 55% at 50% 26%, rgba(236,193,112,0.42), transparent 54%), linear-gradient(180deg, #2c5380 0%, #1c3a5e 46%, #0a1426 100%)',
   },
 ];
 
 const CENTERS = STOPS.map((_, i) => (i + 0.5) / STOPS.length); // [0.125, 0.375, 0.625, 0.875]
 const SCROLL_HINT = 'Kaydır';
 
-/* ── Giant background year: surfaces from the deep, locks at focus,
-   drifts past. Two stacked copies (cream outline + gold fill) cross-fade
-   — NEVER background-clip on animated text (documented invisibility bug). */
+/* ── Full-screen era photo: crossfades + slow Ken-Burns parallax on scroll.
+   First/last hold at the edges so a photo is always present. ───────────── */
+const PhotoBg = memo(function PhotoBg({
+  photo,
+  center: c,
+  progress,
+  near,
+  isFirst,
+  isLast,
+}: {
+  photo: string;
+  center: number;
+  progress: MotionValue<number>;
+  near: boolean;
+  isFirst: boolean;
+  isLast: boolean;
+}) {
+  const opacity = useTransform(
+    progress,
+    [c - 0.18, c - 0.05, c + 0.05, c + 0.18],
+    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]
+  );
+  const scale = useTransform(progress, [c - 0.2, c + 0.2], [1.14, 1.0]);
+  const y = useTransform(progress, [c - 0.2, c + 0.2], ['-4%', '4%']);
+  return (
+    <motion.div
+      className={styles.photoBg}
+      style={{ opacity, scale, y, backgroundImage: photo, willChange: near ? 'opacity, transform' : 'auto' }}
+    />
+  );
+});
+
+/* ── Giant background year — cream outline + gold fill, over the photo. */
 const BgYear = memo(function BgYear({
   year,
   center: c,
@@ -74,16 +113,11 @@ const BgYear = memo(function BgYear({
   lowFx: boolean;
 }) {
   const window5 = [c - 0.16, c - 0.06, c, c + 0.06, c + 0.16];
-
   const scale = useTransform(progress, window5, [0.55, 0.78, 1.0, 1.22, 1.5]);
   const y = useTransform(progress, [c - 0.16, c + 0.16], ['7vh', '-7vh']);
-  const outlineOpacity = useTransform(progress, window5, [0, 0.55, 0.4, 0.55, 0]);
-  const fillOpacity = useTransform(progress, window5, [0, 0, 1, 0.45, 0]);
-  const blurPx = useTransform(
-    progress,
-    window5,
-    lowFx ? [0, 0, 0, 0, 0] : [9, 3, 0, 3, 9]
-  );
+  const outlineOpacity = useTransform(progress, window5, [0, 0.5, 0.36, 0.5, 0]);
+  const fillOpacity = useTransform(progress, window5, [0, 0, 0.92, 0.42, 0]);
+  const blurPx = useTransform(progress, window5, lowFx ? [0, 0, 0, 0, 0] : [9, 3, 0, 3, 9]);
   const filter = useMotionTemplate`blur(${blurPx}px)`;
 
   return (
@@ -101,8 +135,7 @@ const BgYear = memo(function BgYear({
   );
 });
 
-/* ── Foreground panel: label + title + body land "on top of" their year,
-   then shear gently apart at the seam (copy and photo parallax opposite). */
+/* ── Foreground copy — sits over the photo, lower-left, with parallax. */
 const Panel = memo(function Panel({
   stop,
   center: c,
@@ -117,37 +150,24 @@ const Panel = memo(function Panel({
   const opacity = useTransform(progress, [c - 0.13, c - 0.045, c + 0.045, c + 0.13], [0, 1, 1, 0]);
   const textY = useTransform(progress, [c - 0.13, c + 0.13], [40, -40]);
   const kickerY = useTransform(progress, [c - 0.13, c + 0.13], [56, -56]);
-  const photoY = useTransform(progress, [c - 0.13, c + 0.13], [-34, 34]);
-  const photoScale = useTransform(progress, [c - 0.13, c + 0.13], [1.04, 0.98]);
-  const kenScale = useTransform(progress, [c - 0.13, c + 0.13], [1.0, 1.06]);
 
   return (
     <motion.div className={styles.panel} style={{ opacity }} aria-hidden={!active}>
-      <div className={styles.panelRow}>
-        <motion.div className={styles.copyCol} style={{ y: textY }}>
-          <motion.div className={styles.kicker} style={{ y: kickerY }}>
-            <span className={styles.kdot} aria-hidden />
-            <span className={styles.tag}>{stop.tag}</span>
-            <time className={styles.yearSm}>{stop.year}</time>
-          </motion.div>
-          <h3 className={styles.title}>{stop.title}</h3>
-          <p className={styles.body}>{stop.body}</p>
+      <motion.div className={styles.copyCol} style={{ y: textY }}>
+        <motion.div className={styles.kicker} style={{ y: kickerY }}>
+          <span className={styles.kdot} aria-hidden />
+          <span className={styles.tag}>{stop.tag}</span>
+          <time className={styles.yearSm}>{stop.year}</time>
         </motion.div>
-
-        <motion.figure className={styles.photoCol} style={{ y: photoY }}>
-          <motion.div className={styles.photo} style={{ scale: photoScale }} aria-hidden>
-            <motion.div className={styles.photoInner} style={{ scale: kenScale }} />
-            <span className={styles.photoYear}>{stop.year}</span>
-          </motion.div>
-          <figcaption className={styles.caption}>{stop.caption}</figcaption>
-        </motion.figure>
-      </div>
+        <h3 className={styles.title}>{stop.title}</h3>
+        <p className={styles.body}>{stop.body}</p>
+      </motion.div>
+      <span className={styles.stamp}>{stop.caption}</span>
     </motion.div>
   );
 });
 
-/* ── The rail: the protagonist. A gold spine that fills with progress and
-   keeps the visitor oriented across 35 years. */
+/* ── The rail: a gold spine that fills with progress, over the photo. */
 const Rail = memo(function Rail({
   active,
   progress,
@@ -187,9 +207,8 @@ const Rail = memo(function Rail({
   );
 });
 
-/* ── Static fallback — SSR, reduced-motion & narrow viewports. No pin, no
-   scroll-driven transforms; the year is a STATIC numeral so the gold
-   clip-text gradient is safe here. */
+/* ── Static fallback — SSR, reduced-motion & narrow viewports. The era photo
+   becomes a full-width banner above each milestone's text. */
 function StaticTimeline() {
   return (
     <div className={styles.staticWrap}>
@@ -203,23 +222,18 @@ function StaticTimeline() {
             viewport={{ once: true, margin: '-12% 0px' }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className={styles.staticAxis} aria-hidden />
+            <div className={styles.staticPhoto} style={{ backgroundImage: s.photo }} aria-hidden>
+              <span className={styles.staticPhotoYear}>{s.year}</span>
+            </div>
             <div className={styles.staticMain}>
               <div className={styles.kicker}>
                 <span className={styles.kdot} aria-hidden />
                 <span className={styles.tag}>{s.tag}</span>
               </div>
-              <time className={styles.staticYear}>{s.year}</time>
               <h3 className={styles.title}>{s.title}</h3>
               <p className={styles.body}>{s.body}</p>
+              <span className={styles.caption}>{s.caption}</span>
             </div>
-            <figure className={styles.photoCol}>
-              <div className={styles.photo} aria-hidden>
-                <div className={styles.photoInner} />
-                <span className={styles.photoYear}>{s.year}</span>
-              </div>
-              <figcaption className={styles.caption}>{s.caption}</figcaption>
-            </figure>
           </motion.li>
         ))}
       </ol>
@@ -235,8 +249,6 @@ export function Timeline() {
   const [lowFx, setLowFx] = useState(false);
   const [active, setActive] = useState(0);
 
-  // One source of truth, smoothed once — every transform reads this spring so
-  // Lenis / trackpad inertial flicks don't jitter the giant year.
   const { scrollYProgress } = useScroll({
     target: scrollerRef,
     offset: ['start start', 'end end'],
@@ -246,7 +258,6 @@ export function Timeline() {
   const hintOpacity = useTransform(ps, [0, 0.06], [0.65, 0]);
 
   useMotionValueEvent(ps, 'change', (v) => {
-    // Spring can overshoot <0 / >1 — clamp before bucketing.
     const clamped = Math.max(0, Math.min(0.999999, v));
     const idx = Math.floor(clamped * STOPS.length);
     setActive((prev) => (prev === idx ? prev : idx));
@@ -271,19 +282,12 @@ export function Timeline() {
   const seek = useCallback((center: number) => {
     const el = scrollerRef.current;
     if (!el) return;
-    // Absolute document top (offsetTop is relative to the positioned section).
     const absTop = el.getBoundingClientRect().top + window.scrollY;
-    // Inverse of useScroll offset ['start start','end end']:
-    // scrollY at progress p == absTop + p*(scrollerHeight - innerHeight).
     const target = absTop + center * (el.offsetHeight - window.innerHeight);
     if (window.lenis) window.lenis.scrollTo(target, { duration: 1.2 });
     else window.scrollTo({ top: target, behavior: 'smooth' });
   }, []);
 
-  // SSR + first client render are identical (reduce/isNarrow default false →
-  // pinned), so the scroller mounts immediately and useScroll binds to it with
-  // no hydration mismatch. reduced-motion / narrow viewports swap to the static
-  // timeline post-mount (the swap is below the fold → negligible CLS).
   if (reduce || isNarrow) return <StaticTimeline />;
 
   return (
@@ -293,6 +297,21 @@ export function Timeline() {
       style={{ height: `${STOPS.length * 100}vh` }}
     >
       <div className={styles.stage}>
+        <div className={styles.photos} aria-hidden>
+          {STOPS.map((s, i) => (
+            <PhotoBg
+              key={s.year}
+              photo={s.photo}
+              center={CENTERS[i]}
+              progress={ps}
+              near={Math.abs(i - active) <= 1}
+              isFirst={i === 0}
+              isLast={i === STOPS.length - 1}
+            />
+          ))}
+        </div>
+        <div className={styles.overlay} aria-hidden />
+
         <div className={styles.bgYears} aria-hidden>
           {STOPS.map((s, i) => (
             <BgYear
