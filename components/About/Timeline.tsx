@@ -32,7 +32,7 @@ const STOPS: Stop[] = [
     body: 'Hasan Usta sabahın dördünde tek bir buz tezgâhıyla başladı. Ne menü vardı ne tabela — sadece o günkü deniz, bir terazi ve beklemeyi bilen iki el.',
     caption: 'Arşiv · Tuzla, 1989',
     photo:
-      'radial-gradient(120% 90% at 72% 80%, rgba(216,164,74,0.30), transparent 52%), linear-gradient(180deg, #0a1426 0%, #0f2340 48%, #1c3a5e 100%)',
+      'radial-gradient(120% 90% at 72% 80%, rgba(216,164,74,0.40), transparent 55%), linear-gradient(180deg, #F0E2C4 0%, #F9F1E0 52%, #FEFAF2 100%)',
   },
   {
     year: '1995',
@@ -41,7 +41,7 @@ const STOPS: Stop[] = [
     body: 'Tezgâh bir salona dönüştü. Ayşe masaların sessiz sahibi oldu; akşam yedide yanan ilk ışık, hâlâ aynı kapının ardında bekleyenleri çağırıyordu.',
     caption: 'Arşiv · İlk salon, 1995',
     photo:
-      'radial-gradient(95% 75% at 32% 32%, rgba(236,193,112,0.34), transparent 58%), linear-gradient(155deg, #16273f 0%, #1c3a5e 52%, #0a1426 100%)',
+      'radial-gradient(95% 75% at 32% 32%, rgba(236,193,112,0.50), transparent 60%), linear-gradient(155deg, #FEFAF2 0%, #F0E2C4 55%, #E9D6AC 100%)',
   },
   {
     year: '2008',
@@ -50,7 +50,7 @@ const STOPS: Stop[] = [
     body: 'Yusuf babasının yanına geçti. Eski tarifler kaldı, eller çoğaldı — çupra ilk kez tuzun altında dinlendi, sofra hiç acele etmeden büyüdü.',
     caption: 'Arşiv · Tuzda çupra, 2008',
     photo:
-      'radial-gradient(85% 65% at 62% 36%, rgba(111,138,174,0.50), transparent 60%), linear-gradient(205deg, #1c3a5e 0%, #2c5380 42%, #0f2340 100%)',
+      'radial-gradient(85% 65% at 62% 36%, rgba(108,138,174,0.28), transparent 60%), linear-gradient(205deg, #F9F1E0 0%, #EFE4CC 45%, #F0E2C4 100%)',
   },
   {
     year: '2026',
@@ -59,7 +59,7 @@ const STOPS: Stop[] = [
     body: 'Otuz beş yıl, sıfır alkol, yüz yirmi dört koltuk. Baba hâlâ hâli ilk gezen, oğul hâlâ tuzu kıran. Deniz acele etmiyor; biz de etmiyoruz.',
     caption: 'Bugün · Mustafa Kemal Blv.',
     photo:
-      'radial-gradient(75% 55% at 50% 26%, rgba(236,193,112,0.42), transparent 54%), linear-gradient(180deg, #2c5380 0%, #1c3a5e 46%, #0a1426 100%)',
+      'radial-gradient(75% 55% at 50% 26%, rgba(236,193,112,0.48), transparent 56%), linear-gradient(180deg, #F0E2C4 0%, #F9F1E0 48%, #FEFAF2 100%)',
   },
 ];
 

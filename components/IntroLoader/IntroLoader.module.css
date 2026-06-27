@@ -5,9 +5,8 @@
   display: grid;
   place-items: center;
   background:
-    radial-gradient(120% 80% at 50% 110%, var(--c-tide) 0%, transparent 65%),
-    radial-gradient(80% 60% at 50% 0%, var(--c-abyss) 0%, transparent 70%),
-    linear-gradient(180deg, var(--c-deep), var(--c-sea));
+    radial-gradient(120% 80% at 50% 110%, var(--c-bg-3) 0%, transparent 65%),
+    linear-gradient(180deg, var(--c-bg), var(--c-bg-2));
   opacity: 1;
   visibility: visible;
   transition: opacity 0.75s var(--ease-out), visibility 0s linear 0.75s;

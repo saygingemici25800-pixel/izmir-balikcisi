@@ -2,7 +2,7 @@
   position: relative;
   padding: clamp(3rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3.5rem) var(--s-5);
   border-top: 1px solid var(--c-line);
-  background: rgba(5, 11, 22, 0.7);
+  background: rgba(240, 226, 196, 0.7);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   font-size: var(--t-small);
@@ -48,6 +48,10 @@
   border: 1px solid var(--c-line);
   background: linear-gradient(180deg, #1c3a5e 0%, #0f2340 56%, #0a1426 100%);
   isolation: isolate;
+  /* dark sunset island → keep overlaid wordmark/badge text light */
+  --c-bone: #f7f1e3;
+  --c-cream: #efe4cc;
+  --c-gold: #d8a44a;
 }
 .sisterVisual::after {
   /* shimmering water below the horizon */

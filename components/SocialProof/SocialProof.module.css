@@ -51,7 +51,7 @@
   letter-spacing: 2px;
 }
 .starsLg { font-size: 1.5rem; }
-.starsBase { color: rgba(239, 228, 204, 0.2); }
+.starsBase { color: rgba(27, 22, 16, 0.18); }
 .starsFill {
   position: absolute;
   top: 0; left: 0;

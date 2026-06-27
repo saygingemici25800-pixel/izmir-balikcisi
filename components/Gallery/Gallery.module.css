@@ -104,6 +104,9 @@
   justify-content: space-between;
   gap: var(--s-3);
   pointer-events: none;
+  /* chips sit on the photo (dark) → keep their text light */
+  --c-cream: #efe4cc;
+  --c-gold: #d8a44a;
 }
 .itemNum {
   font-family: var(--f-display);
@@ -130,8 +133,14 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(5, 11, 22, 0.92);
+  background: rgba(7, 12, 22, 0.95);
   -webkit-backdrop-filter: blur(20px);
+  /* full-screen photo viewer stays dark → keep its controls/text light */
+  --c-cream: #efe4cc;
+  --c-bone: #f7f1e3;
+  --c-gold: #d8a44a;
+  --c-line: rgba(239, 228, 204, 0.14);
+  --c-line-strong: rgba(239, 228, 204, 0.28);
   backdrop-filter: blur(20px);
   display: grid;
   grid-template-rows: auto 1fr auto;

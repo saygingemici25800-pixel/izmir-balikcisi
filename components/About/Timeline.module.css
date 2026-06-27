@@ -19,20 +19,12 @@
   height: 100svh;
   overflow: clip;
   isolation: isolate;
-  background: var(--c-abyss);
-  /* immersive dark photo stage → light content, regardless of section theme */
-  --c-cream: #efe4cc;
-  --c-bone: #f7f1e3;
-  --c-gold: #d8a44a;
-  --c-gold-hi: #ecc170;
-  --c-gold-lo: #a87a2a;
-  --c-line: rgba(239, 228, 204, 0.16);
-  --c-line-strong: rgba(239, 228, 204, 0.30);
-  --glass-bg: rgba(5, 11, 22, 0.42);
-  --glass-border: rgba(239, 228, 204, 0.14);
-  /* soft dark halo behind the copy so light text reads over the bright year */
-  --scrim-c: rgba(5, 11, 22, 0.58);
-  --scrim-t: rgba(5, 11, 22, 0);
+  background: var(--c-bg);
+  /* light cream photo stage → inherits the global LIGHT palette (dark text,
+     light glass). Soft cream halo behind the copy so dark text reads over the
+     warm photo / amber year. */
+  --scrim-c: rgba(254, 250, 242, 0.72);
+  --scrim-t: rgba(254, 250, 242, 0);
 }
 
 /* ── Full-screen era photos (placeholder gradients) ────────────────────── */
@@ -57,9 +49,8 @@
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(102deg, rgba(5, 11, 22, 0.82) 0%, rgba(5, 11, 22, 0.52) 42%, rgba(5, 11, 22, 0.30) 100%),
-    linear-gradient(0deg, rgba(5, 11, 22, 0.62) 0%, rgba(5, 11, 22, 0) 40%),
-    linear-gradient(180deg, rgba(5, 11, 22, 0.45) 0%, rgba(5, 11, 22, 0) 22%);
+    linear-gradient(102deg, rgba(254, 250, 242, 0.80) 0%, rgba(254, 250, 242, 0.42) 42%, rgba(254, 250, 242, 0.12) 100%),
+    linear-gradient(0deg, rgba(254, 250, 242, 0.45) 0%, rgba(254, 250, 242, 0) 36%);
 }
 .overlay::after {
   content: '';
@@ -364,14 +355,12 @@
   overflow: hidden;
   border: 1px solid var(--c-line-strong);
   isolation: isolate;
-  /* dark photo island → keep its year label light under the section's theme */
-  --c-bone: #f7f1e3;
 }
 .staticPhoto::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(5, 11, 22, 0.55), transparent 55%);
+  background: linear-gradient(0deg, rgba(254, 250, 242, 0.5), transparent 55%);
 }
 .staticPhotoYear {
   position: absolute;

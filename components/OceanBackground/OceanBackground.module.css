@@ -5,7 +5,7 @@
   height: 100vh;
   z-index: -1;
   pointer-events: none;
-  background: var(--c-abyss);
+  background: var(--c-bg);
   isolation: isolate;
 }
 
@@ -27,14 +27,14 @@
   transition: opacity 1.1s var(--ease-out);
 }
 .canvasReady {
-  opacity: 1;
+  /* faded on the light theme — the ocean reads as a faint texture, not a scene */
+  opacity: 0.22;
 }
 
 .fallback {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(120% 80% at 50% 110%, var(--c-tide) 0%, transparent 65%),
-    radial-gradient(80% 60% at 50% 0%,   var(--c-abyss) 0%, transparent 70%),
-    linear-gradient(180deg, var(--c-deep), var(--c-sea));
+    radial-gradient(120% 80% at 50% 110%, var(--c-bg-3) 0%, transparent 65%),
+    linear-gradient(180deg, var(--c-bg), var(--c-bg-2));
 }
