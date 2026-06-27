@@ -39,7 +39,7 @@
   line-height: 0.88;
   letter-spacing: -0.035em;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #c2872a 0%, #a86f1c 42%, #4a3410 100%);
+  background: linear-gradient(180deg, #f2f5f7 0%, #D6C6F7 60%, #b9a4ec 100%);
   background-size: 100% 220%;
   -webkit-background-clip: text;
           background-clip: text;
@@ -68,7 +68,7 @@
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
   padding-block: var(--s-3);
   margin-bottom: clamp(2rem, 4vw, 3rem);
-  background: rgba(255, 252, 245, 0.8);
+  background: rgba(22, 34, 63, 0.82);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   backdrop-filter: blur(14px) saturate(140%);
   border-block: 1px solid var(--c-line);
@@ -205,7 +205,7 @@
 }
 .itemTag {
   border: 1px solid var(--c-line-strong);
-  background: rgba(27, 22, 16, 0.05);
+  background: rgba(242, 245, 247, 0.08);
   padding: 3px 8px;
   border-radius: 999px;
   opacity: 0.9;
@@ -261,7 +261,11 @@
   margin-top: clamp(3rem, 6vw, 5rem);
   padding: clamp(1.5rem, 3vw, 2.5rem);
   border: 1px solid var(--c-line);
-  background: rgba(255, 252, 245, 0.6);
+  background: rgba(242, 245, 247, 0.95);
+  --c-cream: #2b3a55;
+  --c-bone: #1e2e54;
+  --c-gold: #6b4fb0;
+  --c-line: rgba(45, 66, 117, 0.16);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   display: grid;
@@ -313,7 +317,7 @@
   position: fixed;
   inset: 0;
   z-index: 1200;
-  background: rgba(20, 14, 6, 0.55);
+  background: rgba(8, 14, 30, 0.6);
   -webkit-backdrop-filter: blur(14px) saturate(120%);
   backdrop-filter: blur(14px) saturate(120%);
   display: flex;
@@ -330,8 +334,15 @@
   border-left: 1px solid var(--glass-border);
   border-right: 1px solid var(--glass-border);
   background:
-    linear-gradient(180deg, rgba(232,188,66,0.08) 0%, transparent 14%),
-    rgba(255, 252, 245, 0.92);
+    linear-gradient(180deg, rgba(214,198,247,0.12) 0%, transparent 14%),
+    rgba(242, 245, 247, 0.96);
+  --c-cream: #2b3a55;
+  --c-bone: #1e2e54;
+  --c-gold: #6b4fb0;
+  --c-gold-hi: #5a3fa0;
+  --c-gold-lo: #836bc2;
+  --c-line: rgba(45, 66, 117, 0.14);
+  --c-line-strong: rgba(45, 66, 117, 0.26);
   -webkit-backdrop-filter: blur(28px) saturate(140%);
   backdrop-filter: blur(28px) saturate(140%);
   isolation: isolate;
@@ -359,7 +370,7 @@
   height: 38px;
   border-radius: 50%;
   border: 1px solid var(--c-line-strong);
-  background: rgba(255, 252, 245, 0.72);
+  background: rgba(242, 245, 247, 0.82);
   transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out);
 }
 .sheetClose::before, .sheetClose::after {

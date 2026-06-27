@@ -2,7 +2,7 @@
   position: relative;
   padding: clamp(3rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3.5rem) var(--s-5);
   border-top: 1px solid var(--c-line);
-  background: rgba(240, 226, 196, 0.7);
+  background: rgba(33, 51, 92, 0.82);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   font-size: var(--t-small);
@@ -23,6 +23,13 @@
   align-items: stretch;
   padding: clamp(1.25rem, 2.4vw, 2rem);
   background: var(--glass-bg);
+  --c-cream: #2b3a55;
+  --c-bone: #1e2e54;
+  --c-gold: #6b4fb0;
+  --c-gold-hi: #5a3fa0;
+  --c-gold-lo: #836bc2;
+  --c-line: rgba(45, 66, 117, 0.14);
+  --c-line-strong: rgba(45, 66, 117, 0.26);
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);

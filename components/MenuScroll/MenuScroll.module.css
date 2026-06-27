@@ -81,7 +81,14 @@
   grid-template-rows: auto 1fr auto;
   padding: var(--s-5);
   border: 1px solid var(--c-line);
-  background: rgba(255, 252, 245, 0.62);
+  background: rgba(242, 245, 247, 0.95);
+  --c-cream: #2b3a55;
+  --c-bone: #1e2e54;
+  --c-gold: #6b4fb0;
+  --c-gold-hi: #5a3fa0;
+  --c-gold-lo: #836bc2;
+  --c-line: rgba(45, 66, 117, 0.14);
+  --c-line-strong: rgba(45, 66, 117, 0.26);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   backdrop-filter: blur(14px) saturate(140%);
   transition: transform var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);

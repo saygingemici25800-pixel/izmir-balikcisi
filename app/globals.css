@@ -32,38 +32,40 @@
 
 /* ---------- TOKENS ---------- */
 :root {
-  /* Palette — LIGHT cream/beige theme + gold accent.
-     The deep-sea tokens stay DARK on purpose: --c-abyss = ink on gold accents;
-     --c-deep..--c-mist = photo/image-placeholder fills (Gallery, thumbnails,
-     sunset visuals) which read as "photos" on the light page. */
-  --c-abyss: #050b16;   /* kept dark — ink on gold */
-  --c-deep:  #0a1426;   /* kept dark — image placeholder fills */
-  --c-sea:   #0f2340;
-  --c-tide:  #1c3a5e;
-  --c-foam:  #2c5380;
-  --c-mist:  #6f8aae;
+  /* Palette — DARK NAVY base + LAVENDER accent + LIGHT cards.
+     Navy ramp = dark surfaces/gradients; text on dark is light; accent is
+     lavender. Light #F2F5F7 cards re-assert dark text via .lightSurface. */
+  --c-abyss: #16223f;   /* deepest navy */
+  --c-deep:  #1e2e54;   /* deep navy — image/placeholder fills */
+  --c-sea:   #2d4275;   /* base navy */
+  --c-tide:  #3a5292;   /* lighter navy */
+  --c-foam:  #51689f;   /* light navy */
+  --c-mist:  #9fb0d0;   /* muted light-navy (muted text on dark) */
 
-  --c-bg:    #FEFAF2;   /* light page background */
-  --c-bg-2:  #F9F1E0;   /* slightly deeper cream (footer/marquee bands) */
-  --c-bg-3:  #F0E2C4;   /* warm beige */
+  --c-bg:    #2D4275;   /* main dark navy page background */
+  --c-bg-2:  #233762;   /* deeper navy band (footer / marquee) */
+  --c-bg-3:  #38508c;   /* lighter navy surface */
 
-  --c-gold:    #a86f1c;  /* amber, deepened for contrast on cream */
-  --c-gold-hi: #c2872a;
-  --c-gold-lo: #7d5212;
+  --c-light:   #F2F5F7; /* light gray-white surface / card */
+  --c-light-2: #e6ebf1;
 
-  --c-cream:   #2c2419;  /* primary text → warm dark ink */
-  --c-bone:    #1b1610;  /* headings → near-black ink */
-  --c-paper:   #161009;
+  --c-gold:    #D6C6F7;  /* accent — lavender (on dark surfaces) */
+  --c-gold-hi: #e7dcfb;  /* brighter lavender */
+  --c-gold-lo: #b9a4ec;  /* deeper lavender */
 
-  --c-ink:     #1b1610;  /* dark ink (alt text-on-gold) */
-  --c-line:    rgba(27, 22, 16, 0.16);
-  --c-line-strong: rgba(27, 22, 16, 0.28);
+  --c-cream:   #dfe5f0;  /* primary text on dark (light) */
+  --c-bone:    #f2f5f7;  /* headings on dark (lightest) */
+  --c-paper:   #f2f5f7;
 
-  /* Glass — light frosted */
-  --glass-bg:    rgba(255, 252, 245, 0.60);
-  --glass-bg-2:  rgba(255, 252, 245, 0.75);
-  --glass-border: rgba(27, 22, 16, 0.12);
-  --glass-blur:  blur(16px) saturate(120%);
+  --c-ink:     #1e2e54;  /* dark navy — text on lavender / on light cards */
+  --c-line:    rgba(214, 198, 247, 0.20);
+  --c-line-strong: rgba(214, 198, 247, 0.34);
+
+  /* Glass cards — light #F2F5F7 frosted (pair with .lightSurface for text) */
+  --glass-bg:    rgba(242, 245, 247, 0.94);
+  --glass-bg-2:  rgba(242, 245, 247, 0.86);
+  --glass-border: rgba(45, 66, 117, 0.16);
+  --glass-blur:  blur(14px) saturate(110%);
 
   /* Type */
   --f-display: 'Panchang', 'Times New Roman', Georgia, serif;
@@ -94,7 +96,7 @@
   --dur-med:  280ms;
   --dur-slow: 360ms;
   --lift-card: -6px;
-  --shadow-card-hover: 0 24px 50px -28px rgba(70, 48, 12, 0.35);
+  --shadow-card-hover: 0 24px 50px -28px rgba(8, 14, 32, 0.6);
 }
 
 /* ---------- RESET ---------- */
@@ -182,6 +184,18 @@ a { color: inherit; text-decoration: none; }
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
+}
+
+/* Light #F2F5F7 card on the dark navy site → flip text/accent tokens to dark
+   so anything inside reads correctly. Add to any light-surface card. */
+.lightSurface {
+  --c-cream: #2b3a55;        /* body text on light card */
+  --c-bone:  #1e2e54;        /* headings on light card */
+  --c-gold:    #6b4fb0;      /* accent on light card (deep purple) */
+  --c-gold-hi: #5a3fa0;
+  --c-gold-lo: #836bc2;
+  --c-line:        rgba(45, 66, 117, 0.14);
+  --c-line-strong: rgba(45, 66, 117, 0.26);
 }
 
 /* ---------- FX ---------- */

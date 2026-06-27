@@ -97,7 +97,7 @@
   position: fixed;
   inset: 0;
   z-index: 1100;
-  background: rgba(20, 14, 6, 0.6);
+  background: rgba(8, 14, 30, 0.72);
   -webkit-backdrop-filter: blur(20px) saturate(120%);
   backdrop-filter: blur(20px) saturate(120%);
   display: grid;
@@ -112,7 +112,14 @@
   height: min(82svh, 720px);
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  background: rgba(255, 252, 245, 0.9);
+  background: rgba(242, 245, 247, 0.96);
+  --c-cream: #2b3a55;
+  --c-bone: #1e2e54;
+  --c-gold: #6b4fb0;
+  --c-gold-hi: #5a3fa0;
+  --c-gold-lo: #836bc2;
+  --c-line: rgba(45, 66, 117, 0.14);
+  --c-line-strong: rgba(45, 66, 117, 0.26);
   -webkit-backdrop-filter: blur(22px) saturate(140%);
   backdrop-filter: blur(22px) saturate(140%);
   border: 1px solid var(--glass-border);
@@ -129,7 +136,7 @@
   height: 42px;
   border-radius: 50%;
   border: 1px solid var(--c-line-strong);
-  background: rgba(255, 252, 245, 0.72);
+  background: rgba(242, 245, 247, 0.8);
   transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out);
 }
 .close::before, .close::after {

@@ -67,14 +67,6 @@ export function Hero() {
           büyüklerin sessizliği ve mutfakta bugün ne pişiyorsa. Bir editorial
           değil; bir <em>tabak</em>.
         </p>
-        <dl className={styles.card + ' glass'}>
-          <dt>Gün</dt>
-          <dd>Levrek, çupra, mezgit</dd>
-          <dt>Mevsim</dt>
-          <dd>Kalkan başlıyor</dd>
-          <dt>Saat</dt>
-          <dd>10.30 — 22.30</dd>
-        </dl>
       </div>
 
       <footer className={styles.bottomMeta}>

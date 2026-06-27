@@ -23,8 +23,8 @@
   /* light cream photo stage → inherits the global LIGHT palette (dark text,
      light glass). Soft cream halo behind the copy so dark text reads over the
      warm photo / amber year. */
-  --scrim-c: rgba(254, 250, 242, 0.72);
-  --scrim-t: rgba(254, 250, 242, 0);
+  --scrim-c: rgba(8, 14, 30, 0.6);
+  --scrim-t: rgba(8, 14, 30, 0);
 }
 
 /* ── Full-screen era photos (placeholder gradients) ────────────────────── */
@@ -49,8 +49,8 @@
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(102deg, rgba(254, 250, 242, 0.80) 0%, rgba(254, 250, 242, 0.42) 42%, rgba(254, 250, 242, 0.12) 100%),
-    linear-gradient(0deg, rgba(254, 250, 242, 0.45) 0%, rgba(254, 250, 242, 0) 36%);
+    linear-gradient(102deg, rgba(8, 14, 30, 0.78) 0%, rgba(8, 14, 30, 0.42) 42%, rgba(8, 14, 30, 0.14) 100%),
+    linear-gradient(0deg, rgba(8, 14, 30, 0.5) 0%, rgba(8, 14, 30, 0) 38%);
 }
 .overlay::after {
   content: '';
@@ -360,7 +360,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(254, 250, 242, 0.5), transparent 55%);
+  background: linear-gradient(0deg, rgba(8, 14, 30, 0.55), transparent 55%);
 }
 .staticPhotoYear {
   position: absolute;

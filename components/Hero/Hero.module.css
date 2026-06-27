@@ -9,6 +9,10 @@
   padding-bottom: var(--s-7);
   isolation: isolate;
   overflow: clip; /* prevent any descendant from leaking horizontally */
+  /* dark navy opening backdrop */
+  background:
+    radial-gradient(120% 80% at 50% -10%, #3d5596 0%, transparent 55%),
+    linear-gradient(180deg, #2d4275 0%, #243a68 58%, #1b2b50 100%);
 }
 
 /* Top editorial meta strip ---------------------------------------------- */
@@ -119,7 +123,7 @@
 /* Subline (asymmetric, glass card) ------------------------------------ */
 .sub {
   display: grid;
-  grid-template-columns: 1fr minmax(260px, 32%);
+  grid-template-columns: 1fr;
   gap: var(--s-7);
   align-items: flex-end;
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);

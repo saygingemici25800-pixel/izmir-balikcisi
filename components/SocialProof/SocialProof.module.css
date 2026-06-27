@@ -51,7 +51,19 @@
   letter-spacing: 2px;
 }
 .starsLg { font-size: 1.5rem; }
-.starsBase { color: rgba(27, 22, 16, 0.18); }
+.starsBase { color: rgba(45, 66, 117, 0.22); }
+
+/* light #F2F5F7 cards on the navy site → dark text + deep-purple accent */
+.sumCard,
+.card {
+  --c-cream: #2b3a55;
+  --c-bone: #1e2e54;
+  --c-gold: #6b4fb0;
+  --c-gold-hi: #5a3fa0;
+  --c-gold-lo: #836bc2;
+  --c-line: rgba(45, 66, 117, 0.14);
+  --c-line-strong: rgba(45, 66, 117, 0.26);
+}
 .starsFill {
   position: absolute;
   top: 0; left: 0;
