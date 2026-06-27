@@ -2,13 +2,13 @@
 
 import { useCallback } from 'react';
 import styles from './MenuFull.module.css';
-import { MENU } from '@/lib/menu';
+import type { MenuCategory } from '@/lib/menu';
 
 // Sticky TOC offset — nav (~64) + sticky TOC band (~48) + breathing room
 // Stays in sync with .category scroll-margin-top in MenuFull.module.css
 const SCROLL_OFFSET = -120;
 
-export default function MenuToc() {
+export default function MenuToc({ categories }: { categories: MenuCategory[] }) {
   const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     if (typeof window === 'undefined') return;
     const target = document.getElementById(id);
@@ -30,7 +30,7 @@ export default function MenuToc() {
   return (
     <div className={styles.tocWrap}>
       <nav className={styles.toc} aria-label="Menü kategorileri">
-        {MENU.map((c) => (
+        {categories.map((c) => (
           <a
             key={c.id}
             href={`#${c.id}`}

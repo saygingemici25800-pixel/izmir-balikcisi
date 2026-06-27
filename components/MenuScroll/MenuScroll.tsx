@@ -4,11 +4,9 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-mot
 import { useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from './MenuScroll.module.css';
-import { featuredItems } from '@/lib/menu';
+import { type MenuItem } from '@/lib/menu';
 
-const DISHES = featuredItems().filter((d) => d.img);
-
-export function MenuScroll() {
+export function MenuScroll({ dishes }: { dishes: MenuItem[] }) {
   const outerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
@@ -19,7 +17,7 @@ export function MenuScroll() {
 
   // travel: enough to expose all cards.
   // cards * cardWidth - viewport ≈ (N-1) * 100vw for safety
-  const x = useTransform(scrollYProgress, [0, 1], ['0vw', `-${(DISHES.length - 1) * 32}vw`]);
+  const x = useTransform(scrollYProgress, [0, 1], ['0vw', `-${(dishes.length - 1) * 32}vw`]);
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => setProgress(v));
 
@@ -28,7 +26,7 @@ export function MenuScroll() {
       className={styles.outer}
       id="menu"
       ref={outerRef}
-      style={{ height: `${DISHES.length * 80}vh` }}
+      style={{ height: `${dishes.length * 80}vh` }}
     >
       <div className={styles.sticky}>
         <header className={styles.header}>
@@ -44,7 +42,7 @@ export function MenuScroll() {
 
         <div className={styles.trackWrap}>
           <motion.div className={styles.track} style={{ x }}>
-            {DISHES.map((d, i) => (
+            {dishes.map((d, i) => (
               <article
                 key={d.name}
                 className={styles.card}
@@ -87,7 +85,7 @@ export function MenuScroll() {
         </div>
 
         <footer className={styles.foot}>
-          <span className={styles.label}>{DISHES.length} tabak</span>
+          <span className={styles.label}>{dishes.length} tabak</span>
           <div className={styles.meter}>
             <div className={styles.meterFill} style={{ width: `${progress * 100}%` }} />
           </div>

@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { OceanBackground } from '@/components/OceanBackground/OceanBackground';
-import { IntroLoader } from '@/components/IntroLoader/IntroLoader';
-import { MagneticCursor } from '@/components/MagneticCursor/MagneticCursor';
-import { SmoothScroll } from '@/components/SmoothScroll/SmoothScroll';
-import { Nav } from '@/components/Nav/Nav';
+import { SiteShell } from '@/components/SiteShell';
+import { getContent } from '@/lib/content';
 import { RESTAURANT, SEO, SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -93,7 +90,8 @@ const jsonLd = {
   sameAs: [RESTAURANT.social.instagram],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const { seasonal } = await getContent();
   return (
     <html lang="tr">
       <head>
@@ -118,13 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <IntroLoader />
-        <OceanBackground />
-        <MagneticCursor />
-        <SmoothScroll>
-          <Nav />
-          <main>{children}</main>
-        </SmoothScroll>
+        <SiteShell seasonal={seasonal}>{children}</SiteShell>
       </body>
     </html>
   );

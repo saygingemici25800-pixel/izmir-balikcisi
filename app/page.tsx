@@ -8,8 +8,11 @@ import { Gallery } from '@/components/Gallery/Gallery';
 import { Contact } from '@/components/Contact/Contact';
 import { Footer } from '@/components/Footer/Footer';
 import { SisterCta } from '@/components/SisterCta/SisterCta';
+import { getContent, featuredItems } from '@/lib/content';
 
-export default function Page() {
+export default async function Page() {
+  const { menu } = await getContent();
+  const dishes = featuredItems(menu).filter((d) => d.img);
   return (
     <>
       <Hero />
@@ -42,7 +45,7 @@ export default function Page() {
         reverse
       />
 
-      <MenuScroll />
+      <MenuScroll dishes={dishes} />
 
       <Manifesto />
 

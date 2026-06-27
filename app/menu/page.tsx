@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import MenuFull from '@/components/MenuFull/MenuFull';
+import { getContent } from '@/lib/content';
 import { RESTAURANT, SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function MenuPage() {
-  return <MenuFull />;
+export default async function MenuPage() {
+  const { menu } = await getContent();
+  return <MenuFull menu={menu} />;
 }

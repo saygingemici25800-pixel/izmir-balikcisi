@@ -1,16 +1,16 @@
 import Link from 'next/link';
-import { MENU, itemCount } from '@/lib/menu';
+import { itemCount, type MenuCategory } from '@/lib/content';
 import styles from './MenuFull.module.css';
 import MenuToc from './MenuToc';
 import MenuList from './MenuList';
 
-export default function MenuFull() {
+export default function MenuFull({ menu }: { menu: MenuCategory[] }) {
   return (
     <article className={styles.page}>
       <header className={styles.head}>
         <span className={styles.meta}>№ 03 — Menü</span>
         <span className={styles.rule} aria-hidden />
-        <span className={styles.meta}>Bahar 2026 · {itemCount()} tabak</span>
+        <span className={styles.meta}>Bahar 2026 · {itemCount(menu)} tabak</span>
       </header>
 
       <h1 className={styles.title}>Menü</h1>
@@ -21,9 +21,9 @@ export default function MenuFull() {
         sakızlı muhallebiye. Burası alkolsüz bir ev — eve dönüş gibi.
       </p>
 
-      <MenuToc />
+      <MenuToc categories={menu} />
 
-      <MenuList categories={MENU} />
+      <MenuList categories={menu} />
 
       <aside className={styles.note}>
         <span className={styles.badge}>0%</span>

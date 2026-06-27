@@ -1,0 +1,85 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--c-line-strong);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  font-family: var(--f-body);
+  font-size: var(--t-small);
+  letter-spacing: 0.06em;
+  color: var(--c-bone);
+  cursor: none;
+  white-space: nowrap;
+  transition: border-color var(--dur-med) var(--ease-out), color var(--dur-med) var(--ease-out);
+}
+.pill:hover { border-color: var(--c-gold); }
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-gold);
+  flex: 0 0 auto;
+  box-shadow: 0 0 0 3px rgba(168, 111, 28, 0.16);
+}
+.title { font-weight: 500; }
+.range { color: var(--c-gold); }
+
+.pop {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 50;
+  min-width: 230px;
+  background: var(--glass-bg-2);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--c-line-strong);
+  border-radius: 12px;
+  padding: var(--s-4);
+  box-shadow: var(--shadow-card-hover);
+}
+.popHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-family: var(--f-display);
+  font-size: 1.1rem;
+  color: var(--c-bone);
+  padding-bottom: var(--s-3);
+  margin-bottom: var(--s-3);
+  border-bottom: 1px solid var(--c-line);
+}
+.popRange { font-size: var(--t-small); color: var(--c-gold); letter-spacing: 0.04em; }
+.fishList { list-style: none; display: grid; gap: 7px; }
+.fishList li {
+  font-family: var(--f-body);
+  font-size: 0.95rem;
+  color: var(--c-cream);
+  padding-left: 16px;
+  position: relative;
+}
+.fishList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-gold-lo);
+}
+.popEmpty { font-size: 0.9rem; color: var(--c-cream); opacity: 0.7; }
+
+@media (max-width: 600px) {
+  .title { display: none; } /* compact: dot + date range only */
+}

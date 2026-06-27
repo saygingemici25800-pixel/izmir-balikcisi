@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import styles from './Nav.module.css';
 import { RESTAURANT } from '@/lib/constants';
 import { SectionLink } from '@/components/SectionLink';
+import { SeasonalButton, type SeasonalData } from '@/components/SeasonalButton/SeasonalButton';
 
 const LINKS: { id: string; label: string }[] = [
   { id: 'hikaye', label: 'Hikâye' },
@@ -16,7 +17,7 @@ const LINKS: { id: string; label: string }[] = [
   { id: 'iletisim', label: 'İletişim' },
 ];
 
-export function Nav() {
+export function Nav({ seasonal }: { seasonal: SeasonalData }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -120,6 +121,7 @@ export function Nav() {
         </div>
 
         <div className={styles.actions}>
+          <SeasonalButton seasonal={seasonal} />
           <a href={`tel:${RESTAURANT.phoneE164}`} className={styles.cta} data-magnetic data-cursor-label="Ara">
             <span className={styles.ctaDot} aria-hidden />
             <span>Ara</span>
