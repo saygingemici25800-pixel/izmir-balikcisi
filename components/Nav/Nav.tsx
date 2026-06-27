@@ -11,9 +11,9 @@ import { SeasonalButton, type SeasonalData } from '@/components/SeasonalButton/S
 const LINKS: { id: string; label: string }[] = [
   { id: 'hikaye', label: 'Hikâye' },
   { id: 'menu', label: 'Menü' },
+  { id: 'galeri', label: 'Galeri' },
   { id: 'manifesto', label: 'Manifesto' },
   { id: 'yorumlar', label: 'Yorumlar' },
-  { id: 'galeri', label: 'Galeri' },
   { id: 'iletisim', label: 'İletişim' },
 ];
 

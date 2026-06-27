@@ -58,9 +58,9 @@ export function Footer() {
           <ul>
             <li><SectionLink id="hikaye">Hikâye</SectionLink></li>
             <li><SectionLink id="menu">Menü</SectionLink></li>
+            <li><SectionLink id="galeri">Galeri</SectionLink></li>
             <li><SectionLink id="manifesto">Manifesto</SectionLink></li>
             <li><SectionLink id="yorumlar">Yorumlar</SectionLink></li>
-            <li><SectionLink id="galeri">Galeri</SectionLink></li>
             <li><SectionLink id="iletisim">İletişim</SectionLink></li>
           </ul>
         </div>

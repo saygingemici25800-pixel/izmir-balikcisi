@@ -47,6 +47,8 @@ export default async function Page() {
 
       <MenuScroll dishes={dishes} />
 
+      <Gallery />
+
       <Manifesto />
 
       <SocialProof />
@@ -61,8 +63,6 @@ export default async function Page() {
         ]}
         duration={44}
       />
-
-      <Gallery />
 
       <SisterCta />
 
