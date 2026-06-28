@@ -1,22 +1,27 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import styles from './Gallery.module.css';
 
-// Image sources stay in code; captions come from the `gallery.caps` messages.
-const SRCS = [
-  'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80',
-  'https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=900&q=80',
-  'https://images.unsplash.com/photo-1535007813616-79dc02ba4021?auto=format&fit=crop&w=900&q=80',
-  'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=900&q=80',
-  'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=900&q=80',
-  'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80',
-  'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=80',
-  'https://images.unsplash.com/photo-1485921325833-c519f76c4927?auto=format&fit=crop&w=900&q=80',
-  'https://images.unsplash.com/photo-1514516345957-556ca7d90a29?auto=format&fit=crop&w=900&q=80'
+// Image sources + intrinsic dimensions stay in code; captions come from the
+// `gallery.caps` messages. Dimensions let next/image reserve space (no CLS) and
+// emit a responsive srcset (AVIF/WebP, downscaled per viewport).
+const SHOTS = [
+  { src: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80', w: 900, h: 1200 },
+  { src: 'https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=900&q=80', w: 900, h: 600 },
+  { src: 'https://images.unsplash.com/photo-1535007813616-79dc02ba4021?auto=format&fit=crop&w=900&q=80', w: 900, h: 900 },
+  { src: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=900&q=80', w: 900, h: 1100 },
+  { src: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=900&q=80', w: 900, h: 600 },
+  { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80', w: 900, h: 1300 },
+  { src: 'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=80', w: 900, h: 700 },
+  { src: 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?auto=format&fit=crop&w=900&q=80', w: 900, h: 1100 },
+  { src: 'https://images.unsplash.com/photo-1514516345957-556ca7d90a29?auto=format&fit=crop&w=900&q=80', w: 900, h: 600 }
 ];
+
+const SIZES = '(max-width: 600px) 92vw, (max-width: 980px) 46vw, 30vw';
 
 export function Gallery() {
   const t = useTranslations('gallery');
@@ -28,8 +33,8 @@ export function Gallery() {
   const markLoaded = (i: number) => setLoaded((s) => (s[i] ? s : { ...s, [i]: true }));
 
   const close = useCallback(() => setOpen(null), []);
-  const prev  = useCallback(() => setOpen((i) => (i === null ? null : (i - 1 + SRCS.length) % SRCS.length)), []);
-  const next  = useCallback(() => setOpen((i) => (i === null ? null : (i + 1) % SRCS.length)), []);
+  const prev  = useCallback(() => setOpen((i) => (i === null ? null : (i - 1 + SHOTS.length) % SHOTS.length)), []);
+  const next  = useCallback(() => setOpen((i) => (i === null ? null : (i + 1) % SHOTS.length)), []);
 
   useEffect(() => {
     if (open === null) return;
@@ -51,7 +56,7 @@ export function Gallery() {
       <header className={styles.header}>
         <span className="eyebrow">{t('eyebrow')}</span>
         <span className={styles.rule} aria-hidden />
-        <span className={styles.meta}>{t('frames', { count: SRCS.length })}</span>
+        <span className={styles.meta}>{t('frames', { count: SHOTS.length })}</span>
       </header>
 
       <motion.h2
@@ -65,9 +70,9 @@ export function Gallery() {
       </motion.h2>
 
       <div className={styles.grid}>
-        {SRCS.map((src, i) => (
+        {SHOTS.map((s, i) => (
           <motion.button
-            key={src}
+            key={s.src}
             type="button"
             className={`${styles.item} ${loaded[i] ? styles.itemLoaded : ''}`}
             onClick={() => setOpen(i)}
@@ -79,11 +84,13 @@ export function Gallery() {
             viewport={{ once: true, margin: '-8% 0px' }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img
+            <Image
               className={styles.itemImg}
-              src={src}
+              src={s.src}
               alt={cap(i)}
-              loading="lazy"
+              width={s.w}
+              height={s.h}
+              sizes={SIZES}
               onLoad={() => markLoaded(i)}
               onError={() => markLoaded(i)}
             />
@@ -113,10 +120,11 @@ export function Gallery() {
 
             <div className={styles.lbStage}>
               <button className={`${styles.nav} ${styles.prev}`} onClick={prev} aria-label={t('prev')} data-magnetic>‹</button>
+              {/* Full-screen on-demand image — plain <img> (loaded only when opened) */}
               <motion.img
-                key={SRCS[open]}
+                key={SHOTS[open].src}
                 className={styles.lbImg}
-                src={SRCS[open].replace('w=900', 'w=1600')}
+                src={SHOTS[open].src.replace('w=900', 'w=1600')}
                 alt={cap(open)}
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -129,7 +137,7 @@ export function Gallery() {
             <div className={styles.lbFoot}>
               <span>{cap(open)}</span>
               <span className={styles.lbCounter}>
-                {String(open + 1).padStart(2, '0')} / {String(SRCS.length).padStart(2, '0')}
+                {String(open + 1).padStart(2, '0')} / {String(SHOTS.length).padStart(2, '0')}
               </span>
               <span>{t('hint')}</span>
             </div>

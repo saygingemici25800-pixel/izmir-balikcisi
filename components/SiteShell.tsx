@@ -1,12 +1,19 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { usePathname } from '@/i18n/navigation';
 import { IntroLoader } from './IntroLoader/IntroLoader';
-import { OceanBackground } from './OceanBackground/OceanBackground';
 import { MagneticCursor } from './MagneticCursor/MagneticCursor';
 import { SmoothScroll } from './SmoothScroll/SmoothScroll';
 import { Nav } from './Nav/Nav';
 import type { SeasonalData } from './SeasonalButton/SeasonalButton';
+
+// 3D ocean (three.js) is heavy + purely decorative — load it client-only after
+// hydration so it never ships in the initial bundle or blocks first paint.
+const OceanBackground = dynamic(
+  () => import('./OceanBackground/OceanBackground').then((m) => m.OceanBackground),
+  { ssr: false }
+);
 
 /**
  * Public-site chrome (3D ocean, custom cursor, smooth scroll, nav). Skipped

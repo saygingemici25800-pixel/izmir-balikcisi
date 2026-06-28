@@ -147,6 +147,7 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
         className={styles.scrim}
         data-open={open}
         aria-hidden={!open}
+        aria-label={t('closeMenu')}
         tabIndex={-1}
         onClick={() => setOpen(false)}
       />

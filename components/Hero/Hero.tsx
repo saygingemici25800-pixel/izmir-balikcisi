@@ -45,6 +45,7 @@ export function Hero() {
   const t = useTranslations('hero');
   return (
     <section className={styles.hero} id="top">
+      <h1 className="sr-only">{t('h1')}</h1>
       <div className={styles.ribbon} aria-hidden />
 
       <header className={styles.topMeta}>
