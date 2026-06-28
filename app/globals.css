@@ -148,8 +148,8 @@ a { color: inherit; text-decoration: none; }
    --f-body-ar = Tajawal). Arabic script is cursive, so ANY letter-spacing
    breaks the joins — reset it everywhere and relax line-height. */
 [lang='ar'] {
-  --f-display: 'Amiri', 'Times New Roman', Georgia, serif;
-  --f-body: 'Tajawal', system-ui, 'Segoe UI', sans-serif;
+  --f-display: var(--f-display-ar, 'Amiri'), 'Times New Roman', Georgia, serif;
+  --f-body: var(--f-body-ar, 'Tajawal'), system-ui, 'Segoe UI', sans-serif;
 }
 [lang='ar'] * { letter-spacing: normal !important; }
 [lang='ar'] body { line-height: 1.7; }

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
+import { Amiri, Tajawal } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import '../globals.css';
@@ -7,6 +8,26 @@ import { SiteShell } from '@/components/SiteShell';
 import { getContent } from '@/lib/content';
 import { RESTAURANT, SITE } from '@/lib/constants';
 import { routing, isRtl } from '@/i18n/routing';
+
+// Arabic fonts — downloaded at build by next/font and self-hosted from our own
+// origin (no runtime Google Fonts request). Exposed as CSS vars and swapped in
+// via [lang='ar'] in globals.css. preload:false so TR/EN pages don't fetch them
+// (they only resolve when Arabic glyphs render). Amiri ≈ editorial display
+// (mirrors Panchang), Tajawal ≈ clean body (mirrors Satoshi).
+const amiri = Amiri({
+  subsets: ['arabic', 'latin'],
+  weight: ['400', '700'],
+  variable: '--f-display-ar',
+  display: 'swap',
+  preload: false,
+});
+const tajawal = Tajawal({
+  subsets: ['arabic', 'latin'],
+  weight: ['400', '500', '700'],
+  variable: '--f-body-ar',
+  display: 'swap',
+  preload: false,
+});
 
 const OG_LOCALE: Record<string, string> = { tr: 'tr_TR', en: 'en_US', ar: 'ar_AR' };
 
@@ -123,21 +144,10 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} dir={rtl ? 'rtl' : 'ltr'}>
+    <html lang={locale} dir={rtl ? 'rtl' : 'ltr'} className={`${amiri.variable} ${tajawal.variable}`}>
       <head>
         <link rel="preload" href="/fonts/Panchang-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Satoshi-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        {/* Arabic display + body fonts — only loaded for the RTL locale */}
-        {rtl && (
-          <>
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap"
-            />
-          </>
-        )}
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
