@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "title": "İzmir Balıkçısı — Alcohol-Free Fresh Seafood · Fethiye / Muğla",
+    "description": "An alcohol-free, family-friendly fresh seafood restaurant in Fethiye / Muğla. A table of thirty-five years since 1989.",
+    "menuTitle": "Menu — İzmir Balıkçısı · Fethiye / Muğla",
+    "menuDescription": "The full İzmir Balıkçısı menu: mezes, soups, grilled fish, steamed and fried dishes, and alcohol-free drinks. A table of thirty-five years in Fethiye / Muğla.",
+    "menuOgTitle": "Menu — İzmir Balıkçısı",
+    "notFoundTitle": "No seat at this table — 404",
+    "notFoundDescription": "The page you're looking for wasn't found. You can return home or to the menu."
+  },
+  "nav": {
+    "hikaye": "Story",
+    "menu": "Menu",
+    "galeri": "Gallery",
+    "manifesto": "Manifesto",
+    "yorumlar": "Reviews",
+    "iletisim": "Contact",
+    "brandAria": "İzmir Balıkçısı — Home",
+    "home": "Home",
+    "up": "Top",
+    "call": "Call",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "siteMenu": "Site menu",
+    "panelCall": "Call · {phone}",
+    "panelMeta": "Every day · 10.30 — 22.30 · Fethiye / Muğla",
+    "language": "Language"
+  },
+  "hero": {
+    "metaLeft": "№ 001 / Est. 1989",
+    "pin": "Fethiye · Open · 10.30—22.30",
+    "sideLabel": "Thirty-Five Years at the Table · Vol. XXXV",
+    "lede": "A thirty-five-year, <em>alcohol-free</em> home in Muğla. Children laughing, elders at ease, and whatever the kitchen is cooking today. Not an editorial; a <em>plate</em>.",
+    "coords": "36.6536° N / 29.1268° E",
+    "scroll": "Scroll",
+    "bottomRight": "Fethiye / Muğla · Spring 2026"
+  },
+  "about": {
+    "eyebrow": "№ 02 — Story",
+    "index": "1989 → 2026",
+    "intro": "A <em>father</em> and a son. The market at four in the morning, the lights at seven in the evening. Everything in between: <em>fish</em>.",
+    "railLabel": "1989 — 2026",
+    "scrollHint": "Scroll",
+    "stops": {
+      "1989": {
+        "tag": "The Beginning",
+        "title": "The first <em>stall</em>",
+        "body": "Hasan started before dawn with a single ice stall. No menu, no sign — just that day's sea, a scale, and two hands that knew how to wait.",
+        "caption": "Archive · Tuzla, 1989"
+      },
+      "1995": {
+        "tag": "First Dining Room",
+        "title": "The lights <em>came on</em>",
+        "body": "The stall became a dining room. Ayşe became the quiet keeper of the tables; the first light at seven still called those waiting behind the same door.",
+        "caption": "Archive · First room, 1995"
+      },
+      "2008": {
+        "tag": "Second Generation",
+        "title": "The son in the <em>kitchen</em>",
+        "body": "Yusuf joined his father. The old recipes stayed, the hands multiplied — sea bream rested under salt for the first time, and the table grew without ever hurrying.",
+        "caption": "Archive · Bream in salt, 2008"
+      },
+      "2026": {
+        "tag": "Today",
+        "title": "The same <em>sea</em>",
+        "body": "Thirty-five years, zero alcohol, one hundred and twenty-four seats. The father still walks the market first, the son still cracks the salt. The sea is in no hurry; neither are we.",
+        "caption": "Today · Mustafa Kemal Blv."
+      }
+    }
+  },
+  "menuScroll": {
+    "eyebrow": "№ 03 — Menu",
+    "meta": "In season · Spring 2026",
+    "title": "Today's <em>plates</em>",
+    "titleSub": "Scroll sideways",
+    "hotCold": "Hot / Cold",
+    "daily": "Daily",
+    "detail": "Details",
+    "plates": "{count} plates",
+    "all": "See the full menu →",
+    "allMenu": "Full menu"
+  },
+  "manifesto": {
+    "eyebrow": "№ 04",
+    "num": "0%",
+    "label": "Alcohol-free<br></br>Manifesto",
+    "title": "<strong>Why</strong> alcohol-free?",
+    "lines": {
+      "0": "There is no <em>alcohol</em> here.",
+      "1": "Because what brightens a table isn't the glasses; it's the shared laughter, the stories told, and a <em>fresh fish</em> served hot off the grill.",
+      "2": "Dinner isn't about getting tipsy; it's about <em>gathering</em> at the same table with the ones you love.",
+      "3": "The finest moments hide in the smile of a child swinging their feet on a chair, in the <em>patience of a grandchild</em> cleaning fish with their grandfather.",
+      "4": "For thirty-five years we've set <em>the same table</em>. Warm, sincere and open to all.",
+      "5": "Come in — <em>we'll be waiting at our table</em>."
+    },
+    "sigNote": "Editorial note",
+    "sigAuthor": "— İzmir Balıkçısı",
+    "sigDate": "Spring · 2026"
+  },
+  "reviews": {
+    "eyebrow": "№ 05 — Guest Words",
+    "google": "Google",
+    "title": "The same table, <em>thousands</em> of evenings.",
+    "ratingOf": "/ 5",
+    "ratingReviews": "{count} Google reviews",
+    "expYears": "years",
+    "expLead": "Thirty-five years of experience",
+    "expSub": "The same door, the same table since 1989",
+    "allReviews": "All reviews on Google",
+    "starsAria": "{value} / 5 stars",
+    "items": [
+      {
+        "name": "Mehmet A.",
+        "meta": "Google · Local Guide",
+        "text": "The sea bass was cooked just right, the mezes ultra-fresh. We sat comfortably with the kids; being alcohol-free is a big plus for us. Our first choice for years."
+      },
+      {
+        "name": "Selin K.",
+        "meta": "Google · 3 weeks ago",
+        "text": "We've come as a family for thirty years and the taste has never changed. The waiters greet us by name. This isn't a restaurant, it's a second home."
+      },
+      {
+        "name": "David R.",
+        "meta": "Google · United Kingdom",
+        "text": "Best fresh fish in Fethiye. Honest prices, no alcohol but a warm, family atmosphere. The sea bass was perfect."
+      },
+      {
+        "name": "Hakan Y.",
+        "meta": "Google · 1 month ago",
+        "text": "Here you understand what fish straight from the market means. Fast service, generous portions. Go early for a window seat."
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "№ 06 — Gallery",
+    "frames": "{count} frames",
+    "title": "One evening, <em>nine frames</em>",
+    "enlarge": "Enlarge",
+    "enlargeAria": "Enlarge photo of {cap}",
+    "lbTitle": "İzmir Balıkçısı / Gallery",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "hint": "← → / Esc",
+    "caps": ["Sea bream", "Anchovy", "Sea bass", "Courtyard", "Shrimp", "Table", "Octopus", "Turbot", "Kitchen"]
+  },
+  "contact": {
+    "eyebrow": "№ 07 — Contact",
+    "hours": "Every day · 10.30—22.30",
+    "title": "Let's book<br></br>a <em>table</em>.",
+    "lede": "The phone is fastest. Call a little early for a window seat; the best light is between 19.30 and 20.15.",
+    "call": "Call",
+    "directions": "Get directions",
+    "directionsLabel": "Directions",
+    "addressLabel": "Address",
+    "coords": "{lat}° N · {lng}° E",
+    "phoneLabel": "Phone",
+    "phoneNote": "Tap & call · We accept WhatsApp",
+    "hoursLabel": "Hours",
+    "hoursValue": "Every day · 10.30 — 22.30",
+    "hoursNote": "Kitchen last order 22.00",
+    "notesLabel": "Notes",
+    "notesValue": "Family-friendly · 0% alcohol · Vegetarian menu available",
+    "notesNote": "Service charge included",
+    "openMaps": "Open in Google Maps",
+    "openMapsLabel": "Open",
+    "mapTitle": "{name} location — Tuzla, Fethiye / Muğla"
+  },
+  "footer": {
+    "sisterBadge": "Sister Venue",
+    "sisterEyebrow": "Sister Venue · Çalış Beach",
+    "sisterTitle": "The same table, <em>a different shore</em>.",
+    "sisterText": "The same plates of thirty-five years; the sound of gulls, the late-afternoon breeze and tables facing straight out to sea. Following İzmir Balıkçısı, on Fethiye's Çalış beach.",
+    "sisterBtn": "Visit Çalış Balıkçısı",
+    "sisterAria": "Visit Çalış Balıkçısı — opens in a new tab",
+    "sisterTab": "New tab",
+    "brandCopy": "In Fethiye since 1989. The same door, the same table, the same plates for thirty-five years. An editorial restaurant.",
+    "colSection": "Sections",
+    "colContact": "Contact",
+    "colSocial": "Social",
+    "addressShort": "Tuzla · Fethiye / Muğla",
+    "copyright": "© 1989—2026",
+    "setIn": "Spring Issue · Set in Panchang"
+  },
+  "sister": {
+    "triggerEyebrow": "Sister venue",
+    "triggerName": "Çalış Balıkçısı <em>· Fethiye coast</em>",
+    "preview": "Preview",
+    "badge": "Sister Venue",
+    "modalEyebrow": "№ — Sister venue",
+    "modalTitle": "The same table's<br></br><em>sibling on the</em><br></br>Çalış coast.",
+    "modalLede": "The same plates of thirty-five years, <em>a different shore</em>: the sound of gulls, the late-afternoon breeze and a table facing straight out to sea. Following İzmir Balıkçısı, on Fethiye's Çalış beach.",
+    "metaCity": "City",
+    "metaCityVal": "Çalış, Fethiye",
+    "metaConcept": "Concept",
+    "metaConceptVal": "Same menu, sea view",
+    "metaOpen": "Open",
+    "metaOpenVal": "All year round",
+    "goSite": "Go to site",
+    "back": "Go back",
+    "foot": "calis-balikcisi.vercel.app · Opens in a new tab",
+    "close": "Close",
+    "newTab": "New tab"
+  },
+  "seasonal": {
+    "empty": "The list will be updated soon.",
+    "label": "Season"
+  },
+  "menuFull": {
+    "eyebrow": "№ 03 — Menu",
+    "meta": "Spring 2026 · {count} plates",
+    "title": "Menu",
+    "lede": "A <em>table</em> of thirty-five years. Plates that change with the season; from whole grilled fish to salt-baked at the table, from crisp fried plates to mastic pudding. This is an alcohol-free home — like coming home.",
+    "noteBadge": "0%",
+    "note": "This is an <em>alcohol-free</em> home. Instead of wine and rakı there's homemade lemonade, frothed ayran, cold Turkish coffee and endless tea in slim-waisted glasses. Let us know at the table for children's portions.",
+    "back": "← Back to home",
+    "backLabel": "Home",
+    "tocAria": "Menu categories",
+    "plates": "{count} plates",
+    "daily": "Daily",
+    "dailySmall": "per kg · ask",
+    "detail": "Details",
+    "itemAria": "See details for {name}",
+    "sheetTag": "Plate",
+    "sheetDailySmall": "₺ / kg",
+    "sheetDaily": "Fresh daily — sold by the kilo, please ask for today's price.",
+    "sheetFoot": "ESC / Swipe down / Tap outside — to close",
+    "close": "Close"
+  },
+  "intro": {
+    "sub": "Thirty-Five Years at the Table"
+  },
+  "marquee": {
+    "a": ["Fresh plates", "Zero alcohol", "Family-friendly", "Fethiye · Muğla", "Spring 2026", "Open · 10.30—22.30", "Thirty-five years"],
+    "b": ["Today's plates", "Sea bass · Bream · Turbot", "Shrimp casserole", "Fried anchovies", "Octopus carpaccio", "Scroll sideways →"],
+    "c": ["Why alcohol-free?", "Because it's already enough.", "Find one another", "One plate, one evening", "A table of thirty-five years"]
+  },
+  "notFound": {
+    "eyebrow": "№ 404 — Not Found",
+    "title": "No seat at this <strong>table</strong>.",
+    "lede": "The page you're looking for was either removed or never existed. Let's head back to the main table — or take a look at the menu.",
+    "home": "Home",
+    "menu": "Browse the menu",
+    "menuLabel": "Menu",
+    "footRegion": "Fethiye / Muğla · Est. 1989"
+  }
+}

@@ -1,24 +1,24 @@
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { itemCount, type MenuCategory } from '@/lib/content';
 import styles from './MenuFull.module.css';
 import MenuToc from './MenuToc';
 import MenuList from './MenuList';
 
 export default function MenuFull({ menu }: { menu: MenuCategory[] }) {
+  const t = useTranslations('menuFull');
   return (
     <article className={styles.page}>
       <header className={styles.head}>
-        <span className={styles.meta}>№ 03 — Menü</span>
+        <span className={styles.meta}>{t('eyebrow')}</span>
         <span className={styles.rule} aria-hidden />
-        <span className={styles.meta}>Bahar 2026 · {itemCount(menu)} tabak</span>
+        <span className={styles.meta}>{t('meta', { count: itemCount(menu) })}</span>
       </header>
 
-      <h1 className={styles.title}>Menü</h1>
+      <h1 className={styles.title}>{t('title')}</h1>
 
       <p className={styles.lede}>
-        Otuz beş yıllık bir <em>sofra</em>. Mevsime göre değişen tabaklar; bütün
-        olarak ızgaradan, masada açılan tuzda pişene, gevrek tavalardan
-        sakızlı muhallebiye. Burası alkolsüz bir ev — eve dönüş gibi.
+        {t.rich('lede', { em: (chunks) => <em>{chunks}</em> })}
       </p>
 
       <MenuToc categories={menu} />
@@ -26,16 +26,14 @@ export default function MenuFull({ menu }: { menu: MenuCategory[] }) {
       <MenuList categories={menu} />
 
       <aside className={styles.note}>
-        <span className={styles.badge}>0%</span>
+        <span className={styles.badge}>{t('noteBadge')}</span>
         <p className={styles.body}>
-          Burası <em>alkolsüz</em> bir ev. Şarap ve rakı yerine ev limonatası,
-          köpürtülmüş ayran, soğuk Türk kahvesi ve ince belli bardakta sınırsız
-          çay var. Çocuklar için özel porsiyonlar masada belirtebilirsiniz.
+          {t.rich('note', { em: (chunks) => <em>{chunks}</em> })}
         </p>
       </aside>
 
-      <Link href="/" className={styles.back} data-magnetic data-cursor-label="Ana sayfa">
-        ← Ana sayfaya dön
+      <Link href="/" className={styles.back} data-magnetic data-cursor-label={t('backLabel')}>
+        {t('back')}
       </Link>
     </article>
   );

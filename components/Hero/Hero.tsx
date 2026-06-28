@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import styles from './Hero.module.css';
 
 const splitChars = (word: string) =>
@@ -21,7 +22,7 @@ const charVariants = {
 
 function Line({ word, variant }: { word: string; variant: 'aqua' | 'outline' }) {
   return (
-    <span className={`${styles.line} ${variant === 'aqua' ? styles.aqua : styles.outline}`}>
+    <span className={`${styles.line} ${variant === 'aqua' ? styles.aqua : styles.outline}`} dir="ltr">
       {splitChars(word).map(({ ch, key }, i) => (
         <motion.span
           key={key}
@@ -41,42 +42,42 @@ function Line({ word, variant }: { word: string; variant: 'aqua' | 'outline' }) 
 }
 
 export function Hero() {
+  const t = useTranslations('hero');
   return (
     <section className={styles.hero} id="top">
       <div className={styles.ribbon} aria-hidden />
 
       <header className={styles.topMeta}>
-        <span>№ 001 / Est. 1989</span>
+        <span>{t('metaLeft')}</span>
         <span className={styles.rule} aria-hidden />
         <span className={styles.pin}>
-          <span className={styles.dot} aria-hidden /> Fethiye · Açık · 10.30—22.30
+          <span className={styles.dot} aria-hidden /> {t('pin')}
         </span>
       </header>
 
       <div className={styles.typeBlock}>
+        {/* Brand wordmark — not translated */}
         <Line word="İZMİR" variant="aqua" />
         <div className={styles.lineB}>
           <Line word="BALIKÇISI" variant="outline" />
         </div>
-        <span className={styles.sideLabel}>Otuz Beş Yıllık Sofra · Vol. XXXV</span>
+        <span className={styles.sideLabel}>{t('sideLabel')}</span>
       </div>
 
       <div className={styles.sub}>
         <p className={styles.lede}>
-          Muğla'da otuz beş yıllık <em>alkolsüz</em> bir ev. Çocukların kahkahası,
-          büyüklerin sessizliği ve mutfakta bugün ne pişiyorsa. Bir editorial
-          değil; bir <em>tabak</em>.
+          {t.rich('lede', { em: (chunks) => <em>{chunks}</em> })}
         </p>
       </div>
 
       <footer className={styles.bottomMeta}>
-        <span>36.6536° K / 29.1268° D</span>
+        <span>{t('coords')}</span>
         <span className={styles.col2}>
           <span className={styles.scrollCue}>
-            Kaydır <span className={styles.scrollLine} aria-hidden />
+            {t('scroll')} <span className={styles.scrollLine} aria-hidden />
           </span>
         </span>
-        <span className={styles.col3}>Fethiye / Muğla · Bahar 2026</span>
+        <span className={styles.col3}>{t('bottomRight')}</span>
       </footer>
     </section>
   );

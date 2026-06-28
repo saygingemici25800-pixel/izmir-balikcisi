@@ -2,11 +2,13 @@
 
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState } from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import styles from './MenuScroll.module.css';
 import { type MenuItem } from '@/lib/menu';
 
 export function MenuScroll({ dishes }: { dishes: MenuItem[] }) {
+  const t = useTranslations('menuScroll');
   const outerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
@@ -30,14 +32,14 @@ export function MenuScroll({ dishes }: { dishes: MenuItem[] }) {
     >
       <div className={styles.sticky}>
         <header className={styles.header}>
-          <span className="eyebrow">№ 03 — Menü</span>
+          <span className="eyebrow">{t('eyebrow')}</span>
           <span className={styles.rule} aria-hidden />
-          <span className={styles.meta}>Mevsim · Bahar 2026</span>
+          <span className={styles.meta}>{t('meta')}</span>
         </header>
 
         <h2 className={styles.title}>
-          Bugünün <em>tabakları</em>
-          <span className={styles.titleSub}>Yatay kaydır</span>
+          {t.rich('title', { em: (chunks) => <em>{chunks}</em> })}
+          <span className={styles.titleSub}>{t('titleSub')}</span>
         </h2>
 
         <div className={styles.trackWrap}>
@@ -47,11 +49,11 @@ export function MenuScroll({ dishes }: { dishes: MenuItem[] }) {
                 key={d.name}
                 className={styles.card}
                 data-magnetic
-                data-cursor-label="Detay"
+                data-cursor-label={t('detail')}
               >
                 <div className={styles.cardTop}>
                   <span className={styles.num}>№ {String(i + 1).padStart(2, '0')}</span>
-                  <span>Sıcak / Soğuk</span>
+                  <span>{t('hotCold')}</span>
                 </div>
 
                 <div
@@ -65,13 +67,13 @@ export function MenuScroll({ dishes }: { dishes: MenuItem[] }) {
                   <h3 className={styles.dishName}>{d.name}</h3>
                   <div className={styles.dishMeta}>
                     <div className={styles.tags}>
-                      {(d.tags ?? []).map((t) => (
-                        <span key={t} className={styles.tag}>{t}</span>
+                      {(d.tags ?? []).map((tag) => (
+                        <span key={tag} className={styles.tag}>{tag}</span>
                       ))}
                     </div>
                     <div className={styles.price}>
                       {d.daily ? (
-                        <>Günlük<span className={styles.priceSm}>kg</span></>
+                        <>{t('daily')}<span className={styles.priceSm}>kg</span></>
                       ) : (
                         <>{d.price}<span className={styles.priceSm}>{d.unit}</span></>
                       )}
@@ -85,12 +87,12 @@ export function MenuScroll({ dishes }: { dishes: MenuItem[] }) {
         </div>
 
         <footer className={styles.foot}>
-          <span className={styles.label}>{dishes.length} tabak</span>
+          <span className={styles.label}>{t('plates', { count: dishes.length })}</span>
           <div className={styles.meter}>
             <div className={styles.meterFill} style={{ width: `${progress * 100}%` }} />
           </div>
-          <Link href="/menu" className={`${styles.label} ${styles.labelRight}`} data-magnetic data-cursor-label="Tüm menü">
-            Menünün tamamı →
+          <Link href="/menu" className={`${styles.label} ${styles.labelRight}`} data-magnetic data-cursor-label={t('allMenu')}>
+            {t('all')}
           </Link>
         </footer>
       </div>

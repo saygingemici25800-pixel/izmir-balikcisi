@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './MenuFull.module.css';
 import type { MenuCategory } from '@/lib/menu';
 
@@ -9,6 +10,8 @@ import type { MenuCategory } from '@/lib/menu';
 const SCROLL_OFFSET = -120;
 
 export default function MenuToc({ categories }: { categories: MenuCategory[] }) {
+  const t = useTranslations('menuFull');
+
   const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     if (typeof window === 'undefined') return;
     const target = document.getElementById(id);
@@ -29,7 +32,7 @@ export default function MenuToc({ categories }: { categories: MenuCategory[] }) 
 
   return (
     <div className={styles.tocWrap}>
-      <nav className={styles.toc} aria-label="Menü kategorileri">
+      <nav className={styles.toc} aria-label={t('tocAria')}>
         {categories.map((c) => (
           <a
             key={c.id}

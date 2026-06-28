@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import styles from './SisterCta.module.css';
 
 const SISTER_URL = 'https://calis-balikcisi.vercel.app';
 
 export function SisterCta() {
+  const t = useTranslations('sister');
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -22,12 +24,12 @@ export function SisterCta() {
     window.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
     // Move focus into the modal so keyboard users land here
-    const t = window.setTimeout(() => closeRef.current?.focus(), 50);
+    const tm = window.setTimeout(() => closeRef.current?.focus(), 50);
 
     return () => {
       window.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
-      window.clearTimeout(t);
+      window.clearTimeout(tm);
       // Restore focus to trigger
       triggerRef.current?.focus();
     };
@@ -41,15 +43,15 @@ export function SisterCta() {
         className={styles.trigger}
         onClick={() => setOpen(true)}
         data-magnetic
-        data-cursor-label="Önizle"
+        data-cursor-label={t('preview')}
         aria-haspopup="dialog"
         aria-expanded={open}
       >
-        <span className={styles.tEyebrow}>Kardeş mekân</span>
+        <span className={styles.tEyebrow}>{t('triggerEyebrow')}</span>
         <span className={styles.tName}>
-          Çalış Balıkçısı <em>· Fethiye sahili</em>
+          {t.rich('triggerName', { em: (chunks) => <em>{chunks}</em> })}
         </span>
-        <span className={styles.tArrow}>Önizle</span>
+        <span className={styles.tArrow}>{t('preview')}</span>
       </button>
 
       <AnimatePresence>
@@ -78,12 +80,12 @@ export function SisterCta() {
                 ref={closeRef}
                 className={styles.close}
                 onClick={close}
-                aria-label="Kapat"
+                aria-label={t('close')}
                 data-magnetic
               />
 
               <div className={styles.visual} aria-hidden>
-                <span className={styles.badge}>Kardeş Mekân</span>
+                <span className={styles.badge}>{t('badge')}</span>
                 <div className={styles.sun} />
                 <div className={styles.horizon} />
                 <div className={`${styles.ripple} ${styles.r1}`} />
@@ -97,26 +99,23 @@ export function SisterCta() {
 
               <div className={styles.copy}>
                 <div>
-                  <p className={styles.eyebrow}>№ — Sister venue</p>
+                  <p className={styles.eyebrow}>{t('modalEyebrow')}</p>
                   <h3 className={styles.title} id="sister-modal-title">
-                    Aynı sofranın<br />
-                    <em>Çalış sahilindeki</em><br />kardeşi.
+                    {t.rich('modalTitle', { em: (chunks) => <em>{chunks}</em>, br: () => <br /> })}
                   </h3>
                 </div>
 
                 <p className={styles.lede}>
-                  Otuz beş yıllık aynı tabaklar, <em>farklı bir kıyı</em>:
-                  martı sesi, akşamüstü rüzgârı ve doğrudan denize bakan masa.
-                  İzmir Balıkçısı'nın izinden Fethiye Çalış sahilinde.
+                  {t.rich('modalLede', { em: (chunks) => <em>{chunks}</em> })}
                 </p>
 
                 <dl className={styles.meta}>
-                  <dt>Şehir</dt>
-                  <dd>Çalış, Fethiye</dd>
-                  <dt>Konsept</dt>
-                  <dd>Aynı menü, deniz manzarası</dd>
-                  <dt>Açılış</dt>
-                  <dd>Yıl boyunca</dd>
+                  <dt>{t('metaCity')}</dt>
+                  <dd>{t('metaCityVal')}</dd>
+                  <dt>{t('metaConcept')}</dt>
+                  <dd>{t('metaConceptVal')}</dd>
+                  <dt>{t('metaOpen')}</dt>
+                  <dd>{t('metaOpenVal')}</dd>
                 </dl>
 
                 <div className={styles.actions}>
@@ -126,9 +125,9 @@ export function SisterCta() {
                     target="_blank"
                     rel="noreferrer"
                     data-magnetic
-                    data-cursor-label="Yeni sekme"
+                    data-cursor-label={t('newTab')}
                   >
-                    Siteye Git
+                    {t('goSite')}
                     <span className={styles.arrow} aria-hidden />
                   </a>
                   <button
@@ -136,15 +135,13 @@ export function SisterCta() {
                     className={styles.secondary}
                     onClick={close}
                     data-magnetic
-                    data-cursor-label="Kapat"
+                    data-cursor-label={t('close')}
                   >
-                    Geri Dön
+                    {t('back')}
                   </button>
                 </div>
 
-                <p className={styles.foot}>
-                  calis-balikcisi.vercel.app · Yeni sekmede açılır
-                </p>
+                <p className={styles.foot}>{t('foot')}</p>
               </div>
             </motion.div>
           </motion.div>

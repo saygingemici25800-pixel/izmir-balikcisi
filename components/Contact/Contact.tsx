@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import styles from './Contact.module.css';
 import { RESTAURANT } from '@/lib/constants';
 
@@ -19,6 +20,7 @@ const MAPS_EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(
 )}&z=16&output=embed`;
 
 export function Contact() {
+  const t = useTranslations('contact');
   return (
     <section className={styles.section} id="iletisim">
       <div className={styles.frame}>
@@ -28,24 +30,21 @@ export function Contact() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className={styles.eyebrowRow}>
-            <span>№ 07 — İletişim</span>
+            <span>{t('eyebrow')}</span>
             <span className={styles.ruleLong} aria-hidden />
-            <span>Her gün · 10.30—22.30</span>
+            <span>{t('hours')}</span>
           </div>
           <h2 className={styles.title}>
-            Bir <em>masa</em><br />ayırtalım.
+            {t.rich('title', { em: (chunks) => <em>{chunks}</em>, br: () => <br /> })}
           </h2>
-          <p className={styles.lede}>
-            Telefon en hızlısı. Pencere kenarı için biraz erken arayın; en iyi
-            ışık 19.30 ile 20.15 arası.
-          </p>
+          <p className={styles.lede}>{t('lede')}</p>
 
           <div className={styles.ctaRow}>
             <a
               className={`${styles.cta} ${styles.primary}`}
               href={`tel:${RESTAURANT.phoneE164}`}
               data-magnetic
-              data-cursor-label="Ara"
+              data-cursor-label={t('call')}
             >
               <span className={styles.ctaDot} aria-hidden />
               {RESTAURANT.phoneDisplay} <span className={styles.arrow} aria-hidden />
@@ -56,9 +55,9 @@ export function Contact() {
               target="_blank"
               rel="noreferrer"
               data-magnetic
-              data-cursor-label="Yol tarifi"
+              data-cursor-label={t('directionsLabel')}
             >
-              Yol tarifi al <span className={styles.arrow} aria-hidden />
+              {t('directions')} <span className={styles.arrow} aria-hidden />
             </a>
           </div>
         </motion.div>
@@ -69,7 +68,7 @@ export function Contact() {
           transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
           <dl className={styles.block}>
-            <dt>Adres</dt>
+            <dt>{t('addressLabel')}</dt>
             <dd>
               <a
                 className={styles.contactLink}
@@ -81,31 +80,31 @@ export function Contact() {
                 {RESTAURANT.address.postalCode} {RESTAURANT.address.locality} / {RESTAURANT.address.region}
               </a>
               <span className={styles.small}>
-                {RESTAURANT.location.lat}° K · {RESTAURANT.location.lng}° D
+                {t('coords', { lat: RESTAURANT.location.lat, lng: RESTAURANT.location.lng })}
               </span>
             </dd>
           </dl>
           <dl className={styles.block}>
-            <dt>Telefon</dt>
+            <dt>{t('phoneLabel')}</dt>
             <dd>
               <a className={styles.contactLink} href={`tel:${RESTAURANT.phoneE164}`}>
                 {RESTAURANT.phoneDisplay}
               </a>
-              <span className={styles.small}>Tıkla & ara · WhatsApp kabul ediyoruz</span>
+              <span className={styles.small}>{t('phoneNote')}</span>
             </dd>
           </dl>
           <dl className={styles.block}>
-            <dt>Saatler</dt>
+            <dt>{t('hoursLabel')}</dt>
             <dd>
-              Her gün · 10.30 — 22.30
-              <span className={styles.small}>Mutfak son sipariş 22.00</span>
+              {t('hoursValue')}
+              <span className={styles.small}>{t('hoursNote')}</span>
             </dd>
           </dl>
           <dl className={styles.block}>
-            <dt>Notlar</dt>
+            <dt>{t('notesLabel')}</dt>
             <dd>
-              Aile dostu · 0% alkol · Vejetaryen menü mevcut
-              <span className={styles.small}>Servis ücreti dahildir</span>
+              {t('notesValue')}
+              <span className={styles.small}>{t('notesNote')}</span>
             </dd>
           </dl>
         </motion.div>
@@ -118,7 +117,7 @@ export function Contact() {
           <iframe
             className={styles.map}
             src={MAPS_EMBED}
-            title={`${RESTAURANT.name} konumu — Tuzla, Fethiye / Muğla`}
+            title={t('mapTitle', { name: RESTAURANT.name })}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
@@ -130,10 +129,10 @@ export function Contact() {
             target="_blank"
             rel="noreferrer"
             data-magnetic
-            data-cursor-label="Aç"
+            data-cursor-label={t('openMapsLabel')}
           >
             <span className={styles.mapPin} aria-hidden />
-            Google Maps'te aç
+            {t('openMaps')}
           </a>
         </motion.div>
       </div>

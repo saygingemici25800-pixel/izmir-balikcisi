@@ -1,0 +1,56 @@
+/* TR / EN / AR segmented toggle — sits in the nav, navy glass + lavender active. */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 999px;
+  background: rgba(22, 34, 63, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.opt {
+  font-family: var(--f-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 5px 9px;
+  min-width: 30px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--c-cream);
+  opacity: 0.62;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, opacity 0.2s;
+}
+.opt:hover {
+  opacity: 1;
+  color: var(--c-gold);
+}
+.opt.active {
+  background: var(--c-gold);
+  color: #16223f;
+  opacity: 1;
+}
+.opt[lang='ar'] {
+  font-size: 0.92rem;
+}
+.opt:disabled {
+  cursor: default;
+}
+
+/* Panel variant — larger, full-width row inside the mobile menu. */
+.panel {
+  align-self: flex-start;
+  margin-top: var(--s-2);
+}
+.panel .opt {
+  font-size: 0.82rem;
+  padding: 8px 14px;
+}
+.panel .opt[lang='ar'] {
+  font-size: 1.05rem;
+}

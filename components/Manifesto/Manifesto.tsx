@@ -1,16 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import styles from './Manifesto.module.css';
 
-const LINES: { text: React.ReactNode; variant?: 'large' | 'right' }[] = [
-  { text: <>Burada <em>alkol</em> yok.</>, variant: 'large' },
-  { text: <>Çünkü bir sofrayı şenlendiren, kadehler değil; paylaşılan kahkahalar, anlatılan hikâyeler ve sıcağı sıcağına gelen <em>taze bir balıktır</em>.</> },
-  { text: <>Akşam yemeği, kafayı bulmak için değil; sevdiklerinle aynı masada <em>buluşmak</em> içindir.</>, variant: 'right' },
-  { text: <>En güzel anlar, sandalyesinde ayaklarını sallayan bir çocuğun gülüşünde, dedesiyle balık ayıklayan bir <em>torunun sabrında</em> saklıdır.</> },
-  { text: <>Otuz beş yıldır <em>aynı sofrayı</em> kuruyoruz. Sıcak, samimi ve herkese açık.</> },
-  { text: <>Buyurun, <em>soframıza bekleriz</em>.</>, variant: 'large' }
-];
+// Per-line layout variant (styling) stays in code; text comes from messages.
+const VARIANTS: (string | undefined)[] = ['large', undefined, 'right', undefined, undefined, 'large'];
 
 const fade = {
   hidden: { opacity: 0, y: 40 },
@@ -18,13 +13,14 @@ const fade = {
 };
 
 export function Manifesto() {
+  const t = useTranslations('manifesto');
   return (
     <section className={styles.section} id="manifesto">
       <div className={styles.frame}>
         <aside className={styles.aside}>
-          <span className="eyebrow">№ 04</span>
-          <span className={styles.num}>0%</span>
-          <span className={styles.lbl}>Alkolsüz<br />Manifesto</span>
+          <span className="eyebrow">{t('eyebrow')}</span>
+          <span className={styles.num}>{t('num')}</span>
+          <span className={styles.lbl}>{t.rich('label', { br: () => <br /> })}</span>
         </aside>
 
         <div>
@@ -35,20 +31,20 @@ export function Manifesto() {
             viewport={{ once: true, margin: '-15% 0px' }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <strong>Neden</strong> alkolsüz?
+            {t.rich('title', { strong: (chunks) => <strong>{chunks}</strong> })}
           </motion.h2>
 
           <div className={styles.lines}>
-            {LINES.map((l, i) => (
+            {VARIANTS.map((v, i) => (
               <motion.p
                 key={i}
-                className={`${styles.line} ${l.variant ? styles[l.variant] : ''}`}
+                className={`${styles.line} ${v ? styles[v] : ''}`}
                 variants={fade}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, margin: '-20% 0px' }}
               >
-                {l.text}
+                {t.rich(`lines.${i}`, { em: (chunks) => <em>{chunks}</em> })}
               </motion.p>
             ))}
           </div>
@@ -60,9 +56,9 @@ export function Manifesto() {
             whileInView="show"
             viewport={{ once: true }}
           >
-            <span>Editöryal not</span>
-            <span className={styles.auto}>— İzmir Balıkçısı</span>
-            <span>Bahar · 2026</span>
+            <span>{t('sigNote')}</span>
+            <span className={styles.auto}>{t('sigAuthor')}</span>
+            <span>{t('sigDate')}</span>
           </motion.div>
         </div>
       </div>

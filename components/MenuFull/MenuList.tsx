@@ -2,12 +2,14 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import styles from './MenuFull.module.css';
 import type { MenuCategory, MenuItem } from '@/lib/menu';
 
 type Props = { categories: readonly MenuCategory[] };
 
 export default function MenuList({ categories }: Props) {
+  const t = useTranslations('menuFull');
   const [selected, setSelected] = useState<MenuItem | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
 
@@ -44,7 +46,7 @@ export default function MenuList({ categories }: Props) {
             <h2 className={styles.catTitle}>{cat.title}</h2>
             {cat.subtitle && <p className={styles.catSub}>{cat.subtitle}</p>}
             <span className={styles.catCount}>
-              {String(cat.items.length).padStart(2, '0')} tabak
+              {t('plates', { count: cat.items.length })}
             </span>
           </header>
 
@@ -56,24 +58,24 @@ export default function MenuList({ categories }: Props) {
                   className={styles.item}
                   onClick={(e) => open(item, e.currentTarget)}
                   data-magnetic
-                  data-cursor-label="Detay"
+                  data-cursor-label={t('detail')}
                   aria-haspopup="dialog"
-                  aria-label={`${item.name} — detayını gör`}
+                  aria-label={t('itemAria', { name: item.name })}
                 >
                   <span className={styles.itemHead}>
                     <span className={styles.itemName}>{item.name}</span>
                     {item.tags && item.tags.length > 0 && (
                       <span className={styles.itemTags}>
-                        {item.tags.map((t) => (
-                          <span key={t} className={styles.itemTag}>{t}</span>
+                        {item.tags.map((tag) => (
+                          <span key={tag} className={styles.itemTag}>{tag}</span>
                         ))}
                       </span>
                     )}
                   </span>
                   {item.daily ? (
                     <span className={`${styles.itemPrice} ${styles.itemPriceDaily}`}>
-                      Günlük
-                      <small>kg · sorunuz</small>
+                      {t('daily')}
+                      <small>{t('dailySmall')}</small>
                     </span>
                   ) : (
                     <span className={styles.itemPrice}>
@@ -97,12 +99,13 @@ export default function MenuList({ categories }: Props) {
 }
 
 function DetailSheet({ item, onClose }: { item: MenuItem; onClose: () => void }) {
+  const t = useTranslations('menuFull');
   const closeRef = useRef<HTMLButtonElement>(null);
   const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
-    const t = window.setTimeout(() => closeRef.current?.focus(), 80);
-    return () => window.clearTimeout(t);
+    const tm = window.setTimeout(() => closeRef.current?.focus(), 80);
+    return () => window.clearTimeout(tm);
   }, []);
 
   const onDragEnd = (_: unknown, info: PanInfo) => {
@@ -140,22 +143,22 @@ function DetailSheet({ item, onClose }: { item: MenuItem; onClose: () => void })
           type="button"
           className={styles.sheetClose}
           onClick={onClose}
-          aria-label="Kapat"
+          aria-label={t('close')}
           data-magnetic
         />
 
         <div className={styles.sheetContent}>
           <header className={styles.sheetHeader}>
             <p className={styles.sheetEyebrow}>
-              {item.tags?.[0] ?? 'Tabak'}
+              {item.tags?.[0] ?? t('sheetTag')}
             </p>
             <h3 className={styles.sheetTitle} id="menu-sheet-title">
               {item.name}
             </h3>
             {item.daily ? (
               <span className={`${styles.sheetPrice} ${styles.sheetPriceDaily}`}>
-                Günlük
-                <small>₺ / kg</small>
+                {t('daily')}
+                <small>{t('sheetDailySmall')}</small>
               </span>
             ) : (
               <span className={styles.sheetPrice}>
@@ -167,15 +170,15 @@ function DetailSheet({ item, onClose }: { item: MenuItem; onClose: () => void })
 
           {item.tags && item.tags.length > 0 && (
             <div className={styles.sheetTags}>
-              {item.tags.map((t) => (
-                <span key={t} className={styles.sheetTag}>{t}</span>
+              {item.tags.map((tag) => (
+                <span key={tag} className={styles.sheetTag}>{tag}</span>
               ))}
             </div>
           )}
 
           {item.daily && (
             <p className={styles.sheetDaily}>
-              Günlük taze — kiloyla satılır, güncel fiyat için lütfen sorunuz.
+              {t('sheetDaily')}
             </p>
           )}
 
@@ -195,7 +198,7 @@ function DetailSheet({ item, onClose }: { item: MenuItem; onClose: () => void })
           )}
 
           <p className={styles.sheetFoot}>
-            ESC / Aşağı kaydır / Dışa tıkla — kapatmak için
+            {t('sheetFoot')}
           </p>
         </div>
       </motion.div>

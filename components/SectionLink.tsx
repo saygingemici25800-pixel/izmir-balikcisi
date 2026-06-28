@@ -1,8 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import type { ComponentProps, MouseEvent, ReactNode } from 'react';
+import { Link, usePathname } from '@/i18n/navigation';
 
 type Props = {
   /** Home-page section id, e.g. "hikaye" (links resolve to `/#hikaye`). */
@@ -15,11 +14,12 @@ type Props = {
 } & Omit<ComponentProps<typeof Link>, 'href'>;
 
 /**
- * A link to a home-page section that works from ANY route.
+ * A link to a home-page section that works from ANY route and ANY locale.
  * - On `/` it smooth-scrolls in place via Lenis (no reload).
  * - From a sub-page it navigates to `/#id`; SmoothScroll scrolls to the section
  *   once the home page mounts.
- * Always renders `/#id` so the href is valid everywhere (req: use `/#`, not `#`).
+ * `usePathname`/`Link` come from next-intl, so the active locale prefix is
+ * preserved automatically (`/en/#id`, `/ar/#id`).
  */
 export function SectionLink({ id, children, onNavigate, offset = -90, ...rest }: Props) {
   const pathname = usePathname();
@@ -32,7 +32,8 @@ export function SectionLink({ id, children, onNavigate, offset = -90, ...rest }:
         e.preventDefault();
         if (window.lenis) window.lenis.scrollTo(el, { offset });
         else el.scrollIntoView({ behavior: 'smooth' });
-        window.history.replaceState(null, '', `/#${id}`);
+        // keep whatever locale prefix is currently in the address bar
+        window.history.replaceState(null, '', `${window.location.pathname}#${id}`);
       }
     }
     // From a sub-page: let the Link navigate to `/#id` (scroll handled on arrival).

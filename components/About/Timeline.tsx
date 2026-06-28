@@ -10,61 +10,46 @@ import {
   useReducedMotion,
   type MotionValue,
 } from 'framer-motion';
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './Timeline.module.css';
 
 /* ── Milestones — 35 yıl, baba → oğul. `photo` is a full-screen placeholder
-   background per era (swap for real url(...) images later). ─────────────── */
+   background per era (swap for real url(...) images later). The copy (tag /
+   title / body / caption) is pulled from the `about.stops` messages. ─────── */
 type Stop = {
   year: string;
   tag: string;
-  title: React.ReactNode;
+  title: ReactNode;
   body: string;
   caption: string;
   photo: string; // CSS background-image value
 };
 
-const STOPS: Stop[] = [
+const STOP_PHOTOS: { year: string; photo: string }[] = [
   {
     year: '1989',
-    tag: 'Kuruluş',
-    title: <>İlk <em>tezgâh</em></>,
-    body: 'Hasan Usta sabahın dördünde tek bir buz tezgâhıyla başladı. Ne menü vardı ne tabela — sadece o günkü deniz, bir terazi ve beklemeyi bilen iki el.',
-    caption: 'Arşiv · Tuzla, 1989',
     photo:
       'radial-gradient(120% 90% at 72% 80%, rgba(214,198,247,0.22), transparent 55%), linear-gradient(180deg, #16223f 0%, #1e2e54 52%, #2d4275 100%)',
   },
   {
     year: '1995',
-    tag: 'İlk Salon',
-    title: <>Işıklar <em>yandı</em></>,
-    body: 'Tezgâh bir salona dönüştü. Ayşe masaların sessiz sahibi oldu; akşam yedide yanan ilk ışık, hâlâ aynı kapının ardında bekleyenleri çağırıyordu.',
-    caption: 'Arşiv · İlk salon, 1995',
     photo:
       'radial-gradient(95% 75% at 32% 32%, rgba(214,198,247,0.28), transparent 60%), linear-gradient(155deg, #2d4275 0%, #1e2e54 55%, #16223f 100%)',
   },
   {
     year: '2008',
-    tag: 'İkinci Nesil',
-    title: <>Oğul <em>mutfakta</em></>,
-    body: 'Yusuf babasının yanına geçti. Eski tarifler kaldı, eller çoğaldı — çupra ilk kez tuzun altında dinlendi, sofra hiç acele etmeden büyüdü.',
-    caption: 'Arşiv · Tuzda çupra, 2008',
     photo:
       'radial-gradient(85% 65% at 62% 36%, rgba(159,176,208,0.30), transparent 60%), linear-gradient(205deg, #1e2e54 0%, #3a5292 45%, #16223f 100%)',
   },
   {
     year: '2026',
-    tag: 'Bugün',
-    title: <>Aynı <em>deniz</em></>,
-    body: 'Otuz beş yıl, sıfır alkol, yüz yirmi dört koltuk. Baba hâlâ hâli ilk gezen, oğul hâlâ tuzu kıran. Deniz acele etmiyor; biz de etmiyoruz.',
-    caption: 'Bugün · Mustafa Kemal Blv.',
     photo:
       'radial-gradient(75% 55% at 50% 26%, rgba(214,198,247,0.30), transparent 56%), linear-gradient(180deg, #3a5292 0%, #2d4275 48%, #16223f 100%)',
   },
 ];
 
-const CENTERS = STOPS.map((_, i) => (i + 0.5) / STOPS.length); // [0.125, 0.375, 0.625, 0.875]
-const SCROLL_HINT = 'Kaydır';
+const CENTERS = STOP_PHOTOS.map((_, i) => (i + 0.5) / STOP_PHOTOS.length); // [0.125, 0.375, 0.625, 0.875]
 
 /* ── Full-screen era photo: crossfades + slow Ken-Burns parallax on scroll.
    First/last hold at the edges so a photo is always present. ───────────── */
@@ -169,20 +154,24 @@ const Panel = memo(function Panel({
 
 /* ── The rail: a gold spine that fills with progress, over the photo. */
 const Rail = memo(function Rail({
+  stops,
+  label,
   active,
   progress,
   onSeek,
 }: {
+  stops: Stop[];
+  label: string;
   active: number;
   progress: MotionValue<number>;
   onSeek: (center: number) => void;
 }) {
   return (
     <div className={styles.rail}>
-      <span className={styles.railEyebrow}>1989 — 2026</span>
+      <span className={styles.railEyebrow}>{label}</span>
       <div className={styles.railTrack}>
         <motion.div className={styles.railFill} style={{ scaleY: progress }} />
-        {STOPS.map((s, i) => {
+        {stops.map((s, i) => {
           const state = i < active ? 'past' : i === active ? 'active' : 'future';
           return (
             <button
@@ -209,11 +198,11 @@ const Rail = memo(function Rail({
 
 /* ── Static fallback — SSR, reduced-motion & narrow viewports. The era photo
    becomes a full-width banner above each milestone's text. */
-function StaticTimeline() {
+function StaticTimeline({ stops }: { stops: Stop[] }) {
   return (
     <div className={styles.staticWrap}>
       <ol className={styles.staticList}>
-        {STOPS.map((s) => (
+        {stops.map((s) => (
           <motion.li
             key={s.year}
             className={styles.staticItem}
@@ -242,12 +231,27 @@ function StaticTimeline() {
 }
 
 export function Timeline() {
+  const t = useTranslations('about');
   const reduce = useReducedMotion();
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   const [isNarrow, setIsNarrow] = useState(false);
   const [lowFx, setLowFx] = useState(false);
   const [active, setActive] = useState(0);
+
+  // Localised milestones (year + photo from code, copy from messages).
+  const stops: Stop[] = useMemo(
+    () =>
+      STOP_PHOTOS.map((s) => ({
+        year: s.year,
+        photo: s.photo,
+        tag: t(`stops.${s.year}.tag`),
+        title: t.rich(`stops.${s.year}.title`, { em: (chunks) => <em>{chunks}</em> }),
+        body: t(`stops.${s.year}.body`),
+        caption: t(`stops.${s.year}.caption`),
+      })),
+    [t]
+  );
 
   const { scrollYProgress } = useScroll({
     target: scrollerRef,
@@ -259,7 +263,7 @@ export function Timeline() {
 
   useMotionValueEvent(ps, 'change', (v) => {
     const clamped = Math.max(0, Math.min(0.999999, v));
-    const idx = Math.floor(clamped * STOPS.length);
+    const idx = Math.floor(clamped * STOP_PHOTOS.length);
     setActive((prev) => (prev === idx ? prev : idx));
   });
 
@@ -288,17 +292,17 @@ export function Timeline() {
     else window.scrollTo({ top: target, behavior: 'smooth' });
   }, []);
 
-  if (reduce || isNarrow) return <StaticTimeline />;
+  if (reduce || isNarrow) return <StaticTimeline stops={stops} />;
 
   return (
     <div
       className={styles.scroller}
       ref={scrollerRef}
-      style={{ height: `${STOPS.length * 100}vh` }}
+      style={{ height: `${STOP_PHOTOS.length * 100}vh` }}
     >
       <div className={styles.stage}>
         <div className={styles.photos} aria-hidden>
-          {STOPS.map((s, i) => (
+          {stops.map((s, i) => (
             <PhotoBg
               key={s.year}
               photo={s.photo}
@@ -306,14 +310,14 @@ export function Timeline() {
               progress={ps}
               near={Math.abs(i - active) <= 1}
               isFirst={i === 0}
-              isLast={i === STOPS.length - 1}
+              isLast={i === STOP_PHOTOS.length - 1}
             />
           ))}
         </div>
         <div className={styles.overlay} aria-hidden />
 
         <div className={styles.bgYears} aria-hidden>
-          {STOPS.map((s, i) => (
+          {stops.map((s, i) => (
             <BgYear
               key={s.year}
               year={s.year}
@@ -325,16 +329,16 @@ export function Timeline() {
           ))}
         </div>
 
-        <Rail active={active} progress={ps} onSeek={seek} />
+        <Rail stops={stops} label={t('railLabel')} active={active} progress={ps} onSeek={seek} />
 
         <div className={styles.panels}>
-          {STOPS.map((s, i) => (
+          {stops.map((s, i) => (
             <Panel key={s.year} stop={s} center={CENTERS[i]} progress={ps} active={active === i} />
           ))}
         </div>
 
         <motion.span className={styles.hint} style={{ opacity: hintOpacity }} aria-hidden>
-          {SCROLL_HINT} ↓
+          {t('scrollHint')} ↓
         </motion.span>
       </div>
     </div>

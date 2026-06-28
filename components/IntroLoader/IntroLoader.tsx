@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './IntroLoader.module.css';
 
 export function IntroLoader() {
+  const t = useTranslations('intro');
   const [done, setDone] = useState(false);
 
   useEffect(() => {
@@ -21,13 +23,13 @@ export function IntroLoader() {
       window.lenis?.scrollTo(0, { immediate: true });
     };
 
-    const t = window.setTimeout(() => {
+    const tm = window.setTimeout(() => {
       setDone(true);
       unlock();
     }, hold);
 
     return () => {
-      window.clearTimeout(t);
+      window.clearTimeout(tm);
       window.clearTimeout(lenisRetry);
       unlock();
     };
@@ -38,7 +40,7 @@ export function IntroLoader() {
       <div className={styles.inner}>
         <span className={styles.mark} aria-hidden />
         <span className={styles.word}>İZMİR BALIKÇISI</span>
-        <span className={styles.sub}>Otuz Beş Yıllık Sofra</span>
+        <span className={styles.sub}>{t('sub')}</span>
         <span className={styles.rule} aria-hidden>
           <span className={styles.ruleFill} />
         </span>

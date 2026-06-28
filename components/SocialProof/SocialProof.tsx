@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useLocale, useTranslations } from 'next-intl';
 import styles from './SocialProof.module.css';
 import { RESTAURANT } from '@/lib/constants';
 
@@ -10,49 +11,13 @@ const REVIEWS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURI
 
 // Aggregate rating — PLACEHOLDER. Replace with the real Google Business figures.
 const RATING = { score: 4.8, count: 1847 };
+// Per-review star count (the review text comes from the `reviews.items` messages).
+const STARS = [5, 5, 4, 5];
 
-type Review = { name: string; meta: string; stars: number; text: string };
-
-// PLACEHOLDER reviews — swap for real Google reviews when available.
-const REVIEWS: Review[] = [
-  {
-    name: 'Mehmet A.',
-    meta: 'Google · Yerel Rehber',
-    stars: 5,
-    text:
-      'Levrek tam kıvamında, mezeler taptaze. Çocuklarla rahatça oturduk; alkolsüz olması bizim için büyük artı. Yıllardır ilk tercihimiz.',
-  },
-  {
-    name: 'Selin K.',
-    meta: 'Google · 3 hafta önce',
-    stars: 5,
-    text:
-      'Ailecek otuz yıldır geliyoruz, tat hiç değişmedi. Garsonlar bizi isimle karşılıyor. Burası bir restoran değil, ikinci ev.',
-  },
-  {
-    name: 'David R.',
-    meta: 'Google · United Kingdom',
-    stars: 4,
-    text:
-      'Best fresh fish in Fethiye. Honest prices, no alcohol but a warm, family atmosphere. The sea bass was perfect.',
-  },
-  {
-    name: 'Hakan Y.',
-    meta: 'Google · 1 ay önce',
-    stars: 5,
-    text:
-      'Hâlden gelen balık ne demek burada anlıyorsunuz. Servis hızlı, porsiyonlar dolu. Pencere kenarı için erken gidin.',
-  },
-];
-
-function Stars({ value, large = false }: { value: number; large?: boolean }) {
+function Stars({ value, large = false, ariaLabel }: { value: number; large?: boolean; ariaLabel: string }) {
   const pct = Math.max(0, Math.min(100, (value / 5) * 100));
   return (
-    <span
-      className={`${styles.stars} ${large ? styles.starsLg : ''}`}
-      role="img"
-      aria-label={`${value} / 5 yıldız`}
-    >
+    <span className={`${styles.stars} ${large ? styles.starsLg : ''}`} role="img" aria-label={ariaLabel}>
       <span className={styles.starsBase} aria-hidden>★★★★★</span>
       <span className={styles.starsFill} style={{ width: `${pct}%` }} aria-hidden>★★★★★</span>
     </span>
@@ -69,18 +34,25 @@ const fade = {
 };
 
 export function SocialProof() {
+  const t = useTranslations('reviews');
+  const locale = useLocale();
+  const numLocale = locale === 'tr' ? 'tr-TR' : locale === 'ar' ? 'ar-u-nu-latn' : 'en-US';
+  const fmt = (n: number) => n.toLocaleString(numLocale);
+  const reviews = t.raw('items') as { name: string; meta: string; text: string }[];
+  const starLabel = (v: number) => t('starsAria', { value: v });
+
   return (
     <section className={styles.section} id="yorumlar">
       <header className={styles.header}>
-        <span className="eyebrow">№ 05 — Misafir Sözü</span>
+        <span className="eyebrow">{t('eyebrow')}</span>
         <span className={styles.rule} aria-hidden />
         <span className={styles.meta}>
-          <Stars value={RATING.score} /> {RATING.score.toLocaleString('tr-TR')} · Google
+          <Stars value={RATING.score} ariaLabel={starLabel(RATING.score)} /> {fmt(RATING.score)} · {t('google')}
         </span>
       </header>
 
       <h2 className={styles.title}>
-        Aynı sofra, <em>binlerce</em> akşam.
+        {t.rich('title', { em: (chunks) => <em>{chunks}</em> })}
       </h2>
 
       {/* Rating + longevity summary */}
@@ -93,13 +65,11 @@ export function SocialProof() {
           viewport={{ once: true, margin: '-10% 0px' }}
         >
           <div className={styles.ratingTop}>
-            <span className={styles.bigNum}>{RATING.score.toLocaleString('tr-TR')}</span>
-            <span className={styles.ratingOf}>/ 5</span>
+            <span className={styles.bigNum}>{fmt(RATING.score)}</span>
+            <span className={styles.ratingOf}>{t('ratingOf')}</span>
           </div>
-          <Stars value={RATING.score} large />
-          <span className={styles.sumLbl}>
-            {RATING.count.toLocaleString('tr-TR')} Google değerlendirmesi
-          </span>
+          <Stars value={RATING.score} large ariaLabel={starLabel(RATING.score)} />
+          <span className={styles.sumLbl}>{t('ratingReviews', { count: fmt(RATING.count) })}</span>
         </motion.div>
 
         <motion.div
@@ -112,16 +82,16 @@ export function SocialProof() {
         >
           <div className={styles.ratingTop}>
             <span className={styles.bigNumFill}>35</span>
-            <span className={styles.ratingOf}>yıl</span>
+            <span className={styles.ratingOf}>{t('expYears')}</span>
           </div>
-          <span className={styles.expLead}>Otuz beş yıllık deneyim</span>
-          <span className={styles.sumLbl}>1989'dan bu yana aynı kapı, aynı sofra</span>
+          <span className={styles.expLead}>{t('expLead')}</span>
+          <span className={styles.sumLbl}>{t('expSub')}</span>
         </motion.div>
       </div>
 
       {/* Review cards */}
       <div className={styles.reviews}>
-        {REVIEWS.map((r, i) => (
+        {reviews.map((r, i) => (
           <motion.article
             key={r.name}
             className={styles.card}
@@ -131,7 +101,7 @@ export function SocialProof() {
             whileInView="show"
             viewport={{ once: true, margin: '-8% 0px' }}
           >
-            <Stars value={r.stars} />
+            <Stars value={STARS[i] ?? 5} ariaLabel={starLabel(STARS[i] ?? 5)} />
             <blockquote className={styles.quote}>{r.text}</blockquote>
             <footer className={styles.cardFoot}>
               <span className={styles.name}>{r.name}</span>
@@ -147,9 +117,9 @@ export function SocialProof() {
         target="_blank"
         rel="noreferrer"
         data-magnetic
-        data-cursor-label="Google"
+        data-cursor-label={t('google')}
       >
-        Google'da tüm yorumlar <span className={styles.arrow} aria-hidden />
+        {t('allReviews')} <span className={styles.arrow} aria-hidden />
       </a>
     </section>
   );

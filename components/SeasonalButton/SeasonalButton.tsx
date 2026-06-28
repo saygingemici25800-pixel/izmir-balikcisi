@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import styles from './SeasonalButton.module.css';
 
 export type SeasonalData = {
@@ -11,6 +12,7 @@ export type SeasonalData = {
 };
 
 export function SeasonalButton({ seasonal }: { seasonal: SeasonalData }) {
+  const t = useTranslations('seasonal');
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -39,7 +41,7 @@ export function SeasonalButton({ seasonal }: { seasonal: SeasonalData }) {
         aria-expanded={open}
         aria-haspopup="dialog"
         data-magnetic
-        data-cursor-label="Mevsim"
+        data-cursor-label={t('label')}
       >
         <span className={styles.dot} aria-hidden />
         <span className={styles.title}>{seasonal.title}</span>
@@ -59,7 +61,7 @@ export function SeasonalButton({ seasonal }: { seasonal: SeasonalData }) {
               ))}
             </ul>
           ) : (
-            <p className={styles.popEmpty}>Liste yakında güncellenecek.</p>
+            <p className={styles.popEmpty}>{t('empty')}</p>
           )}
         </div>
       )}

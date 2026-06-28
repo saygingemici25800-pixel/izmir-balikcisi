@@ -1,23 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
 import styles from './Nav.module.css';
 import { RESTAURANT } from '@/lib/constants';
 import { SectionLink } from '@/components/SectionLink';
 import { SeasonalButton, type SeasonalData } from '@/components/SeasonalButton/SeasonalButton';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
 
-const LINKS: { id: string; label: string }[] = [
-  { id: 'hikaye', label: 'Hikâye' },
-  { id: 'menu', label: 'Menü' },
-  { id: 'galeri', label: 'Galeri' },
-  { id: 'manifesto', label: 'Manifesto' },
-  { id: 'yorumlar', label: 'Yorumlar' },
-  { id: 'iletisim', label: 'İletişim' },
-];
+// Section ids (stable anchors); labels come from the `nav` message namespace.
+const LINK_IDS = ['hikaye', 'menu', 'galeri', 'manifesto', 'yorumlar', 'iletisim'] as const;
 
 export function Nav({ seasonal }: { seasonal: SeasonalData }) {
+  const t = useTranslations('nav');
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -36,10 +32,9 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
       setActive('');
       return;
     }
-    const ids = LINKS.map((l) => l.id);
-    const els = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
+    const els = LINK_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null
+    );
     if (!els.length) {
       setActive('');
       return;
@@ -82,7 +77,7 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
       e.preventDefault();
       if (window.lenis) window.lenis.scrollTo(0, { duration: 1.1 });
       else window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.replaceState(null, '', '/');
+      window.history.replaceState(null, '', window.location.pathname);
     }
   };
 
@@ -93,9 +88,9 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
           href="/"
           scroll={false}
           className={styles.brand}
-          aria-label="İzmir Balıkçısı — Ana sayfa"
+          aria-label={t('brandAria')}
           data-magnetic
-          data-cursor-label={pathname === '/' ? 'Yukarı' : 'Ana sayfa'}
+          data-cursor-label={pathname === '/' ? t('up') : t('home')}
           onClick={goHome}
         >
           <span className={styles.brandMark} aria-hidden />
@@ -103,33 +98,34 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
         </Link>
 
         <div className={styles.links}>
-          {LINKS.map((l) => {
-            const isActive = activeId === l.id;
+          {LINK_IDS.map((id) => {
+            const isActive = activeId === id;
             return (
               <SectionLink
-                key={l.id}
-                id={l.id}
+                key={id}
+                id={id}
                 className={`${styles.link} ${isActive ? styles.linkActive : ''}`}
                 aria-current={isActive ? 'page' : undefined}
                 data-magnetic
-                data-cursor-label={l.label}
+                data-cursor-label={t(id)}
               >
-                {l.label}
+                {t(id)}
               </SectionLink>
             );
           })}
         </div>
 
         <div className={styles.actions}>
+          <LanguageSwitcher />
           <SeasonalButton seasonal={seasonal} />
-          <a href={`tel:${RESTAURANT.phoneE164}`} className={styles.cta} data-magnetic data-cursor-label="Ara">
+          <a href={`tel:${RESTAURANT.phoneE164}`} className={styles.cta} data-magnetic data-cursor-label={t('call')}>
             <span className={styles.ctaDot} aria-hidden />
-            <span>Ara</span>
+            <span>{t('call')}</span>
           </a>
           <button
             type="button"
             className={styles.burger}
-            aria-label={open ? 'Menüyü kapat' : 'Menüyü aç'}
+            aria-label={open ? t('closeMenu') : t('openMenu')}
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((o) => !o)}
@@ -159,34 +155,35 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
         className={styles.panel}
         role="dialog"
         aria-modal="true"
-        aria-label="Site menüsü"
+        aria-label={t('siteMenu')}
         data-open={open}
       >
         <nav className={styles.panelLinks}>
-          {LINKS.map((l) => {
-            const isActive = activeId === l.id;
+          {LINK_IDS.map((id) => {
+            const isActive = activeId === id;
             return (
               <SectionLink
-                key={l.id}
-                id={l.id}
+                key={id}
+                id={id}
                 className={`${styles.panelLink} ${isActive ? styles.panelLinkActive : ''}`}
                 aria-current={isActive ? 'page' : undefined}
                 onNavigate={() => setOpen(false)}
               >
-                {l.label}
+                {t(id)}
               </SectionLink>
             );
           })}
         </nav>
+        <LanguageSwitcher />
         <a
           href={`tel:${RESTAURANT.phoneE164}`}
           className={styles.panelCta}
           onClick={() => setOpen(false)}
         >
           <span className={styles.ctaDot} aria-hidden />
-          Ara · {RESTAURANT.phoneDisplay}
+          {t('panelCall', { phone: RESTAURANT.phoneDisplay })}
         </a>
-        <p className={styles.panelMeta}>Her gün · 10.30 — 22.30 · Fethiye / Muğla</p>
+        <p className={styles.panelMeta}>{t('panelMeta')}</p>
       </div>
     </>
   );

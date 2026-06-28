@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "title": "İzmir Balıkçısı — Alkolsüz Taze Deniz Ürünleri · Fethiye / Muğla",
+    "description": "Fethiye / Muğla'da alkolsüz, aile dostu, taze deniz ürünleri restoranı. 1989'dan bu yana otuz beş yıllık bir sofra.",
+    "menuTitle": "Menü — İzmir Balıkçısı · Fethiye / Muğla",
+    "menuDescription": "İzmir Balıkçısı tam menüsü: mezeler, çorbalar, ızgara balıklar, buğulama, tava ve alkolsüz içecekler. Fethiye / Muğla'da otuz beş yıllık bir sofra.",
+    "menuOgTitle": "Menü — İzmir Balıkçısı",
+    "notFoundTitle": "Bu masada yer yok — 404",
+    "notFoundDescription": "Aradığınız sayfa bulunamadı. Ana sayfaya veya menüye dönebilirsiniz."
+  },
+  "nav": {
+    "hikaye": "Hikâye",
+    "menu": "Menü",
+    "galeri": "Galeri",
+    "manifesto": "Manifesto",
+    "yorumlar": "Yorumlar",
+    "iletisim": "İletişim",
+    "brandAria": "İzmir Balıkçısı — Ana sayfa",
+    "home": "Ana sayfa",
+    "up": "Yukarı",
+    "call": "Ara",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "siteMenu": "Site menüsü",
+    "panelCall": "Ara · {phone}",
+    "panelMeta": "Her gün · 10.30 — 22.30 · Fethiye / Muğla",
+    "language": "Dil"
+  },
+  "hero": {
+    "metaLeft": "№ 001 / Est. 1989",
+    "pin": "Fethiye · Açık · 10.30—22.30",
+    "sideLabel": "Otuz Beş Yıllık Sofra · Vol. XXXV",
+    "lede": "Muğla'da otuz beş yıllık <em>alkolsüz</em> bir ev. Çocukların kahkahası, büyüklerin sessizliği ve mutfakta bugün ne pişiyorsa. Bir editorial değil; bir <em>tabak</em>.",
+    "coords": "36.6536° K / 29.1268° D",
+    "scroll": "Kaydır",
+    "bottomRight": "Fethiye / Muğla · Bahar 2026"
+  },
+  "about": {
+    "eyebrow": "№ 02 — Hikâye",
+    "index": "1989 → 2026",
+    "intro": "Bir <em>baba</em> ve oğul. Sabah dörtte hâl, akşam yedide ışıklar. Aralarındaki her şey: <em>balık</em>.",
+    "railLabel": "1989 — 2026",
+    "scrollHint": "Kaydır",
+    "stops": {
+      "1989": {
+        "tag": "Kuruluş",
+        "title": "İlk <em>tezgâh</em>",
+        "body": "Hasan Usta sabahın dördünde tek bir buz tezgâhıyla başladı. Ne menü vardı ne tabela — sadece o günkü deniz, bir terazi ve beklemeyi bilen iki el.",
+        "caption": "Arşiv · Tuzla, 1989"
+      },
+      "1995": {
+        "tag": "İlk Salon",
+        "title": "Işıklar <em>yandı</em>",
+        "body": "Tezgâh bir salona dönüştü. Ayşe masaların sessiz sahibi oldu; akşam yedide yanan ilk ışık, hâlâ aynı kapının ardında bekleyenleri çağırıyordu.",
+        "caption": "Arşiv · İlk salon, 1995"
+      },
+      "2008": {
+        "tag": "İkinci Nesil",
+        "title": "Oğul <em>mutfakta</em>",
+        "body": "Yusuf babasının yanına geçti. Eski tarifler kaldı, eller çoğaldı — çupra ilk kez tuzun altında dinlendi, sofra hiç acele etmeden büyüdü.",
+        "caption": "Arşiv · Tuzda çupra, 2008"
+      },
+      "2026": {
+        "tag": "Bugün",
+        "title": "Aynı <em>deniz</em>",
+        "body": "Otuz beş yıl, sıfır alkol, yüz yirmi dört koltuk. Baba hâlâ hâli ilk gezen, oğul hâlâ tuzu kıran. Deniz acele etmiyor; biz de etmiyoruz.",
+        "caption": "Bugün · Mustafa Kemal Blv."
+      }
+    }
+  },
+  "menuScroll": {
+    "eyebrow": "№ 03 — Menü",
+    "meta": "Mevsim · Bahar 2026",
+    "title": "Bugünün <em>tabakları</em>",
+    "titleSub": "Yatay kaydır",
+    "hotCold": "Sıcak / Soğuk",
+    "daily": "Günlük",
+    "detail": "Detay",
+    "plates": "{count} tabak",
+    "all": "Menünün tamamı →",
+    "allMenu": "Tüm menü"
+  },
+  "manifesto": {
+    "eyebrow": "№ 04",
+    "num": "0%",
+    "label": "Alkolsüz<br></br>Manifesto",
+    "title": "<strong>Neden</strong> alkolsüz?",
+    "lines": {
+      "0": "Burada <em>alkol</em> yok.",
+      "1": "Çünkü bir sofrayı şenlendiren, kadehler değil; paylaşılan kahkahalar, anlatılan hikâyeler ve sıcağı sıcağına gelen <em>taze bir balıktır</em>.",
+      "2": "Akşam yemeği, kafayı bulmak için değil; sevdiklerinle aynı masada <em>buluşmak</em> içindir.",
+      "3": "En güzel anlar, sandalyesinde ayaklarını sallayan bir çocuğun gülüşünde, dedesiyle balık ayıklayan bir <em>torunun sabrında</em> saklıdır.",
+      "4": "Otuz beş yıldır <em>aynı sofrayı</em> kuruyoruz. Sıcak, samimi ve herkese açık.",
+      "5": "Buyurun, <em>soframıza bekleriz</em>."
+    },
+    "sigNote": "Editöryal not",
+    "sigAuthor": "— İzmir Balıkçısı",
+    "sigDate": "Bahar · 2026"
+  },
+  "reviews": {
+    "eyebrow": "№ 05 — Misafir Sözü",
+    "google": "Google",
+    "title": "Aynı sofra, <em>binlerce</em> akşam.",
+    "ratingOf": "/ 5",
+    "ratingReviews": "{count} Google değerlendirmesi",
+    "expYears": "yıl",
+    "expLead": "Otuz beş yıllık deneyim",
+    "expSub": "1989'dan bu yana aynı kapı, aynı sofra",
+    "allReviews": "Google'da tüm yorumlar",
+    "starsAria": "{value} / 5 yıldız",
+    "items": [
+      {
+        "name": "Mehmet A.",
+        "meta": "Google · Yerel Rehber",
+        "text": "Levrek tam kıvamında, mezeler taptaze. Çocuklarla rahatça oturduk; alkolsüz olması bizim için büyük artı. Yıllardır ilk tercihimiz."
+      },
+      {
+        "name": "Selin K.",
+        "meta": "Google · 3 hafta önce",
+        "text": "Ailecek otuz yıldır geliyoruz, tat hiç değişmedi. Garsonlar bizi isimle karşılıyor. Burası bir restoran değil, ikinci ev."
+      },
+      {
+        "name": "David R.",
+        "meta": "Google · United Kingdom",
+        "text": "Best fresh fish in Fethiye. Honest prices, no alcohol but a warm, family atmosphere. The sea bass was perfect."
+      },
+      {
+        "name": "Hakan Y.",
+        "meta": "Google · 1 ay önce",
+        "text": "Hâlden gelen balık ne demek burada anlıyorsunuz. Servis hızlı, porsiyonlar dolu. Pencere kenarı için erken gidin."
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "№ 06 — Galeri",
+    "frames": "{count} kare",
+    "title": "Bir akşam, <em>dokuz kare</em>",
+    "enlarge": "Büyüt",
+    "enlargeAria": "{cap} fotoğrafını büyüt",
+    "lbTitle": "İzmir Balıkçısı / Galeri",
+    "close": "Kapat",
+    "prev": "Önceki",
+    "next": "Sonraki",
+    "hint": "← → / Esc",
+    "caps": ["Çupra", "Hamsi", "Levrek", "Avlu", "Karides", "Masa", "Ahtapot", "Kalkan", "Mutfak"]
+  },
+  "contact": {
+    "eyebrow": "№ 07 — İletişim",
+    "hours": "Her gün · 10.30—22.30",
+    "title": "Bir <em>masa</em><br></br>ayırtalım.",
+    "lede": "Telefon en hızlısı. Pencere kenarı için biraz erken arayın; en iyi ışık 19.30 ile 20.15 arası.",
+    "call": "Ara",
+    "directions": "Yol tarifi al",
+    "directionsLabel": "Yol tarifi",
+    "addressLabel": "Adres",
+    "coords": "{lat}° K · {lng}° D",
+    "phoneLabel": "Telefon",
+    "phoneNote": "Tıkla & ara · WhatsApp kabul ediyoruz",
+    "hoursLabel": "Saatler",
+    "hoursValue": "Her gün · 10.30 — 22.30",
+    "hoursNote": "Mutfak son sipariş 22.00",
+    "notesLabel": "Notlar",
+    "notesValue": "Aile dostu · 0% alkol · Vejetaryen menü mevcut",
+    "notesNote": "Servis ücreti dahildir",
+    "openMaps": "Google Maps'te aç",
+    "openMapsLabel": "Aç",
+    "mapTitle": "{name} konumu — Tuzla, Fethiye / Muğla"
+  },
+  "footer": {
+    "sisterBadge": "Kardeş Mekân",
+    "sisterEyebrow": "Kardeş Mekân · Çalış Sahili",
+    "sisterTitle": "Aynı sofra, <em>farklı bir kıyı</em>.",
+    "sisterText": "Otuz beş yıllık aynı tabaklar; martı sesi, akşamüstü rüzgârı ve doğrudan denize bakan masalar. İzmir Balıkçısı'nın izinden Fethiye Çalış sahilinde.",
+    "sisterBtn": "Çalış Balıkçısı'nı Ziyaret Et",
+    "sisterAria": "Çalış Balıkçısı'nı ziyaret et — yeni sekmede açılır",
+    "sisterTab": "Yeni sekme",
+    "brandCopy": "1989'dan bu yana Fethiye'de. Otuz beş yıldır aynı kapı, aynı masa, aynı tabaklar. Editöryal bir restoran.",
+    "colSection": "Bölüm",
+    "colContact": "İletişim",
+    "colSocial": "Sosyal",
+    "addressShort": "Tuzla · Fethiye / Muğla",
+    "copyright": "© 1989—2026",
+    "setIn": "Bahar Sayısı · Set in Panchang"
+  },
+  "sister": {
+    "triggerEyebrow": "Kardeş mekân",
+    "triggerName": "Çalış Balıkçısı <em>· Fethiye sahili</em>",
+    "preview": "Önizle",
+    "badge": "Kardeş Mekân",
+    "modalEyebrow": "№ — Kardeş mekân",
+    "modalTitle": "Aynı sofranın<br></br><em>Çalış sahilindeki</em><br></br>kardeşi.",
+    "modalLede": "Otuz beş yıllık aynı tabaklar, <em>farklı bir kıyı</em>: martı sesi, akşamüstü rüzgârı ve doğrudan denize bakan masa. İzmir Balıkçısı'nın izinden Fethiye Çalış sahilinde.",
+    "metaCity": "Şehir",
+    "metaCityVal": "Çalış, Fethiye",
+    "metaConcept": "Konsept",
+    "metaConceptVal": "Aynı menü, deniz manzarası",
+    "metaOpen": "Açılış",
+    "metaOpenVal": "Yıl boyunca",
+    "goSite": "Siteye Git",
+    "back": "Geri Dön",
+    "foot": "calis-balikcisi.vercel.app · Yeni sekmede açılır",
+    "close": "Kapat",
+    "newTab": "Yeni sekme"
+  },
+  "seasonal": {
+    "empty": "Liste yakında güncellenecek.",
+    "label": "Mevsim"
+  },
+  "menuFull": {
+    "eyebrow": "№ 03 — Menü",
+    "meta": "Bahar 2026 · {count} tabak",
+    "title": "Menü",
+    "lede": "Otuz beş yıllık bir <em>sofra</em>. Mevsime göre değişen tabaklar; bütün olarak ızgaradan, masada açılan tuzda pişene, gevrek tavalardan sakızlı muhallebiye. Burası alkolsüz bir ev — eve dönüş gibi.",
+    "noteBadge": "0%",
+    "note": "Burası <em>alkolsüz</em> bir ev. Şarap ve rakı yerine ev limonatası, köpürtülmüş ayran, soğuk Türk kahvesi ve ince belli bardakta sınırsız çay var. Çocuklar için özel porsiyonlar masada belirtebilirsiniz.",
+    "back": "← Ana sayfaya dön",
+    "backLabel": "Ana sayfa",
+    "tocAria": "Menü kategorileri",
+    "plates": "{count} tabak",
+    "daily": "Günlük",
+    "dailySmall": "kg · sorunuz",
+    "detail": "Detay",
+    "itemAria": "{name} — detayını gör",
+    "sheetTag": "Tabak",
+    "sheetDailySmall": "₺ / kg",
+    "sheetDaily": "Günlük taze — kiloyla satılır, güncel fiyat için lütfen sorunuz.",
+    "sheetFoot": "ESC / Aşağı kaydır / Dışa tıkla — kapatmak için",
+    "close": "Kapat"
+  },
+  "intro": {
+    "sub": "Otuz Beş Yıllık Sofra"
+  },
+  "marquee": {
+    "a": ["Taze tabaklar", "Sıfır alkol", "Aile dostu", "Fethiye · Muğla", "Bahar 2026", "Açık · 10.30—22.30", "Otuz beş yıl"],
+    "b": ["Bugünün tabakları", "Levrek · Çupra · Kalkan", "Karides güveç", "Hamsi tava", "Ahtapot carpaccio", "Yatay kaydır →"],
+    "c": ["Neden alkolsüz?", "Çünkü zaten yeter.", "Birbirini bul", "Bir tabak, bir akşam", "Otuz beş yıllık sofra"]
+  },
+  "notFound": {
+    "eyebrow": "№ 404 — Bulunamadı",
+    "title": "Bu <strong>masada</strong> yer yok.",
+    "lede": "Aradığınız sayfa ya kaldırıldı, ya da hiç var olmadı. Ana sofraya dönelim — ya da menüye göz atın.",
+    "home": "Ana sayfa",
+    "menu": "Menüye göz at",
+    "menuLabel": "Menü",
+    "footRegion": "Fethiye / Muğla · Est. 1989"
+  }
+}

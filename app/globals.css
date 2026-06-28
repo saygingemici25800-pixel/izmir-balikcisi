@@ -143,6 +143,27 @@ button { cursor: none; }
 a { color: inherit; text-decoration: none; }
 ::selection { background: var(--c-gold); color: var(--c-abyss); }
 
+/* ───────────── i18n — Arabic (lang=ar) + RTL ─────────────
+   Fonts come from next/font on <html> (--f-display-ar = Amiri,
+   --f-body-ar = Tajawal). Arabic script is cursive, so ANY letter-spacing
+   breaks the joins — reset it everywhere and relax line-height. */
+[lang='ar'] {
+  --f-display: 'Amiri', 'Times New Roman', Georgia, serif;
+  --f-body: 'Tajawal', system-ui, 'Segoe UI', sans-serif;
+}
+[lang='ar'] * { letter-spacing: normal !important; }
+[lang='ar'] body { line-height: 1.7; }
+[lang='ar'] .display,
+[lang='ar'] h1,
+[lang='ar'] h2,
+[lang='ar'] h3 { line-height: 1.25; }
+
+/* RTL — text alignment + list padding flip to the start edge. Most layout
+   mirrors automatically via dir=rtl on <html>; these handle physical defaults. */
+[dir='rtl'] body { text-align: right; }
+[dir='rtl'] ul,
+[dir='rtl'] ol { padding-right: 0; }
+
 /* ---------- TYPOGRAPHY UTILITIES ---------- */
 .display {
   font-family: var(--f-display);
