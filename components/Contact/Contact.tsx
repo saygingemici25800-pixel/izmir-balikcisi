@@ -1,18 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import styles from './Contact.module.css';
 import { RESTAURANT } from '@/lib/constants';
 
 const SISTER_URL = 'https://calis-balikcisi.vercel.app';
-const CONTACT_IMG =
-  'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1100&q=80';
 
-const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  RESTAURANT.address.full
-)}`;
+// Directions link (provided) — used by the address + "Yol tarifi al".
+const MAPS_URL =
+  'https://www.google.com/maps/dir//Fethiye+Alkols%C3%BCz+Bal%C4%B1k+Restoran%C4%B1+-+%C4%B0zmir+Bal%C4%B1k+Pi%C5%9Firicisi,+Tuzla,+Mustafa+Kemal+Blv.+No:30,+48300+Fethiye%2FMu%C4%9Fla/@36.6094761,29.1274329,15z';
+
+// Embedded map (no API key needed).
+const MAPS_EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(
+  'Fethiye Alkolsüz Balık Restoranı, Tuzla, Mustafa Kemal Blv. No:30, 48300 Fethiye/Muğla'
+)}&z=15&output=embed`;
 
 const reveal = {
   initial: { opacity: 0, y: 24 },
@@ -71,8 +73,26 @@ export function Contact() {
           </dl>
         </motion.div>
 
-        <motion.div className={styles.photo} {...reveal}>
-          <Image src={CONTACT_IMG} alt="" fill sizes="(max-width: 860px) 92vw, 520px" className={styles.photoImg} />
+        <motion.div className={styles.mapWrap} {...reveal}>
+          <iframe
+            className={styles.map}
+            src={MAPS_EMBED}
+            title={t('mapTitle', { name: RESTAURANT.name })}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <span className={styles.mapFrame} aria-hidden />
+          <a
+            className={styles.mapOpen}
+            href={MAPS_URL}
+            target="_blank"
+            rel="noreferrer"
+            data-magnetic
+            data-cursor-label={t('openMapsLabel')}
+          >
+            {t('openMaps')} <span aria-hidden>→</span>
+          </a>
         </motion.div>
       </div>
     </section>

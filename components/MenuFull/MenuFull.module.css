@@ -106,13 +106,13 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: clamp(1.25rem, 2.5vw, 1.9rem);
+  gap: clamp(1.75rem, 3.2vw, 2.6rem);
 }
 .item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding-bottom: clamp(1.25rem, 2.5vw, 1.9rem);
+  gap: 8px;
+  padding-bottom: clamp(1.75rem, 3.2vw, 2.6rem);
   border-bottom: 1px solid var(--c-line);
 }
 .item:last-child {

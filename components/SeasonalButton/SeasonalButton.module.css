@@ -10,7 +10,7 @@
   padding: 7px 14px;
   border-radius: 999px;
   border: 1px solid var(--c-line-strong);
-  background: rgba(45, 66, 117, 0.55);
+  background: rgba(255, 255, 255, 0.6);
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
   font-family: var(--f-body);
