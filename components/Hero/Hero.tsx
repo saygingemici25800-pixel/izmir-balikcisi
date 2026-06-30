@@ -1,85 +1,51 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { SectionLink } from '@/components/SectionLink';
 import styles from './Hero.module.css';
 
-const splitChars = (word: string) =>
-  Array.from(word).map((ch, i) => ({ ch, key: `${ch}-${i}` }));
+// Full-bleed hero photo — Unsplash placeholder (swap for a real dish/ambiance shot).
+const HERO_IMG =
+  'https://images.unsplash.com/photo-1535007813616-79dc02ba4021?auto=format&fit=crop&w=1920&q=80';
 
-const charVariants = {
-  hidden: { y: '110%', opacity: 0 },
-  show: (i: number) => ({
-    y: '0%',
-    opacity: 1,
-    transition: {
-      duration: 0.9,
-      delay: 0.25 + i * 0.05,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  })
-};
-
-function Line({ word, variant }: { word: string; variant: 'aqua' | 'outline' }) {
-  return (
-    <span className={`${styles.line} ${variant === 'aqua' ? styles.aqua : styles.outline}`} dir="ltr">
-      {splitChars(word).map(({ ch, key }, i) => (
-        <motion.span
-          key={key}
-          className={styles.char}
-          custom={i}
-          variants={charVariants}
-          initial="hidden"
-          animate="show"
-          aria-hidden
-        >
-          {ch}
-        </motion.span>
-      ))}
-      <span className="sr-only" style={{ position: 'absolute', clip: 'rect(0 0 0 0)' }}>{word}</span>
-    </span>
-  );
-}
+const fade = (delay: number) => ({
+  initial: { opacity: 0, y: 22 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 1, delay, ease: [0.22, 1, 0.36, 1] as const },
+});
 
 export function Hero() {
   const t = useTranslations('hero');
   return (
-    <section className={styles.hero} id="top">
-      <h1 className="sr-only">{t('h1')}</h1>
-      <div className={styles.ribbon} aria-hidden />
-
-      <header className={styles.topMeta}>
-        <span>{t('metaLeft')}</span>
-        <span className={styles.rule} aria-hidden />
-        <span className={styles.pin}>
-          <span className={styles.dot} aria-hidden /> {t('pin')}
-        </span>
-      </header>
-
-      <div className={styles.typeBlock}>
-        {/* Brand wordmark — not translated */}
-        <Line word="İZMİR" variant="aqua" />
-        <div className={styles.lineB}>
-          <Line word="BALIKÇISI" variant="outline" />
-        </div>
-        <span className={styles.sideLabel}>{t('sideLabel')}</span>
+    <section className={`${styles.hero} darkSurface`} id="top">
+      <div className={styles.bg} aria-hidden>
+        <Image src={HERO_IMG} alt="" fill priority sizes="100vw" className={styles.bgImg} />
+        <div className={styles.overlay} />
       </div>
 
-      <div className={styles.sub}>
-        <p className={styles.lede}>
-          {t.rich('lede', { em: (chunks) => <em>{chunks}</em> })}
-        </p>
+      <div className={styles.inner}>
+        <motion.h1 className={styles.title} {...fade(0.1)}>
+          <span className={styles.l1}>{t('titleLine1')}</span>
+          <span className={styles.l2}>{t('titleLine2')}</span>
+        </motion.h1>
+
+        <motion.p className={styles.intro} {...fade(0.26)}>
+          {t('intro')}
+        </motion.p>
+
+        <motion.div {...fade(0.42)}>
+          <SectionLink id="menu" className={styles.cta} data-magnetic data-cursor-label={t('cta')}>
+            {t('cta')}
+            <span className={styles.ctaArrow} aria-hidden>→</span>
+          </SectionLink>
+        </motion.div>
       </div>
 
-      <footer className={styles.bottomMeta}>
-        <span>{t('coords')}</span>
-        <span className={styles.col2}>
-          <span className={styles.scrollCue}>
-            {t('scroll')} <span className={styles.scrollLine} aria-hidden />
-          </span>
-        </span>
-        <span className={styles.col3}>{t('bottomRight')}</span>
-      </footer>
+      <span className={styles.scrollCue} aria-hidden>
+        <span className={styles.scrollLine} />
+      </span>
     </section>
   );
 }

@@ -34,6 +34,30 @@
 }
 .title em { font-style: italic; font-weight: 300; color: var(--c-gold); }
 
+/* Load More */
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.moreBtn {
+  font-family: var(--f-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  padding: 0.85rem 2rem;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 999px;
+  background: transparent;
+  transition: border-color var(--dur-med) var(--ease-out), background var(--dur-med) var(--ease-out);
+}
+.moreBtn:hover {
+  border-color: var(--c-gold);
+  background: color-mix(in srgb, var(--c-gold) 8%, transparent);
+}
+
 .grid {
   column-count: 3;
   column-gap: clamp(1rem, 2vw, 2rem);

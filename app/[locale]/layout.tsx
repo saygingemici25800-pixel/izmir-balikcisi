@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
-import { Amiri, Tajawal } from 'next/font/google';
+import { Amiri, Playfair_Display, Tajawal } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import '../globals.css';
@@ -27,6 +27,16 @@ const tajawal = Tajawal({
   variable: '--f-body-ar',
   display: 'swap',
   preload: false,
+});
+
+// Editorial serif display (Latin) — drives --f-display for TR/EN. Beautiful
+// italic for the second hero line. Self-hosted by next/font at build.
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--f-serif',
+  display: 'swap',
 });
 
 const OG_LOCALE: Record<string, string> = { tr: 'tr_TR', en: 'en_US', ar: 'ar_AR' };
@@ -144,7 +154,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} dir={rtl ? 'rtl' : 'ltr'} className={`${amiri.variable} ${tajawal.variable}`}>
+    <html lang={locale} dir={rtl ? 'rtl' : 'ltr'} className={`${playfair.variable} ${amiri.variable} ${tajawal.variable}`}>
       <head>
         <link rel="preload" href="/fonts/Panchang-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Satoshi-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />

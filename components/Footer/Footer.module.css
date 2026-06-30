@@ -1,209 +1,19 @@
+/* Minimal editorial footer — 3 columns on the light base. */
 .footer {
   position: relative;
-  padding: clamp(3rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3.5rem) var(--s-5);
+  max-width: 1180px;
+  margin-inline: auto;
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3rem);
   border-top: 1px solid var(--c-line);
-  background: rgba(33, 51, 92, 0.82);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  font-size: var(--t-small);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-cream);
   isolation: isolate;
-}
-
-/* ── Sister-venue promo (Çalış Balıkçısı) ─────────────────────────────── */
-.sister {
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-.sisterCard {
-  display: grid;
-  grid-template-columns: clamp(220px, 30%, 360px) 1fr;
-  gap: clamp(1.5rem, 3vw, 3rem);
-  align-items: stretch;
-  padding: clamp(1.25rem, 2.4vw, 2rem);
-  background: var(--glass-bg);
-  --c-cream: #2b3a55;
-  --c-bone: #1e2e54;
-  --c-gold: #6b4fb0;
-  --c-gold-hi: #5a3fa0;
-  --c-gold-lo: #836bc2;
-  --c-line: rgba(45, 66, 117, 0.14);
-  --c-line-strong: rgba(45, 66, 117, 0.26);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  text-transform: none;
-  letter-spacing: normal;
-  transition:
-    border-color var(--dur-slow) var(--ease-out),
-    transform var(--dur-slow) var(--ease-out),
-    box-shadow var(--dur-slow) var(--ease-out);
-}
-.sisterCard:hover {
-  border-color: var(--c-gold-lo);
-  transform: translateY(var(--lift-card));
-  box-shadow: var(--shadow-card-hover);
-}
-
-/* small hero visual — a sunset over the Çalış shoreline */
-.sisterVisual {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  min-height: clamp(150px, 16vw, 210px);
-  border: 1px solid var(--c-line);
-  background: linear-gradient(180deg, #1c3a5e 0%, #0f2340 56%, #0a1426 100%);
-  isolation: isolate;
-  /* dark sunset island → keep overlaid wordmark/badge text light */
-  --c-bone: #f7f1e3;
-  --c-cream: #efe4cc;
-  --c-gold: #d8a44a;
-}
-.sisterVisual::after {
-  /* shimmering water below the horizon */
-  content: '';
-  position: absolute;
-  left: 0; right: 0; bottom: 0; top: 62%;
-  background:
-    linear-gradient(180deg, rgba(216, 164, 74, 0.2), transparent 70%),
-    repeating-linear-gradient(0deg, rgba(239, 228, 204, 0.05) 0 1px, transparent 1px 7px);
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-.sisterSun {
-  position: absolute;
-  left: 50%; bottom: 40%;
-  width: clamp(58px, 8vw, 92px);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--c-gold-hi) 0%, var(--c-gold) 58%, rgba(216, 164, 74, 0) 72%);
-}
-.sisterHorizon {
-  position: absolute;
-  left: 0; right: 0; bottom: 38%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--c-gold-lo), transparent);
-}
-.sisterBadge {
-  position: absolute;
-  top: var(--s-3); left: var(--s-3);
-  z-index: 2;
-  font-size: var(--t-micro);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--c-gold);
-  background: rgba(5, 11, 22, 0.5);
-  border: 1px solid var(--c-line);
-  padding: 4px 8px;
-}
-.sisterMark {
-  position: absolute;
-  left: var(--s-4); bottom: var(--s-4);
-  z-index: 2;
-  font-family: var(--f-display);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 2.3vw, 1.9rem);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: var(--c-bone);
-}
-.sisterMark em { font-style: italic; color: var(--c-gold); }
-
-.sisterCopy {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-  justify-content: center;
-}
-.sisterEyebrow {
-  font-size: var(--t-small);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--c-gold);
-}
-.sisterTitle {
-  font-family: var(--f-display);
-  font-weight: 300;
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--c-bone);
-}
-.sisterTitle em { font-style: italic; color: var(--c-gold); }
-.sisterText {
-  font-family: var(--f-body);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-  color: var(--c-cream);
-  opacity: 0.78;
-  max-width: 48ch;
-}
-.sisterBtn {
-  align-self: flex-start;
-  margin-top: var(--s-2);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-3);
-  font-family: var(--f-body);
-  font-weight: 500;
-  font-size: var(--t-small);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--c-abyss);
-  background: var(--c-gold);
-  border: 1px solid var(--c-gold);
-  padding: 12px 20px;
-  transition: background var(--dur-med) var(--ease-out);
-}
-.sisterCard:hover .sisterBtn { background: var(--c-gold-hi); }
-.sisterArrow { transition: transform var(--dur-med) var(--ease-out); }
-.sisterCard:hover .sisterArrow { transform: translateX(4px); }
-
-@media (max-width: 640px) {
-  .sisterCard { grid-template-columns: 1fr; }
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: clamp(2rem, 4vw, 4rem);
-  border-top: 1px solid var(--c-line);
-  padding-top: clamp(2rem, 4vw, 3rem);
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
-
-.col h4 {
-  font-size: var(--t-small);
-  letter-spacing: 0.22em;
-  color: var(--c-gold);
-  margin-bottom: var(--s-3);
-  font-weight: 500;
-}
-.col ul { list-style: none; display: flex; flex-direction: column; gap: var(--s-2); }
-.col li a {
-  position: relative;
-  font-family: var(--f-display);
-  font-weight: 300;
-  font-size: 1.1rem;
-  letter-spacing: -0.01em;
-  text-transform: none;
-  color: var(--c-bone);
-  opacity: 0.88;
-  transition: color var(--dur-med) var(--ease-out);
-}
-.col li a::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 100%;
-  bottom: -2px;
-  height: 1px;
-  background: var(--c-gold);
-  transition: right var(--dur-slow) var(--ease-out);
-}
-.col li a:hover { color: var(--c-gold); }
-.col li a:hover::after { right: 0; }
 
 .brand {
   display: flex;
@@ -212,45 +22,83 @@
 }
 .markLg {
   font-family: var(--f-display);
-  font-weight: 400;
-  font-size: clamp(2rem, 3.4vw, 3rem);
-  letter-spacing: -0.025em;
-  line-height: 1;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
   color: var(--c-bone);
-  text-transform: none;
 }
 .brandCopy {
-  font-family: var(--f-body);
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  line-height: 1.55;
-  color: var(--c-cream);
-  opacity: 0.7;
   max-width: 38ch;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--c-cream);
+}
+.contactLine {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.95rem;
+}
+.contactLine a {
+  color: var(--c-mist);
+  transition: color var(--dur-med) var(--ease-out);
+  width: fit-content;
+}
+.contactLine a:hover {
+  color: var(--c-gold);
+}
+
+.col h4 {
+  font-family: var(--f-body);
+  font-weight: 600;
+  font-size: var(--t-small);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-mist);
+  margin-bottom: var(--s-4);
+}
+.col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.col a {
+  font-size: 1rem;
+  color: var(--c-bone);
+  transition: color var(--dur-med) var(--ease-out);
+}
+.col a:hover {
+  color: var(--c-gold);
 }
 
 .bottom {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
-  gap: var(--s-5);
-  padding-top: var(--s-5);
-  margin-top: clamp(2rem, 4vw, 3rem);
+  gap: var(--s-4);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
   border-top: 1px solid var(--c-line);
-  opacity: 0.7;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-mist);
 }
-.bottom .rule { height: 1px; background: var(--c-line); }
+.rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--c-line);
+}
 
-@media (max-width: 860px) {
-  .grid { grid-template-columns: 1fr 1fr; }
-  .brand { grid-column: 1 / -1; }
-  .bottom { grid-template-columns: 1fr; text-align: left; gap: var(--s-3); }
-  /* comfortable, ≥44px tap targets for footer links on touch */
-  .col ul { gap: var(--s-1); }
-  .col li a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 7vw, 3rem);
   }
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 460px) {
+  .grid { grid-template-columns: 1fr; }
+  .bottom { flex-direction: column; align-items: flex-start; gap: var(--s-2); }
+  .rule { display: none; }
 }

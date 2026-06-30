@@ -10,7 +10,7 @@ import { SeasonalButton, type SeasonalData } from '@/components/SeasonalButton/S
 import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
 
 // Section ids (stable anchors); labels come from the `nav` message namespace.
-const LINK_IDS = ['hikaye', 'menu', 'galeri', 'manifesto', 'yorumlar', 'iletisim'] as const;
+const LINK_IDS = ['hikaye', 'menu', 'galeri', 'iletisim'] as const;
 
 export function Nav({ seasonal }: { seasonal: SeasonalData }) {
   const t = useTranslations('nav');

@@ -28,6 +28,10 @@
   },
   "hero": {
     "h1": "İzmir Balıkçısı — Fethiye'de alkolsüz, aile dostu taze deniz ürünleri restoranı.",
+    "titleLine1": "Taze deniz,",
+    "titleLine2": "sıcak bir sofra.",
+    "intro": "1989'dan beri Fethiye'de — alkolsüz, aile dostu ve mevsimin en taze balığı.",
+    "cta": "Menüyü Keşfet",
     "metaLeft": "№ 001 / Est. 1989",
     "pin": "Fethiye · Açık · 10.30—22.30",
     "sideLabel": "Otuz Beş Yıllık Sofra · Vol. XXXV",
@@ -39,6 +43,12 @@
   "about": {
     "eyebrow": "№ 02 — Hikâye",
     "index": "1989 → 2026",
+    "heading": "Hikâyemiz",
+    "body": "<p>1989'da Hasan Usta, sabahın dördünde tek bir buz tezgâhıyla başladı. Ne menü vardı ne tabela — yalnızca o günkü deniz ve beklemeyi bilen iki el.</p><p>Otuz beş yıl sonra aynı kapı, aynı sofra. Bugün oğul mutfakta, baba hâlâ hâli ilk gezen. Deniz acele etmiyor; biz de etmiyoruz.</p>",
+    "quote": "Sabah dörtte hâl, akşam yedide ışıklar — aradaki her şey balık.",
+    "familyTitle": "Bir aile meselesi",
+    "familyBody": "Burada alkol yok — çünkü bir sofrayı şenlendiren kadehler değil, paylaşılan kahkahalardır. Çocuklar için özel porsiyonlar, herkese açık sıcak bir masa. Otuz beş yıldır aynı: samimi ve davetkâr.",
+    "phoneCta": "Rezervasyon için arayın",
     "intro": "Bir <em>baba</em> ve oğul. Sabah dörtte hâl, akşam yedide ışıklar. Aralarındaki her şey: <em>balık</em>.",
     "railLabel": "1989 — 2026",
     "scrollHint": "Kaydır",
@@ -133,7 +143,7 @@
     ]
   },
   "gallery": {
-    "eyebrow": "№ 06 — Galeri",
+    "eyebrow": "№ 04 — Galeri",
     "frames": "{count} kare",
     "title": "Bir akşam, <em>dokuz kare</em>",
     "enlarge": "Büyüt",
@@ -143,10 +153,15 @@
     "prev": "Önceki",
     "next": "Sonraki",
     "hint": "← → / Esc",
+    "loadMore": "Daha fazla",
     "caps": ["Çupra", "Hamsi", "Levrek", "Avlu", "Karides", "Masa", "Ahtapot", "Kalkan", "Mutfak"]
   },
   "contact": {
-    "eyebrow": "№ 07 — İletişim",
+    "eyebrow": "№ 05 — İletişim",
+    "heading": "Bizimle İletişime Geçin",
+    "sisterLabel": "Kardeş Mekân",
+    "sisterCta": "Ziyaret et",
+    "sisterNote": "Çalış sahilinde, aynı sofra.",
     "hours": "Her gün · 10.30—22.30",
     "title": "Bir <em>masa</em><br></br>ayırtalım.",
     "lede": "Telefon en hızlısı. Pencere kenarı için biraz erken arayın; en iyi ışık 19.30 ile 20.15 arası.",
@@ -181,7 +196,7 @@
     "colSocial": "Sosyal",
     "addressShort": "Tuzla · Fethiye / Muğla",
     "copyright": "© 1989—2026",
-    "setIn": "Bahar Sayısı · Set in Panchang"
+    "setIn": "Bahar Sayısı · 2026"
   },
   "sister": {
     "triggerEyebrow": "Kardeş mekân",

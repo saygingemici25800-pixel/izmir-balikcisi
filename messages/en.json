@@ -28,6 +28,10 @@
   },
   "hero": {
     "h1": "İzmir Balıkçısı — alcohol-free, family-friendly fresh seafood in Fethiye.",
+    "titleLine1": "Fresh from the sea,",
+    "titleLine2": "warm at the table.",
+    "intro": "In Fethiye since 1989 — alcohol-free, family-friendly, and the freshest fish of the season.",
+    "cta": "Explore the Menu",
     "metaLeft": "№ 001 / Est. 1989",
     "pin": "Fethiye · Open · 10.30—22.30",
     "sideLabel": "Thirty-Five Years at the Table · Vol. XXXV",
@@ -39,6 +43,12 @@
   "about": {
     "eyebrow": "№ 02 — Story",
     "index": "1989 → 2026",
+    "heading": "Our Story",
+    "body": "<p>In 1989, Hasan started before dawn with a single ice stall. No menu, no sign — just that day's sea and two hands that knew how to wait.</p><p>Thirty-five years on, the same door, the same table. Today the son is in the kitchen and the father still walks the market first. The sea is in no hurry; neither are we.</p>",
+    "quote": "The market at four, the lights at seven — everything in between is fish.",
+    "familyTitle": "A Family Focus",
+    "familyBody": "There's no alcohol here — because what brightens a table isn't the glasses, it's the shared laughter. Children's portions, a warm table open to everyone. The same for thirty-five years: sincere and welcoming.",
+    "phoneCta": "Call to reserve",
     "intro": "A <em>father</em> and a son. The market at four in the morning, the lights at seven in the evening. Everything in between: <em>fish</em>.",
     "railLabel": "1989 — 2026",
     "scrollHint": "Scroll",
@@ -133,7 +143,7 @@
     ]
   },
   "gallery": {
-    "eyebrow": "№ 06 — Gallery",
+    "eyebrow": "№ 04 — Gallery",
     "frames": "{count} frames",
     "title": "One evening, <em>nine frames</em>",
     "enlarge": "Enlarge",
@@ -143,10 +153,15 @@
     "prev": "Previous",
     "next": "Next",
     "hint": "← → / Esc",
+    "loadMore": "Load more",
     "caps": ["Sea bream", "Anchovy", "Sea bass", "Courtyard", "Shrimp", "Table", "Octopus", "Turbot", "Kitchen"]
   },
   "contact": {
-    "eyebrow": "№ 07 — Contact",
+    "eyebrow": "№ 05 — Contact",
+    "heading": "Get in Touch",
+    "sisterLabel": "Sister Venue",
+    "sisterCta": "Visit",
+    "sisterNote": "On Çalış beach, the same table.",
     "hours": "Every day · 10.30—22.30",
     "title": "Let's book<br></br>a <em>table</em>.",
     "lede": "The phone is fastest. Call a little early for a window seat; the best light is between 19.30 and 20.15.",
@@ -181,7 +196,7 @@
     "colSocial": "Social",
     "addressShort": "Tuzla · Fethiye / Muğla",
     "copyright": "© 1989—2026",
-    "setIn": "Spring Issue · Set in Panchang"
+    "setIn": "Spring Issue · 2026"
   },
   "sister": {
     "triggerEyebrow": "Sister venue",

@@ -32,43 +32,44 @@
 
 /* ---------- TOKENS ---------- */
 :root {
-  /* Palette — DARK NAVY base + LAVENDER accent + LIGHT cards.
-     Navy ramp = dark surfaces/gradients; text on dark is light; accent is
-     lavender. Light #F2F5F7 cards re-assert dark text via .lightSurface. */
-  --c-abyss: #16223f;   /* deepest navy */
-  --c-deep:  #1e2e54;   /* deep navy — image/placeholder fills */
+  /* Palette — LIGHT/airy editorial base + NAVY text/headings + LAVENDER accent.
+     The navy ramp now paints TEXT and dark surfaces (hero overlay / footer);
+     the base is light. Dark areas re-assert light text via .darkSurface. */
+  --c-abyss: #16223f;   /* darkest navy — headings */
+  --c-deep:  #1e2e54;   /* deep navy */
   --c-sea:   #2d4275;   /* base navy */
   --c-tide:  #3a5292;   /* lighter navy */
   --c-foam:  #51689f;   /* light navy */
-  --c-mist:  #9fb0d0;   /* muted light-navy (muted text on dark) */
+  --c-mist:  #8295b8;   /* muted navy — secondary text on light */
 
-  --c-bg:    #2D4275;   /* main dark navy page background */
-  --c-bg-2:  #233762;   /* deeper navy band (footer / marquee) */
-  --c-bg-3:  #38508c;   /* lighter navy surface */
+  --c-bg:    #F4F6F8;   /* main light page background (airy) */
+  --c-bg-2:  #ffffff;   /* white sections / cards */
+  --c-bg-3:  #eef1f5;   /* subtle alt band */
 
-  --c-light:   #F2F5F7; /* light gray-white surface / card */
-  --c-light-2: #e6ebf1;
+  --c-light:   #F2F5F7;
+  --c-light-2: #ffffff;
 
-  --c-gold:    #D6C6F7;  /* accent — lavender (on dark surfaces) */
-  --c-gold-hi: #e7dcfb;  /* brighter lavender */
-  --c-gold-lo: #b9a4ec;  /* deeper lavender */
+  --c-gold:    #6b4fb0;  /* accent on light — deep lavender (legible) */
+  --c-gold-hi: #5a3fa0;  /* deeper */
+  --c-gold-lo: #8a6fd0;  /* mid lavender */
+  --c-lav:     #D6C6F7;  /* pale lavender — fills + accent on dark surfaces */
 
-  --c-cream:   #dfe5f0;  /* primary text on dark (light) */
-  --c-bone:    #f2f5f7;  /* headings on dark (lightest) */
-  --c-paper:   #f2f5f7;
+  --c-cream:   #33405c;  /* primary body text (navy-slate) on light */
+  --c-bone:    #16223f;  /* headings (darkest navy) */
+  --c-paper:   #1e2e54;
 
-  --c-ink:     #1e2e54;  /* dark navy — text on lavender / on light cards */
-  --c-line:    rgba(214, 198, 247, 0.20);
-  --c-line-strong: rgba(214, 198, 247, 0.34);
+  --c-ink:     #1e2e54;  /* navy — text on lavender fills */
+  --c-line:    rgba(45, 66, 117, 0.14);
+  --c-line-strong: rgba(45, 66, 117, 0.24);
 
-  /* Glass cards — light #F2F5F7 frosted (pair with .lightSurface for text) */
-  --glass-bg:    rgba(242, 245, 247, 0.94);
-  --glass-bg-2:  rgba(242, 245, 247, 0.86);
-  --glass-border: rgba(45, 66, 117, 0.16);
-  --glass-blur:  blur(14px) saturate(110%);
+  /* Glass cards — light frosted on the light base */
+  --glass-bg:    rgba(255, 255, 255, 0.86);
+  --glass-bg-2:  rgba(255, 255, 255, 0.94);
+  --glass-border: rgba(45, 66, 117, 0.12);
+  --glass-blur:  blur(14px) saturate(105%);
 
   /* Type */
-  --f-display: 'Panchang', 'Times New Roman', Georgia, serif;
+  --f-display: var(--f-serif, 'Playfair Display'), 'Times New Roman', Georgia, serif;
   --f-body:    'Satoshi', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --f-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
 
@@ -96,7 +97,7 @@
   --dur-med:  280ms;
   --dur-slow: 360ms;
   --lift-card: -6px;
-  --shadow-card-hover: 0 24px 50px -28px rgba(8, 14, 32, 0.6);
+  --shadow-card-hover: 0 24px 50px -30px rgba(45, 66, 117, 0.22);
 }
 
 /* ---------- RESET ---------- */
@@ -141,6 +142,19 @@ img, picture, video, svg { display: block; max-width: 100%; }
 button, input, textarea, select { font: inherit; color: inherit; background: none; border: 0; }
 button { cursor: none; }
 a { color: inherit; text-decoration: none; }
+
+/* Visually hidden but available to screen readers / SEO (e.g. the hero <h1>). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 ::selection { background: var(--c-gold); color: var(--c-abyss); }
 
 /* ───────────── i18n — Arabic (lang=ar) + RTL ─────────────
@@ -210,13 +224,26 @@ a { color: inherit; text-decoration: none; }
 /* Light #F2F5F7 card on the dark navy site → flip text/accent tokens to dark
    so anything inside reads correctly. Add to any light-surface card. */
 .lightSurface {
-  --c-cream: #2b3a55;        /* body text on light card */
-  --c-bone:  #1e2e54;        /* headings on light card */
-  --c-gold:    #6b4fb0;      /* accent on light card (deep purple) */
+  --c-cream: #33405c;        /* body text on light card */
+  --c-bone:  #16223f;        /* headings on light card */
+  --c-gold:    #6b4fb0;      /* accent on light card (deep lavender) */
   --c-gold-hi: #5a3fa0;
-  --c-gold-lo: #836bc2;
+  --c-gold-lo: #8a6fd0;
   --c-line:        rgba(45, 66, 117, 0.14);
   --c-line-strong: rgba(45, 66, 117, 0.26);
+}
+
+/* Inverse of .lightSurface — for DARK areas on the light base (hero photo
+   overlay, footer). Re-asserts light text + pale-lavender accent. */
+.darkSurface {
+  --c-cream: #dfe5f0;        /* body text on dark */
+  --c-bone:  #f6f8fc;        /* headings on dark */
+  --c-mist:  #aebbd6;        /* muted text on dark */
+  --c-gold:    #D6C6F7;      /* pale lavender accent on dark */
+  --c-gold-hi: #e7dcfb;
+  --c-gold-lo: #b9a4ec;
+  --c-line:        rgba(214, 198, 247, 0.22);
+  --c-line-strong: rgba(214, 198, 247, 0.34);
 }
 
 /* ---------- FX ---------- */

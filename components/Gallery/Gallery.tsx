@@ -29,6 +29,7 @@ export function Gallery() {
   const cap = (i: number) => caps[i] ?? '';
 
   const [open, setOpen] = useState<number | null>(null);
+  const [shown, setShown] = useState(6);
   const [loaded, setLoaded] = useState<Record<number, boolean>>({});
   const markLoaded = (i: number) => setLoaded((s) => (s[i] ? s : { ...s, [i]: true }));
 
@@ -70,7 +71,7 @@ export function Gallery() {
       </motion.h2>
 
       <div className={styles.grid}>
-        {SHOTS.map((s, i) => (
+        {SHOTS.slice(0, shown).map((s, i) => (
           <motion.button
             key={s.src}
             type="button"
@@ -101,6 +102,20 @@ export function Gallery() {
           </motion.button>
         ))}
       </div>
+
+      {shown < SHOTS.length && (
+        <div className={styles.more}>
+          <button
+            type="button"
+            className={styles.moreBtn}
+            onClick={() => setShown(SHOTS.length)}
+            data-magnetic
+            data-cursor-label={t('loadMore')}
+          >
+            {t('loadMore')}
+          </button>
+        </div>
+      )}
 
       <AnimatePresence>
         {open !== null && (
