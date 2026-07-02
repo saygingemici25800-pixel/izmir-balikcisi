@@ -36,7 +36,7 @@ export default async function OgImage() {
             opacity: 0.7,
           }}
         >
-          <span>№ 001 / Est. 1989</span>
+          <span>№ 001 / Est. 2014</span>
           <span style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <span
               style={{

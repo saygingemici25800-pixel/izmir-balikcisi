@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "İzmir Balıkçısı — Alkolsüz Taze Deniz Ürünleri · Fethiye / Muğla",
-    "description": "Fethiye / Muğla'da alkolsüz, aile dostu, taze deniz ürünleri restoranı. 1989'dan bu yana otuz beş yıllık bir sofra.",
+    "description": "Fethiye / Muğla'da alkolsüz, aile dostu, taze deniz ürünleri restoranı. 1999'da başlayan deniz tutkusu, 2014'ten beri Fethiye'de.",
     "menuTitle": "Menü — İzmir Balıkçısı · Fethiye / Muğla",
-    "menuDescription": "İzmir Balıkçısı tam menüsü: mezeler, çorbalar, ızgara balıklar, buğulama, tava ve alkolsüz içecekler. Fethiye / Muğla'da otuz beş yıllık bir sofra.",
+    "menuDescription": "İzmir Balıkçısı tam menüsü: mezeler, çorbalar, ızgara balıklar, buğulama, tava ve alkolsüz içecekler. Fethiye / Muğla'da taze bir sofra.",
     "menuOgTitle": "Menü — İzmir Balıkçısı",
     "notFoundTitle": "Bu masada yer yok — 404",
     "notFoundDescription": "Aradığınız sayfa bulunamadı. Ana sayfaya veya menüye dönebilirsiniz."
@@ -30,7 +30,7 @@
     "h1": "İzmir Balıkçısı — Fethiye'de alkolsüz, aile dostu taze deniz ürünleri restoranı.",
     "titleLine1": "Taze deniz,",
     "titleLine2": "sıcak bir sofra.",
-    "intro": "1989'dan beri Fethiye'de — alkolsüz, aile dostu ve mevsimin en taze balığı.",
+    "intro": "2014'ten beri Fethiye'de — alkolsüz, aile dostu ve mevsimin en taze balığı.",
     "cta": "Menüyü Keşfet",
     "metaLeft": "№ 001 / Est. 1989",
     "pin": "Fethiye · Açık · 10.30—22.30",
@@ -43,11 +43,11 @@
   "about": {
     "eyebrow": "№ 02 — Hikâye",
     "index": "1989 → 2026",
-    "heading": "Hikâyemiz",
-    "body": "<p>1989'da Hasan Usta, sabahın dördünde tek bir buz tezgâhıyla başladı. Ne menü vardı ne tabela — yalnızca o günkü deniz ve beklemeyi bilen iki el.</p><p>Otuz beş yıl sonra aynı kapı, aynı sofra. Bugün oğul mutfakta, baba hâlâ hâli ilk gezen. Deniz acele etmiyor; biz de etmiyoruz.</p>",
-    "quote": "Sabah dörtte hâl, akşam yedide ışıklar — aradaki her şey balık.",
+    "heading": "Denizden Sofraya Lezzet Yolculuğumuz",
+    "body": "<p>1999 yılında deniz ürünlerine olan tutkumuzla yola çıktık. 2014'te Fethiye'de \"İzmir Balıkçısı\" markasını kurarak, en taze lezzetleri misafirlerimizle buluşturduk.</p><p>2020'de, bu deneyimi bir adım ileri taşıyarak, Çalış Bölgesi'nde \"Çalış Balıkçısı\" markasını hayata geçirdik.</p><p>Bugün de aynı tutkuyla, denizden gelen en özel tatları sizlerle buluşturmaya devam ediyoruz. Geçmişimizin tecrübesini, geleceğe yönelik yenilikçi bakış açımızla harmanlayarak, misafirlerimize en iyi deneyimi sunmaya devam ediyoruz.</p><p>Lezzet, kalite ve huzurun bir araya geldiği restoranımızda, sizleri ağırlamaktan mutluluk duyarız.</p>",
+    "quote": "Denizden gelen en özel tatları, aynı tutkuyla sizlerle buluşturuyoruz.",
     "familyTitle": "Bir aile meselesi",
-    "familyBody": "Burada alkol yok — çünkü bir sofrayı şenlendiren kadehler değil, paylaşılan kahkahalardır. Çocuklar için özel porsiyonlar, herkese açık sıcak bir masa. Otuz beş yıldır aynı: samimi ve davetkâr.",
+    "familyBody": "Burada alkol yok — çünkü bir sofrayı şenlendiren kadehler değil, paylaşılan kahkahalardır. Çocuklar için özel porsiyonlar, herkese açık sıcak bir masa: samimi ve davetkâr.",
     "phoneCta": "Rezervasyon için arayın",
     "intro": "Bir <em>baba</em> ve oğul. Sabah dörtte hâl, akşam yedide ışıklar. Aralarındaki her şey: <em>balık</em>.",
     "railLabel": "1989 — 2026",
@@ -190,12 +190,12 @@
     "sisterBtn": "Çalış Balıkçısı'nı Ziyaret Et",
     "sisterAria": "Çalış Balıkçısı'nı ziyaret et — yeni sekmede açılır",
     "sisterTab": "Yeni sekme",
-    "brandCopy": "1989'dan bu yana Fethiye'de. Otuz beş yıldır aynı kapı, aynı masa, aynı tabaklar. Editöryal bir restoran.",
+    "brandCopy": "2014'ten beri Fethiye'de, 1999'da başlayan deniz tutkusuyla. Alkolsüz, aile dostu, editöryal bir restoran.",
     "colSection": "Bölüm",
     "colContact": "İletişim",
     "colSocial": "Sosyal",
     "addressShort": "Tuzla · Fethiye / Muğla",
-    "copyright": "© 1989—2026",
+    "copyright": "© 1999—2026",
     "setIn": "Bahar Sayısı · 2026"
   },
   "sister": {
@@ -205,7 +205,7 @@
     "badge": "Kardeş Mekân",
     "modalEyebrow": "№ — Kardeş mekân",
     "modalTitle": "Aynı sofranın<br></br><em>Çalış sahilindeki</em><br></br>kardeşi.",
-    "modalLede": "Otuz beş yıllık aynı tabaklar, <em>farklı bir kıyı</em>: martı sesi, akşamüstü rüzgârı ve doğrudan denize bakan masa. İzmir Balıkçısı'nın izinden Fethiye Çalış sahilinde.",
+    "modalLede": "Aynı tutkuyla aynı tabaklar, <em>farklı bir kıyı</em>: martı sesi, akşamüstü rüzgârı ve doğrudan denize bakan masa. İzmir Balıkçısı'nın izinden Fethiye Çalış sahilinde.",
     "metaCity": "Şehir",
     "metaCityVal": "Çalış, Fethiye",
     "metaConcept": "Konsept",
@@ -226,7 +226,7 @@
     "eyebrow": "№ 03 — Menü",
     "meta": "Bahar 2026 · {count} tabak",
     "title": "Menü",
-    "lede": "Otuz beş yıllık bir <em>sofra</em>. Mevsime göre değişen tabaklar; bütün olarak ızgaradan, masada açılan tuzda pişene, gevrek tavalardan sakızlı muhallebiye. Burası alkolsüz bir ev — eve dönüş gibi.",
+    "lede": "Mevsime göre değişen taze bir <em>sofra</em>; bütün olarak ızgaradan, masada açılan tuzda pişene, gevrek tavalardan sakızlı muhallebiye. Burası alkolsüz bir ev — eve dönüş gibi.",
     "noteBadge": "0%",
     "note": "Burası <em>alkolsüz</em> bir ev. Şarap ve rakı yerine ev limonatası, köpürtülmüş ayran, soğuk Türk kahvesi ve ince belli bardakta sınırsız çay var. Çocuklar için özel porsiyonlar masada belirtebilirsiniz.",
     "back": "← Ana sayfaya dön",
@@ -244,7 +244,7 @@
     "close": "Kapat"
   },
   "intro": {
-    "sub": "Otuz Beş Yıllık Sofra"
+    "sub": "Taze Deniz Lezzetleri"
   },
   "marquee": {
     "a": ["Taze tabaklar", "Sıfır alkol", "Aile dostu", "Fethiye · Muğla", "Bahar 2026", "Açık · 10.30—22.30", "Otuz beş yıl"],
@@ -258,6 +258,6 @@
     "home": "Ana sayfa",
     "menu": "Menüye göz at",
     "menuLabel": "Menü",
-    "footRegion": "Fethiye / Muğla · Est. 1989"
+    "footRegion": "Fethiye / Muğla · Est. 2014"
   }
 }

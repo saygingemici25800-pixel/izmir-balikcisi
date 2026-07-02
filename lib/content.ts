@@ -32,7 +32,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     fish: ['Lüfer', 'Palamut', 'Kalkan', 'İstavrit', 'Çinekop'],
     active: true,
   },
-  updatedAt: '1989-01-01T00:00:00.000Z',
+  updatedAt: '1999-01-01T00:00:00.000Z',
 };
 
 const useBlob = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN);

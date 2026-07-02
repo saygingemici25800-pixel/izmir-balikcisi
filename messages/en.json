@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "İzmir Balıkçısı — Alcohol-Free Fresh Seafood · Fethiye / Muğla",
-    "description": "An alcohol-free, family-friendly fresh seafood restaurant in Fethiye / Muğla. A table of thirty-five years since 1989.",
+    "description": "An alcohol-free, family-friendly fresh seafood restaurant in Fethiye / Muğla. A passion for the sea since 1999, in Fethiye since 2014.",
     "menuTitle": "Menu — İzmir Balıkçısı · Fethiye / Muğla",
-    "menuDescription": "The full İzmir Balıkçısı menu: mezes, soups, grilled fish, steamed and fried dishes, and alcohol-free drinks. A table of thirty-five years in Fethiye / Muğla.",
+    "menuDescription": "The full İzmir Balıkçısı menu: mezes, soups, grilled fish, steamed and fried dishes, and alcohol-free drinks. A fresh table in Fethiye / Muğla.",
     "menuOgTitle": "Menu — İzmir Balıkçısı",
     "notFoundTitle": "No seat at this table — 404",
     "notFoundDescription": "The page you're looking for wasn't found. You can return home or to the menu."
@@ -30,7 +30,7 @@
     "h1": "İzmir Balıkçısı — alcohol-free, family-friendly fresh seafood in Fethiye.",
     "titleLine1": "Fresh from the sea,",
     "titleLine2": "warm at the table.",
-    "intro": "In Fethiye since 1989 — alcohol-free, family-friendly, and the freshest fish of the season.",
+    "intro": "In Fethiye since 2014 — alcohol-free, family-friendly, and the freshest fish of the season.",
     "cta": "Explore the Menu",
     "metaLeft": "№ 001 / Est. 1989",
     "pin": "Fethiye · Open · 10.30—22.30",
@@ -43,11 +43,11 @@
   "about": {
     "eyebrow": "№ 02 — Story",
     "index": "1989 → 2026",
-    "heading": "Our Story",
-    "body": "<p>In 1989, Hasan started before dawn with a single ice stall. No menu, no sign — just that day's sea and two hands that knew how to wait.</p><p>Thirty-five years on, the same door, the same table. Today the son is in the kitchen and the father still walks the market first. The sea is in no hurry; neither are we.</p>",
-    "quote": "The market at four, the lights at seven — everything in between is fish.",
+    "heading": "Our Journey from the Sea to Your Table",
+    "body": "<p>Our passion for seafood set us on this journey in 1999. In 2014, we established the İzmir Balıkçısı brand in Fethiye, bringing the freshest flavors to our guests.</p><p>In 2020, we took this experience a step further by launching the Çalış Balıkçısı brand in the Çalış region. Today, with the same passion, we continue to bring you the finest tastes from the sea.</p><p>Combining our past experience with an innovative vision for the future, we strive to offer our guests the best dining experience.</p><p>We would be delighted to welcome you to our restaurant, where flavor, quality, and tranquility come together.</p>",
+    "quote": "With the same passion, we continue to bring you the finest tastes from the sea.",
     "familyTitle": "A Family Focus",
-    "familyBody": "There's no alcohol here — because what brightens a table isn't the glasses, it's the shared laughter. Children's portions, a warm table open to everyone. The same for thirty-five years: sincere and welcoming.",
+    "familyBody": "There's no alcohol here — because what brightens a table isn't the glasses, it's the shared laughter. Children's portions, a warm table open to everyone: sincere and welcoming.",
     "phoneCta": "Call to reserve",
     "intro": "A <em>father</em> and a son. The market at four in the morning, the lights at seven in the evening. Everything in between: <em>fish</em>.",
     "railLabel": "1989 — 2026",
@@ -190,12 +190,12 @@
     "sisterBtn": "Visit Çalış Balıkçısı",
     "sisterAria": "Visit Çalış Balıkçısı — opens in a new tab",
     "sisterTab": "New tab",
-    "brandCopy": "In Fethiye since 1989. The same door, the same table, the same plates for thirty-five years. An editorial restaurant.",
+    "brandCopy": "In Fethiye since 2014, born of a passion for the sea that began in 1999. Alcohol-free, family-friendly, an editorial restaurant.",
     "colSection": "Sections",
     "colContact": "Contact",
     "colSocial": "Social",
     "addressShort": "Tuzla · Fethiye / Muğla",
-    "copyright": "© 1989—2026",
+    "copyright": "© 1999—2026",
     "setIn": "Spring Issue · 2026"
   },
   "sister": {
@@ -205,7 +205,7 @@
     "badge": "Sister Venue",
     "modalEyebrow": "№ — Sister venue",
     "modalTitle": "The same table's<br></br><em>sibling on the</em><br></br>Çalış coast.",
-    "modalLede": "The same plates of thirty-five years, <em>a different shore</em>: the sound of gulls, the late-afternoon breeze and a table facing straight out to sea. Following İzmir Balıkçısı, on Fethiye's Çalış beach.",
+    "modalLede": "The same plates, the same passion, <em>a different shore</em>: the sound of gulls, the late-afternoon breeze and a table facing straight out to sea. Following İzmir Balıkçısı, on Fethiye's Çalış beach.",
     "metaCity": "City",
     "metaCityVal": "Çalış, Fethiye",
     "metaConcept": "Concept",
@@ -226,7 +226,7 @@
     "eyebrow": "№ 03 — Menu",
     "meta": "Spring 2026 · {count} plates",
     "title": "Menu",
-    "lede": "A <em>table</em> of thirty-five years. Plates that change with the season; from whole grilled fish to salt-baked at the table, from crisp fried plates to mastic pudding. This is an alcohol-free home — like coming home.",
+    "lede": "A fresh <em>table</em> that changes with the season; from whole grilled fish to salt-baked at the table, from crisp fried plates to mastic pudding. This is an alcohol-free home — like coming home.",
     "noteBadge": "0%",
     "note": "This is an <em>alcohol-free</em> home. Instead of wine and rakı there's homemade lemonade, frothed ayran, cold Turkish coffee and endless tea in slim-waisted glasses. Let us know at the table for children's portions.",
     "back": "← Back to home",
@@ -244,7 +244,7 @@
     "close": "Close"
   },
   "intro": {
-    "sub": "Thirty-Five Years at the Table"
+    "sub": "Fresh Seafood"
   },
   "marquee": {
     "a": ["Fresh plates", "Zero alcohol", "Family-friendly", "Fethiye · Muğla", "Spring 2026", "Open · 10.30—22.30", "Thirty-five years"],
@@ -258,6 +258,6 @@
     "home": "Home",
     "menu": "Browse the menu",
     "menuLabel": "Menu",
-    "footRegion": "Fethiye / Muğla · Est. 1989"
+    "footRegion": "Fethiye / Muğla · Est. 2014"
   }
 }
