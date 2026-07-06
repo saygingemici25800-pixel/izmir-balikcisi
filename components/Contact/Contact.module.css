@@ -48,7 +48,7 @@
   font-size: var(--t-small);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--c-gold);
+  color: var(--c-label);
 }
 .phoneNum {
   font-family: var(--f-display);

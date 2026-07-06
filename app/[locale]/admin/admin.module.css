@@ -4,12 +4,12 @@
   background: var(--c-light);
   color: var(--c-cream);
   font-family: var(--f-body);
-  /* admin is a clean light panel on the palette: navy text, purple accent */
+  /* admin is a clean light panel on the palette: navy text, navy accent */
   --c-cream: #2b3a55;
   --c-bone: #1e2e54;
-  --c-gold: #6b4fb0;
-  --c-gold-hi: #5a3fa0;
-  --c-gold-lo: #836bc2;
+  --c-gold: #2D4275;
+  --c-gold-hi: #1e2e54;
+  --c-gold-lo: #3a5292;
   --c-line: rgba(45, 66, 117, 0.16);
   --c-line-strong: rgba(45, 66, 117, 0.28);
   --glass-bg: rgba(255, 255, 255, 0.7);
@@ -147,7 +147,7 @@
 .textarea:focus {
   outline: none;
   border-color: var(--c-gold);
-  box-shadow: 0 0 0 3px rgba(107, 79, 176, 0.18);
+  box-shadow: 0 0 0 3px rgba(45, 66, 117, 0.18);
 }
 .textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
 .row {

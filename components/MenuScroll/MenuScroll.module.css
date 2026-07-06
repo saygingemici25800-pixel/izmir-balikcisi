@@ -41,7 +41,7 @@
   font-size: var(--t-small);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--c-gold);
+  color: var(--c-label);
   padding-bottom: var(--s-3);
   margin-bottom: var(--s-4);
   border-bottom: 1px solid var(--c-line);

@@ -40,7 +40,7 @@
   --c-sea:   #2d4275;   /* base navy */
   --c-tide:  #3a5292;   /* lighter navy */
   --c-foam:  #51689f;   /* light navy */
-  --c-mist:  #8295b8;   /* muted navy — secondary text on light */
+  --c-mist:  #9BA9C9;   /* TERTIARY — gray-blue mid-tones / secondary text */
 
   --c-bg:    #F4F6F8;   /* main light page background (airy) */
   --c-bg-2:  #ffffff;   /* white sections / cards */
@@ -49,13 +49,14 @@
   --c-light:   #F2F5F7;
   --c-light-2: #ffffff;
 
-  --c-gold:    #6b4fb0;  /* accent on light — deep lavender (legible) */
-  --c-gold-hi: #5a3fa0;  /* deeper */
-  --c-gold-lo: #8a6fd0;  /* mid lavender */
-  --c-lav:     #D6C6F7;  /* pale lavender — fills + accent on dark surfaces */
+  --c-gold:    #2D4275;  /* PRIMARY accent — navy (rebalanced; was lavender) */
+  --c-gold-hi: #1e2e54;  /* darker navy — hover / active */
+  --c-gold-lo: #3a5292;  /* lighter navy */
+  --c-lav:     #D6C6F7;  /* SECONDARY — lavender, tiny accents only */
+  --c-label:   #77777B;  /* NEUTRAL — labels / muted */
 
-  --c-cream:   #33405c;  /* primary body text (navy-slate) on light */
-  --c-bone:    #16223f;  /* headings (darkest navy) */
+  --c-cream:   #46536f;  /* primary body text (slate) on light */
+  --c-bone:    #2D4275;  /* headings — primary navy */
   --c-paper:   #1e2e54;
 
   --c-ink:     #1e2e54;  /* navy — text on lavender fills */
@@ -155,7 +156,7 @@ a { color: inherit; text-decoration: none; }
   white-space: nowrap;
   border: 0;
 }
-::selection { background: var(--c-gold); color: var(--c-abyss); }
+::selection { background: var(--c-lav); color: var(--c-abyss); }
 
 /* ───────────── i18n — Arabic (lang=ar) + RTL ─────────────
    Fonts come from next/font on <html> (--f-display-ar = Amiri,
@@ -195,7 +196,7 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   letter-spacing: 0.22em;
   font-size: var(--t-small);
-  color: var(--c-gold);
+  color: var(--c-label);
 }
 .tabular { font-variant-numeric: tabular-nums; }
 
@@ -226,9 +227,9 @@ a { color: inherit; text-decoration: none; }
 .lightSurface {
   --c-cream: #33405c;        /* body text on light card */
   --c-bone:  #16223f;        /* headings on light card */
-  --c-gold:    #6b4fb0;      /* accent on light card (deep lavender) */
-  --c-gold-hi: #5a3fa0;
-  --c-gold-lo: #8a6fd0;
+  --c-gold:    #2D4275;      /* accent on light card — navy (rebalanced) */
+  --c-gold-hi: #1e2e54;
+  --c-gold-lo: #3a5292;
   --c-line:        rgba(45, 66, 117, 0.14);
   --c-line-strong: rgba(45, 66, 117, 0.26);
 }
@@ -239,11 +240,12 @@ a { color: inherit; text-decoration: none; }
   --c-cream: #dfe5f0;        /* body text on dark */
   --c-bone:  #f6f8fc;        /* headings on dark */
   --c-mist:  #aebbd6;        /* muted text on dark */
-  --c-gold:    #D6C6F7;      /* pale lavender accent on dark */
-  --c-gold-hi: #e7dcfb;
-  --c-gold-lo: #b9a4ec;
-  --c-line:        rgba(214, 198, 247, 0.22);
-  --c-line-strong: rgba(214, 198, 247, 0.34);
+  --c-label: #aebbd6;        /* labels on dark */
+  --c-gold:    #cfd9ea;      /* light slate accent on dark (no purple) */
+  --c-gold-hi: #eaf0f8;
+  --c-gold-lo: #b7c4dc;
+  --c-line:        rgba(207, 217, 234, 0.22);
+  --c-line-strong: rgba(207, 217, 234, 0.34);
 }
 
 /* ---------- FX ---------- */

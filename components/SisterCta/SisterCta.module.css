@@ -91,9 +91,9 @@
   background: rgba(242, 245, 247, 0.96);
   --c-cream: #2b3a55;
   --c-bone: #1e2e54;
-  --c-gold: #6b4fb0;
-  --c-gold-hi: #5a3fa0;
-  --c-gold-lo: #836bc2;
+  --c-gold: #2D4275;
+  --c-gold-hi: #1e2e54;
+  --c-gold-lo: #3a5292;
   --c-line: rgba(45, 66, 117, 0.14);
   --c-line-strong: rgba(45, 66, 117, 0.26);
   -webkit-backdrop-filter: blur(22px) saturate(140%);

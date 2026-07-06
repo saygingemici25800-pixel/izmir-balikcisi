@@ -26,9 +26,9 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--c-gold);
+  background: var(--c-lav);
   flex: 0 0 auto;
-  box-shadow: 0 0 0 3px rgba(214, 198, 247, 0.2);
+  box-shadow: 0 0 0 3px rgba(214, 198, 247, 0.25);
 }
 .title { font-weight: 500; }
 .range { color: var(--c-gold); }
@@ -42,8 +42,8 @@
   background: rgba(242, 245, 247, 0.97);
   --c-cream: #2b3a55;
   --c-bone: #1e2e54;
-  --c-gold: #6b4fb0;
-  --c-gold-lo: #836bc2;
+  --c-gold: #2D4275;
+  --c-gold-lo: #3a5292;
   --c-line: rgba(45, 66, 117, 0.16);
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);

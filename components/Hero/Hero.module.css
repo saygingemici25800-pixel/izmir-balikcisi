@@ -71,14 +71,14 @@
   letter-spacing: 0.03em;
   padding: 0.95rem 2.1rem;
   border-radius: 999px;
-  background: var(--c-gold);
-  color: #16223f;
+  background: #f2f5f7;
+  color: #1e2e54;
   transition: background var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
 }
 .cta:hover {
-  background: var(--c-gold-hi);
+  background: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px -14px rgba(214, 198, 247, 0.55);
+  box-shadow: 0 16px 34px -14px rgba(255, 255, 255, 0.4);
 }
 .ctaArrow {
   transition: transform var(--dur-med) var(--ease-out);
