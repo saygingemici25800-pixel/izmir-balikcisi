@@ -23,7 +23,7 @@
     "closeMenu": "Menüyü kapat",
     "siteMenu": "Site menüsü",
     "panelCall": "Ara · {phone}",
-    "panelMeta": "Her gün · 10.30 — 22.30 · Fethiye / Muğla",
+    "panelMeta": "Her gün · 10.30 — 23.45 · Fethiye / Muğla",
     "language": "Dil"
   },
   "hero": {
@@ -33,7 +33,7 @@
     "intro": "2014'ten beri Fethiye'de — alkolsüz, aile dostu ve mevsimin en taze balığı.",
     "cta": "Menüyü Keşfet",
     "metaLeft": "№ 001 / Est. 1989",
-    "pin": "Fethiye · Açık · 10.30—22.30",
+    "pin": "Fethiye · Açık · 10.30—23.45",
     "sideLabel": "Otuz Beş Yıllık Sofra · Vol. XXXV",
     "lede": "Muğla'da otuz beş yıllık <em>alkolsüz</em> bir ev. Çocukların kahkahası, büyüklerin sessizliği ve mutfakta bugün ne pişiyorsa. Bir editorial değil; bir <em>tabak</em>.",
     "coords": "36.6536° K / 29.1268° D",
@@ -169,7 +169,7 @@
     "sisterLabel": "Kardeş Mekân",
     "sisterCta": "Ziyaret et",
     "sisterNote": "Çalış sahilinde, aynı sofra.",
-    "hours": "Her gün · 10.30—22.30",
+    "hours": "Her gün · 10.30—23.45",
     "title": "Bir <em>masa</em><br></br>ayırtalım.",
     "lede": "Telefon en hızlısı. Pencere kenarı için biraz erken arayın; en iyi ışık 19.30 ile 20.15 arası.",
     "call": "Ara",
@@ -180,8 +180,8 @@
     "phoneLabel": "Telefon",
     "phoneNote": "Tıkla & ara · WhatsApp kabul ediyoruz",
     "hoursLabel": "Saatler",
-    "hoursValue": "Her gün · 10.30 — 22.30",
-    "hoursNote": "Mutfak son sipariş 22.00",
+    "hoursValue": "Her gün · 10.30 — 23.45",
+    "hoursNote": "Mutfak son sipariş 23.15",
     "notesLabel": "Notlar",
     "notesValue": "Aile dostu · 0% alkol · Vejetaryen menü mevcut",
     "notesNote": "Servis ücreti dahildir",
@@ -254,7 +254,7 @@
     "sub": "Taze Deniz Lezzetleri"
   },
   "marquee": {
-    "a": ["Taze tabaklar", "Sıfır alkol", "Aile dostu", "Fethiye · Muğla", "Bahar 2026", "Açık · 10.30—22.30", "Otuz beş yıl"],
+    "a": ["Taze tabaklar", "Sıfır alkol", "Aile dostu", "Fethiye · Muğla", "Bahar 2026", "Açık · 10.30—23.45", "Otuz beş yıl"],
     "b": ["Bugünün tabakları", "Levrek · Çupra · Kalkan", "Karides güveç", "Hamsi tava", "Ahtapot carpaccio", "Yatay kaydır →"],
     "c": ["Neden alkolsüz?", "Çünkü zaten yeter.", "Birbirini bul", "Bir tabak, bir akşam", "Otuz beş yıllık sofra"]
   },

@@ -20,7 +20,7 @@ export const RESTAURANT = {
   phoneDisplay: '(0252) 612 18 81',
   email: 'merhaba@izmirbalikcisi.example',
   hours: {
-    everyday: { open: '10:30', close: '22:30' },
+    everyday: { open: '10:30', close: '23:45' },
   },
   location: { lat: 36.6383, lng: 29.1397 },
   social: {

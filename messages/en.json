@@ -23,7 +23,7 @@
     "closeMenu": "Close menu",
     "siteMenu": "Site menu",
     "panelCall": "Call · {phone}",
-    "panelMeta": "Every day · 10.30 — 22.30 · Fethiye / Muğla",
+    "panelMeta": "Every day · 10.30 — 23.45 · Fethiye / Muğla",
     "language": "Language"
   },
   "hero": {
@@ -33,7 +33,7 @@
     "intro": "In Fethiye since 2014 — alcohol-free, family-friendly, and the freshest fish of the season.",
     "cta": "Explore the Menu",
     "metaLeft": "№ 001 / Est. 1989",
-    "pin": "Fethiye · Open · 10.30—22.30",
+    "pin": "Fethiye · Open · 10.30—23.45",
     "sideLabel": "Thirty-Five Years at the Table · Vol. XXXV",
     "lede": "A thirty-five-year, <em>alcohol-free</em> home in Muğla. Children laughing, elders at ease, and whatever the kitchen is cooking today. Not an editorial; a <em>plate</em>.",
     "coords": "36.6536° N / 29.1268° E",
@@ -169,7 +169,7 @@
     "sisterLabel": "Sister Venue",
     "sisterCta": "Visit",
     "sisterNote": "On Çalış beach, the same table.",
-    "hours": "Every day · 10.30—22.30",
+    "hours": "Every day · 10.30—23.45",
     "title": "Let's book<br></br>a <em>table</em>.",
     "lede": "The phone is fastest. Call a little early for a window seat; the best light is between 19.30 and 20.15.",
     "call": "Call",
@@ -180,8 +180,8 @@
     "phoneLabel": "Phone",
     "phoneNote": "Tap & call · We accept WhatsApp",
     "hoursLabel": "Hours",
-    "hoursValue": "Every day · 10.30 — 22.30",
-    "hoursNote": "Kitchen last order 22.00",
+    "hoursValue": "Every day · 10.30 — 23.45",
+    "hoursNote": "Kitchen last order 23.15",
     "notesLabel": "Notes",
     "notesValue": "Family-friendly · 0% alcohol · Vegetarian menu available",
     "notesNote": "Service charge included",
@@ -254,7 +254,7 @@
     "sub": "Fresh Seafood"
   },
   "marquee": {
-    "a": ["Fresh plates", "Zero alcohol", "Family-friendly", "Fethiye · Muğla", "Spring 2026", "Open · 10.30—22.30", "Thirty-five years"],
+    "a": ["Fresh plates", "Zero alcohol", "Family-friendly", "Fethiye · Muğla", "Spring 2026", "Open · 10.30—23.45", "Thirty-five years"],
     "b": ["Today's plates", "Sea bass · Bream · Turbot", "Shrimp casserole", "Fried anchovies", "Octopus carpaccio", "Scroll sideways →"],
     "c": ["Why alcohol-free?", "Because it's already enough.", "Find one another", "One plate, one evening", "A table of thirty-five years"]
   },
