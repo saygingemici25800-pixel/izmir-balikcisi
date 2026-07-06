@@ -156,8 +156,15 @@
     "loadMore": "Load more",
     "caps": ["Sea bream", "Anchovy", "Sea bass", "Courtyard", "Shrimp", "Table", "Octopus", "Turbot", "Kitchen"]
   },
+  "philosophy": {
+    "eyebrow": "№ 05 — Philosophy",
+    "heading": "Our Philosophy",
+    "lead": "We believe a table nourishes not only the stomach, but the soul.",
+    "body": "<p>We chose to offer the sea's generosity without letting anything overshadow it. There is no alcohol here — because we know the true flavor lies in the story of a fresh fish, in shared laughter, and in the calm that settles over the table.</p><p>This is a place as fresh as the fish that arrives each morning, as sincere as the care we show every guest. A harbor where children can run freely, elders can talk without a care, and three generations can gather at the same table.</p><p>We believe simplicity is the greatest elegance. What the sea gives us, we set before you just as it is — clean, honest and warm.</p>",
+    "close": "Come in — our table is open to you."
+  },
   "contact": {
-    "eyebrow": "№ 05 — Contact",
+    "eyebrow": "№ 06 — Contact",
     "heading": "Get in Touch",
     "sisterLabel": "Sister Venue",
     "sisterCta": "Visit",

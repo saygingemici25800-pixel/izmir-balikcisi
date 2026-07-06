@@ -1,0 +1,68 @@
+/* Philosophy — a navy editorial "statement" band between two light sections. */
+.section {
+  position: relative;
+  background: linear-gradient(180deg, #2d4275 0%, #223a68 55%, #1b2b50 100%);
+  padding-block: clamp(6rem, 14vw, 11rem);
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+  isolation: isolate;
+  overflow: hidden;
+  text-align: center;
+}
+
+.inner {
+  max-width: 720px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.heading {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 6vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--c-bone);
+}
+
+.lead {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  line-height: 1.4;
+  color: var(--c-bone);
+  max-width: 28ch;
+}
+
+/* tiny lavender accent */
+.rule {
+  width: 44px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--c-lav);
+  opacity: 0.85;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  max-width: 62ch;
+  font-family: var(--f-body);
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.85;
+  color: var(--c-cream);
+  opacity: 0.94;
+}
+
+.close {
+  margin-top: clamp(1rem, 2.5vw, 1.75rem);
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.3;
+  color: var(--c-bone);
+}

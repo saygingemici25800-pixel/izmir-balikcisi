@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
-import { Amiri, Playfair_Display, Tajawal } from 'next/font/google';
+import { Amiri, Hanken_Grotesk, Libre_Caslon_Text, Tajawal } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import '../globals.css';
@@ -29,13 +29,20 @@ const tajawal = Tajawal({
   preload: false,
 });
 
-// Editorial serif display (Latin) — drives --f-display for TR/EN. Beautiful
-// italic for the second hero line. Self-hosted by next/font at build.
-const playfair = Playfair_Display({
+// Editorial serif display (Latin) — drives --f-display for TR/EN (Libre Caslon
+// Text). Self-hosted by next/font at build.
+const libreCaslon = Libre_Caslon_Text({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '700'],
   style: ['normal', 'italic'],
   variable: '--f-serif',
+  display: 'swap',
+});
+// Body sans (Latin) — drives --f-body for TR/EN (Hanken Grotesk).
+const hankenGrotesk = Hanken_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--f-sans',
   display: 'swap',
 });
 
@@ -154,10 +161,8 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} dir={rtl ? 'rtl' : 'ltr'} className={`${playfair.variable} ${amiri.variable} ${tajawal.variable}`}>
+    <html lang={locale} dir={rtl ? 'rtl' : 'ltr'} className={`${libreCaslon.variable} ${hankenGrotesk.variable} ${amiri.variable} ${tajawal.variable}`}>
       <head>
-        <link rel="preload" href="/fonts/Panchang-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Satoshi-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger

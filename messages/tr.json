@@ -156,8 +156,15 @@
     "loadMore": "Daha fazla",
     "caps": ["Çupra", "Hamsi", "Levrek", "Avlu", "Karides", "Masa", "Ahtapot", "Kalkan", "Mutfak"]
   },
+  "philosophy": {
+    "eyebrow": "№ 05 — Felsefe",
+    "heading": "Felsefemiz",
+    "lead": "Biz, sofranın sadece karnı değil, ruhu da doyurduğuna inanırız.",
+    "body": "<p>Denizin cömertliğini, hiçbir şeyin gölgesinde bırakmadan sunmayı seçtik. Burada alkol yok; çünkü asıl lezzetin, taze bir balığın kendi hikâyesinde, paylaşılan bir kahkahada ve masaya çöken huzurda saklı olduğunu biliyoruz.</p><p>Her sabah tezgâha gelen balık kadar taze, her misafirimize gösterdiğimiz özen kadar içten bir yer burası. Çocukların rahatça koşabildiği, büyüklerin dertsizce sohbet edebildiği, üç kuşağın aynı sofrada buluşabildiği bir liman.</p><p>Sadeliğin en büyük zarafet olduğuna inanıyoruz. Denizin bize verdiğini, olduğu gibi — temiz, dürüst ve sıcacık — önünüze koyuyoruz.</p>",
+    "close": "Buyurun; soframız, huzurunuza açık."
+  },
   "contact": {
-    "eyebrow": "№ 05 — İletişim",
+    "eyebrow": "№ 06 — İletişim",
     "heading": "Bizimle İletişime Geçin",
     "sisterLabel": "Kardeş Mekân",
     "sisterCta": "Ziyaret et",
