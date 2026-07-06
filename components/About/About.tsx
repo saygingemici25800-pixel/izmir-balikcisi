@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { RESTAURANT } from '@/lib/constants';
 import styles from './About.module.css';
 
@@ -17,8 +18,35 @@ const reveal = {
   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-export function About() {
+export function About({ teaser = false }: { teaser?: boolean }) {
   const t = useTranslations('about');
+
+  // Home teaser — eyebrow + heading + one-line summary + photo + link to /hikaye.
+  if (teaser) {
+    return (
+      <section className={styles.section} id="hikaye">
+        <motion.div className={styles.head} {...reveal}>
+          <span className="eyebrow">{t('eyebrow')}</span>
+          <h2 className={styles.heading}>{t('heading')}</h2>
+        </motion.div>
+
+        <motion.div className={styles.photo} {...reveal}>
+          <Image src={STORY_IMG} alt="" fill sizes="(max-width: 980px) 92vw, 1080px" className={styles.photoImg} />
+        </motion.div>
+
+        <motion.p className={styles.teaserText} {...reveal}>
+          {t('teaser')}
+        </motion.p>
+
+        <motion.div className={styles.moreWrap} {...reveal}>
+          <Link href="/hikaye" className={styles.more} data-magnetic data-cursor-label={t('moreCta')}>
+            {t('moreCta')} <span aria-hidden>→</span>
+          </Link>
+        </motion.div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.section} id="hikaye">
       <motion.div className={styles.head} {...reveal}>

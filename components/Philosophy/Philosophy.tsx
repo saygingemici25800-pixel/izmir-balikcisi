@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import styles from './Philosophy.module.css';
 
 const reveal = {
@@ -11,8 +12,28 @@ const reveal = {
   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-export function Philosophy() {
+export function Philosophy({ teaser = false }: { teaser?: boolean }) {
   const t = useTranslations('philosophy');
+
+  // Home teaser — eyebrow + heading + italic lead + rule + link to /hikaye.
+  if (teaser) {
+    return (
+      <section className={`${styles.section} darkSurface`} id="felsefe">
+        <div className={styles.inner}>
+          <motion.span className="eyebrow" {...reveal}>{t('eyebrow')}</motion.span>
+          <motion.h2 className={styles.heading} {...reveal}>{t('heading')}</motion.h2>
+          <motion.p className={styles.lead} {...reveal}>{t('lead')}</motion.p>
+          <motion.span className={styles.rule} aria-hidden {...reveal} />
+          <motion.div {...reveal}>
+            <Link href="/hikaye" className={styles.more} data-magnetic data-cursor-label={t('moreCta')}>
+              {t('moreCta')} <span aria-hidden>→</span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={`${styles.section} darkSurface`} id="felsefe">
       <div className={styles.inner}>

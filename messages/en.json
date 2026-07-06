@@ -6,7 +6,16 @@
     "menuDescription": "The full İzmir Balıkçısı menu: mezes, soups, grilled fish, steamed and fried dishes, and alcohol-free drinks. A fresh table in Fethiye / Muğla.",
     "menuOgTitle": "Menu — İzmir Balıkçısı",
     "notFoundTitle": "No seat at this table — 404",
-    "notFoundDescription": "The page you're looking for wasn't found. You can return home or to the menu."
+    "notFoundDescription": "The page you're looking for wasn't found. You can return home or to the menu.",
+    "storyTitle": "Our Story — İzmir Balıkçısı · Fethiye / Muğla",
+    "storyDescription": "Our journey from the sea to your table: a passion for the sea since 1999, İzmir Balıkçısı in Fethiye since 2014. Our family’s story and kitchen philosophy.",
+    "storyOgTitle": "Our Story — İzmir Balıkçısı",
+    "galleryTitle": "Gallery — İzmir Balıkçısı · Fethiye / Muğla",
+    "galleryDescription": "Moments from İzmir Balıkçısı: fresh seafood, mezes, the table and the setting. Photographs of an evening in Fethiye / Muğla.",
+    "galleryOgTitle": "Gallery — İzmir Balıkçısı",
+    "contactTitle": "Contact & Directions — İzmir Balıkçısı · Fethiye / Muğla",
+    "contactDescription": "Reach İzmir Balıkçısı: address, phone, opening hours and directions. Tuzla, Mustafa Kemal Blv. No:30, Fethiye / Muğla. Every day 10.30 — 23.45.",
+    "contactOgTitle": "Contact — İzmir Balıkçısı"
   },
   "nav": {
     "hikaye": "Story",
@@ -77,7 +86,9 @@
         "body": "Thirty-five years, zero alcohol, one hundred and twenty-four seats. The father still walks the market first, the son still cracks the salt. The sea is in no hurry; neither are we.",
         "caption": "Today · Mustafa Kemal Blv."
       }
-    }
+    },
+    "teaser": "A passion for the sea that began in 1999 — today a family table in Fethiye, bringing you the catch chosen fresh from the counter each morning.",
+    "moreCta": "Read our full story"
   },
   "menuScroll": {
     "eyebrow": "№ 03 — Menu",
@@ -154,14 +165,26 @@
     "next": "Next",
     "hint": "← → / Esc",
     "loadMore": "Load more",
-    "caps": ["Sea bream", "Anchovy", "Sea bass", "Courtyard", "Shrimp", "Table", "Octopus", "Turbot", "Kitchen"]
+    "caps": [
+      "Sea bream",
+      "Anchovy",
+      "Sea bass",
+      "Courtyard",
+      "Shrimp",
+      "Table",
+      "Octopus",
+      "Turbot",
+      "Kitchen"
+    ],
+    "moreCta": "See the full gallery"
   },
   "philosophy": {
     "eyebrow": "№ 05 — Philosophy",
     "heading": "Our Philosophy",
     "lead": "We believe a table nourishes not only the stomach, but the soul.",
     "body": "<p>We chose to offer the sea's generosity without letting anything overshadow it. There is no alcohol here — because we know the true flavor lies in the story of a fresh fish, in shared laughter, and in the calm that settles over the table.</p><p>This is a place as fresh as the fish that arrives each morning, as sincere as the care we show every guest. A harbor where children can run freely, elders can talk without a care, and three generations can gather at the same table.</p><p>We believe simplicity is the greatest elegance. What the sea gives us, we set before you just as it is — clean, honest and warm.</p>",
-    "close": "Come in — our table is open to you."
+    "close": "Come in — our table is open to you.",
+    "moreCta": "Our full philosophy"
   },
   "contact": {
     "eyebrow": "№ 06 — Contact",
@@ -187,7 +210,8 @@
     "notesNote": "Service charge included",
     "openMaps": "Open in Google Maps",
     "openMapsLabel": "Open",
-    "mapTitle": "{name} location — Tuzla, Fethiye / Muğla"
+    "mapTitle": "{name} location — Tuzla, Fethiye / Muğla",
+    "moreCta": "Contact & directions"
   },
   "footer": {
     "sisterBadge": "Sister Venue",
@@ -254,9 +278,30 @@
     "sub": "Fresh Seafood"
   },
   "marquee": {
-    "a": ["Fresh plates", "Zero alcohol", "Family-friendly", "Fethiye · Muğla", "Spring 2026", "Open · 10.30—23.45", "Thirty-five years"],
-    "b": ["Today's plates", "Sea bass · Bream · Turbot", "Shrimp casserole", "Fried anchovies", "Octopus carpaccio", "Scroll sideways →"],
-    "c": ["Why alcohol-free?", "Because it's already enough.", "Find one another", "One plate, one evening", "A table of thirty-five years"]
+    "a": [
+      "Fresh plates",
+      "Zero alcohol",
+      "Family-friendly",
+      "Fethiye · Muğla",
+      "Spring 2026",
+      "Open · 10.30—23.45",
+      "Thirty-five years"
+    ],
+    "b": [
+      "Today's plates",
+      "Sea bass · Bream · Turbot",
+      "Shrimp casserole",
+      "Fried anchovies",
+      "Octopus carpaccio",
+      "Scroll sideways →"
+    ],
+    "c": [
+      "Why alcohol-free?",
+      "Because it's already enough.",
+      "Find one another",
+      "One plate, one evening",
+      "A table of thirty-five years"
+    ]
   },
   "notFound": {
     "eyebrow": "№ 404 — Not Found",

@@ -16,15 +16,15 @@ export default async function Page({ params: { locale } }: { params: { locale: s
     <>
       <Hero />
 
-      <About />
+      <About teaser />
 
       <MenuScroll menu={menu} />
 
-      <Gallery />
+      <Gallery teaser />
 
-      <Philosophy />
+      <Philosophy teaser />
 
-      <Contact />
+      <Contact teaser />
 
       <Footer />
     </>

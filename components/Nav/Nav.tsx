@@ -5,19 +5,23 @@ import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import styles from './Nav.module.css';
 import { RESTAURANT } from '@/lib/constants';
-import { SectionLink } from '@/components/SectionLink';
 import { SeasonalButton, type SeasonalData } from '@/components/SeasonalButton/SeasonalButton';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
 
-// Section ids (stable anchors); labels come from the `nav` message namespace.
-const LINK_IDS = ['hikaye', 'menu', 'galeri', 'iletisim'] as const;
+// Primary nav — each section is now its own SEO route; labels come from the
+// `nav` message namespace.
+const LINKS = [
+  { id: 'hikaye', href: '/hikaye' },
+  { id: 'menu', href: '/menu' },
+  { id: 'galeri', href: '/galeri' },
+  { id: 'iletisim', href: '/iletisim' },
+] as const;
 
 export function Nav({ seasonal }: { seasonal: SeasonalData }) {
   const t = useTranslations('nav');
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -25,32 +29,6 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  // Active-section indicator (scroll-spy) — only the home page has these anchors.
-  useEffect(() => {
-    if (pathname !== '/') {
-      setActive('');
-      return;
-    }
-    const els = LINK_IDS.map((id) => document.getElementById(id)).filter(
-      (el): el is HTMLElement => el !== null
-    );
-    if (!els.length) {
-      setActive('');
-      return;
-    }
-    // a thin centre line: exactly one section crosses it at a time → unambiguous
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
-      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
-    );
-    els.forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
-  }, [pathname]);
 
   // ESC to close + lock body scroll while the panel is open
   useEffect(() => {
@@ -66,9 +44,9 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
     };
   }, [open]);
 
-  // Which nav item is highlighted: the menu page marks "Menü"; the home page
-  // uses the scroll-spy section.
-  const activeId = pathname === '/menu' ? 'menu' : active;
+  // Highlight the nav item whose page we're on (pathname has no locale prefix).
+  const activeId =
+    LINKS.find((l) => pathname === l.href || pathname.startsWith(`${l.href}/`))?.id ?? '';
 
   // Logo → always home. On the home page, smooth-scroll to top in place.
   const goHome = (e: React.MouseEvent) => {
@@ -98,19 +76,19 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
         </Link>
 
         <div className={styles.links}>
-          {LINK_IDS.map((id) => {
+          {LINKS.map(({ id, href }) => {
             const isActive = activeId === id;
             return (
-              <SectionLink
+              <Link
                 key={id}
-                id={id}
+                href={href}
                 className={`${styles.link} ${isActive ? styles.linkActive : ''}`}
                 aria-current={isActive ? 'page' : undefined}
                 data-magnetic
                 data-cursor-label={t(id)}
               >
                 {t(id)}
-              </SectionLink>
+              </Link>
             );
           })}
         </div>
@@ -160,18 +138,18 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
         data-open={open}
       >
         <nav className={styles.panelLinks}>
-          {LINK_IDS.map((id) => {
+          {LINKS.map(({ id, href }) => {
             const isActive = activeId === id;
             return (
-              <SectionLink
+              <Link
                 key={id}
-                id={id}
+                href={href}
                 className={`${styles.panelLink} ${isActive ? styles.panelLinkActive : ''}`}
                 aria-current={isActive ? 'page' : undefined}
-                onNavigate={() => setOpen(false)}
+                onClick={() => setOpen(false)}
               >
                 {t(id)}
-              </SectionLink>
+              </Link>
             );
           })}
         </nav>

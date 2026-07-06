@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import MenuFull from '@/components/MenuFull/MenuFull';
+import { About } from '@/components/About/About';
+import { Philosophy } from '@/components/Philosophy/Philosophy';
 import { PageShell } from '@/components/PageShell/PageShell';
-import { getContent } from '@/lib/content';
 import { alternatesFor, localeUrl } from '@/lib/seo';
 
 export async function generateMetadata({
@@ -12,33 +12,33 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'meta' });
   return {
-    title: { absolute: t('menuTitle') },
-    description: t('menuDescription'),
-    alternates: alternatesFor(locale, '/menu'),
+    title: { absolute: t('storyTitle') },
+    description: t('storyDescription'),
+    alternates: alternatesFor(locale, '/hikaye'),
     openGraph: {
-      title: t('menuOgTitle'),
-      description: t('menuDescription'),
-      url: localeUrl(locale, '/menu'),
-      type: 'website',
+      title: t('storyOgTitle'),
+      description: t('storyDescription'),
+      url: localeUrl(locale, '/hikaye'),
+      type: 'article',
     },
   };
 }
 
-export default async function MenuPage({
+export default async function HikayePage({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
   setRequestLocale(locale);
-  const { menu } = await getContent();
   const tn = await getTranslations({ locale, namespace: 'nav' });
   return (
     <PageShell
       locale={locale}
       homeLabel={tn('home')}
-      current={{ label: tn('menu'), path: '/menu' }}
+      current={{ label: tn('hikaye'), path: '/hikaye' }}
     >
-      <MenuFull menu={menu} />
+      <About />
+      <Philosophy />
     </PageShell>
   );
 }

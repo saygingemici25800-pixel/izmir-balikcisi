@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import styles from './Footer.module.css';
 import { RESTAURANT } from '@/lib/constants';
-import { SectionLink } from '@/components/SectionLink';
+import { Link } from '@/i18n/navigation';
 import { SisterCta } from '@/components/SisterCta/SisterCta';
 
 export function Footer() {
@@ -22,10 +22,10 @@ export function Footer() {
         <nav className={styles.col} aria-label={t('colSection')}>
           <h4>{t('colSection')}</h4>
           <ul>
-            <li><SectionLink id="hikaye">{tn('hikaye')}</SectionLink></li>
-            <li><SectionLink id="menu">{tn('menu')}</SectionLink></li>
-            <li><SectionLink id="galeri">{tn('galeri')}</SectionLink></li>
-            <li><SectionLink id="iletisim">{tn('iletisim')}</SectionLink></li>
+            <li><Link href="/hikaye">{tn('hikaye')}</Link></li>
+            <li><Link href="/menu">{tn('menu')}</Link></li>
+            <li><Link href="/galeri">{tn('galeri')}</Link></li>
+            <li><Link href="/iletisim">{tn('iletisim')}</Link></li>
           </ul>
         </nav>
 

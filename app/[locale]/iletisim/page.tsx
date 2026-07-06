@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import MenuFull from '@/components/MenuFull/MenuFull';
+import { Contact } from '@/components/Contact/Contact';
 import { PageShell } from '@/components/PageShell/PageShell';
-import { getContent } from '@/lib/content';
 import { alternatesFor, localeUrl } from '@/lib/seo';
 
 export async function generateMetadata({
@@ -12,33 +11,32 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'meta' });
   return {
-    title: { absolute: t('menuTitle') },
-    description: t('menuDescription'),
-    alternates: alternatesFor(locale, '/menu'),
+    title: { absolute: t('contactTitle') },
+    description: t('contactDescription'),
+    alternates: alternatesFor(locale, '/iletisim'),
     openGraph: {
-      title: t('menuOgTitle'),
-      description: t('menuDescription'),
-      url: localeUrl(locale, '/menu'),
+      title: t('contactOgTitle'),
+      description: t('contactDescription'),
+      url: localeUrl(locale, '/iletisim'),
       type: 'website',
     },
   };
 }
 
-export default async function MenuPage({
+export default async function IletisimPage({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
   setRequestLocale(locale);
-  const { menu } = await getContent();
   const tn = await getTranslations({ locale, namespace: 'nav' });
   return (
     <PageShell
       locale={locale}
       homeLabel={tn('home')}
-      current={{ label: tn('menu'), path: '/menu' }}
+      current={{ label: tn('iletisim'), path: '/iletisim' }}
     >
-      <MenuFull menu={menu} />
+      <Contact />
     </PageShell>
   );
 }

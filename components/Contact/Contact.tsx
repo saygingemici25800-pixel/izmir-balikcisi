@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import styles from './Contact.module.css';
 import { RESTAURANT } from '@/lib/constants';
 
@@ -23,8 +24,39 @@ const reveal = {
   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-export function Contact() {
+export function Contact({ teaser = false }: { teaser?: boolean }) {
   const t = useTranslations('contact');
+
+  // Home teaser — heading + phone + address (with directions) + link to /iletisim.
+  if (teaser) {
+    return (
+      <section className={styles.section} id="iletisim">
+        <motion.div className={styles.head} {...reveal}>
+          <span className="eyebrow">{t('eyebrow')}</span>
+          <h2 className={styles.heading}>{t('heading')}</h2>
+        </motion.div>
+
+        <motion.div className={styles.teaserInfo} {...reveal}>
+          <a className={styles.phone} href={`tel:${RESTAURANT.phoneE164}`} data-magnetic data-cursor-label={t('call')}>
+            <span className={styles.phoneLabel}>{t('phoneLabel')}</span>
+            <span className={styles.phoneNum}>{RESTAURANT.phoneDisplay}</span>
+          </a>
+
+          <p className={styles.teaserAddr}>
+            <a className={styles.link} href={MAPS_URL} target="_blank" rel="noreferrer">
+              {RESTAURANT.address.street} · {RESTAURANT.address.postalCode}{' '}
+              {RESTAURANT.address.locality} / {RESTAURANT.address.region}
+            </a>
+          </p>
+
+          <Link href="/iletisim" className={styles.more} data-magnetic data-cursor-label={t('moreCta')}>
+            {t('moreCta')} <span aria-hidden>→</span>
+          </Link>
+        </motion.div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.section} id="iletisim">
       <motion.div className={styles.head} {...reveal}>

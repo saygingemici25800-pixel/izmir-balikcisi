@@ -6,7 +6,16 @@
     "menuDescription": "İzmir Balıkçısı tam menüsü: mezeler, çorbalar, ızgara balıklar, buğulama, tava ve alkolsüz içecekler. Fethiye / Muğla'da taze bir sofra.",
     "menuOgTitle": "Menü — İzmir Balıkçısı",
     "notFoundTitle": "Bu masada yer yok — 404",
-    "notFoundDescription": "Aradığınız sayfa bulunamadı. Ana sayfaya veya menüye dönebilirsiniz."
+    "notFoundDescription": "Aradığınız sayfa bulunamadı. Ana sayfaya veya menüye dönebilirsiniz.",
+    "storyTitle": "Hikâyemiz — İzmir Balıkçısı · Fethiye / Muğla",
+    "storyDescription": "Denizden sofraya lezzet yolculuğumuz: 1999'da başlayan deniz tutkusu, 2014'ten beri Fethiye'de İzmir Balıkçısı. Ailemizin hikâyesi ve mutfak felsefemiz.",
+    "storyOgTitle": "Hikâyemiz — İzmir Balıkçısı",
+    "galleryTitle": "Galeri — İzmir Balıkçısı · Fethiye / Muğla",
+    "galleryDescription": "İzmir Balıkçısı'ndan kareler: taze deniz ürünleri, mezeler, sofra ve mekân. Fethiye / Muğla'da bir akşamın fotoğrafları.",
+    "galleryOgTitle": "Galeri — İzmir Balıkçısı",
+    "contactTitle": "İletişim & Yol Tarifi — İzmir Balıkçısı · Fethiye / Muğla",
+    "contactDescription": "İzmir Balıkçısı iletişim: adres, telefon, çalışma saatleri ve yol tarifi. Tuzla, Mustafa Kemal Blv. No:30, Fethiye / Muğla. Her gün 10.30 — 23.45.",
+    "contactOgTitle": "İletişim — İzmir Balıkçısı"
   },
   "nav": {
     "hikaye": "Hikâye",
@@ -77,7 +86,9 @@
         "body": "Otuz beş yıl, sıfır alkol, yüz yirmi dört koltuk. Baba hâlâ hâli ilk gezen, oğul hâlâ tuzu kıran. Deniz acele etmiyor; biz de etmiyoruz.",
         "caption": "Bugün · Mustafa Kemal Blv."
       }
-    }
+    },
+    "teaser": "1999'da başlayan bir deniz tutkusu; bugün Fethiye'de, her sabah tezgâhtan seçilen balığı sofranıza taşıyan bir aile mekânı.",
+    "moreCta": "Hikâyemizin devamı"
   },
   "menuScroll": {
     "eyebrow": "№ 03 — Menü",
@@ -154,14 +165,26 @@
     "next": "Sonraki",
     "hint": "← → / Esc",
     "loadMore": "Daha fazla",
-    "caps": ["Çupra", "Hamsi", "Levrek", "Avlu", "Karides", "Masa", "Ahtapot", "Kalkan", "Mutfak"]
+    "caps": [
+      "Çupra",
+      "Hamsi",
+      "Levrek",
+      "Avlu",
+      "Karides",
+      "Masa",
+      "Ahtapot",
+      "Kalkan",
+      "Mutfak"
+    ],
+    "moreCta": "Tüm galeriyi gör"
   },
   "philosophy": {
     "eyebrow": "№ 05 — Felsefe",
     "heading": "Felsefemiz",
     "lead": "Biz, sofranın sadece karnı değil, ruhu da doyurduğuna inanırız.",
     "body": "<p>Denizin cömertliğini, hiçbir şeyin gölgesinde bırakmadan sunmayı seçtik. Burada alkol yok; çünkü asıl lezzetin, taze bir balığın kendi hikâyesinde, paylaşılan bir kahkahada ve masaya çöken huzurda saklı olduğunu biliyoruz.</p><p>Her sabah tezgâha gelen balık kadar taze, her misafirimize gösterdiğimiz özen kadar içten bir yer burası. Çocukların rahatça koşabildiği, büyüklerin dertsizce sohbet edebildiği, üç kuşağın aynı sofrada buluşabildiği bir liman.</p><p>Sadeliğin en büyük zarafet olduğuna inanıyoruz. Denizin bize verdiğini, olduğu gibi — temiz, dürüst ve sıcacık — önünüze koyuyoruz.</p>",
-    "close": "Buyurun; soframız, huzurunuza açık."
+    "close": "Buyurun; soframız, huzurunuza açık.",
+    "moreCta": "Felsefemizin tamamı"
   },
   "contact": {
     "eyebrow": "№ 06 — İletişim",
@@ -187,7 +210,8 @@
     "notesNote": "Servis ücreti dahildir",
     "openMaps": "Google Maps'te aç",
     "openMapsLabel": "Aç",
-    "mapTitle": "{name} konumu — Tuzla, Fethiye / Muğla"
+    "mapTitle": "{name} konumu — Tuzla, Fethiye / Muğla",
+    "moreCta": "İletişim ve yol tarifi"
   },
   "footer": {
     "sisterBadge": "Kardeş Mekân",
@@ -254,9 +278,30 @@
     "sub": "Taze Deniz Lezzetleri"
   },
   "marquee": {
-    "a": ["Taze tabaklar", "Sıfır alkol", "Aile dostu", "Fethiye · Muğla", "Bahar 2026", "Açık · 10.30—23.45", "Otuz beş yıl"],
-    "b": ["Bugünün tabakları", "Levrek · Çupra · Kalkan", "Karides güveç", "Hamsi tava", "Ahtapot carpaccio", "Yatay kaydır →"],
-    "c": ["Neden alkolsüz?", "Çünkü zaten yeter.", "Birbirini bul", "Bir tabak, bir akşam", "Otuz beş yıllık sofra"]
+    "a": [
+      "Taze tabaklar",
+      "Sıfır alkol",
+      "Aile dostu",
+      "Fethiye · Muğla",
+      "Bahar 2026",
+      "Açık · 10.30—23.45",
+      "Otuz beş yıl"
+    ],
+    "b": [
+      "Bugünün tabakları",
+      "Levrek · Çupra · Kalkan",
+      "Karides güveç",
+      "Hamsi tava",
+      "Ahtapot carpaccio",
+      "Yatay kaydır →"
+    ],
+    "c": [
+      "Neden alkolsüz?",
+      "Çünkü zaten yeter.",
+      "Birbirini bul",
+      "Bir tabak, bir akşam",
+      "Otuz beş yıllık sofra"
+    ]
   },
   "notFound": {
     "eyebrow": "№ 404 — Bulunamadı",

@@ -2,8 +2,9 @@ import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/constants';
 
 // Pages, listed at the default-locale (TR, un-prefixed) URL with per-locale
-// hreflang alternates so search engines index every language.
-const PATHS = ['', '/menu'];
+// hreflang alternates so search engines index every language. Each main section
+// is its own SEO route (/hikaye folds in the philosophy).
+const PATHS = ['', '/hikaye', '/menu', '/galeri', '/iletisim'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

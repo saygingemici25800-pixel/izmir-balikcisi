@@ -1,0 +1,7 @@
+/* Breadcrumb already clears the nav and adds the top gap → trim the page's
+   first content element (the child right after the breadcrumb nav) so pages
+   don't open with a double gap. `:nth-child(2)` covers <section> content
+   (About / Gallery / Contact) and MenuFull's <article> root alike. */
+.shell > :nth-child(2) {
+  padding-block-start: clamp(0.5rem, 2vw, 1.75rem);
+}

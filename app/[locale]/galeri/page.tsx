@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import MenuFull from '@/components/MenuFull/MenuFull';
+import { Gallery } from '@/components/Gallery/Gallery';
 import { PageShell } from '@/components/PageShell/PageShell';
-import { getContent } from '@/lib/content';
 import { alternatesFor, localeUrl } from '@/lib/seo';
 
 export async function generateMetadata({
@@ -12,33 +11,32 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'meta' });
   return {
-    title: { absolute: t('menuTitle') },
-    description: t('menuDescription'),
-    alternates: alternatesFor(locale, '/menu'),
+    title: { absolute: t('galleryTitle') },
+    description: t('galleryDescription'),
+    alternates: alternatesFor(locale, '/galeri'),
     openGraph: {
-      title: t('menuOgTitle'),
-      description: t('menuDescription'),
-      url: localeUrl(locale, '/menu'),
+      title: t('galleryOgTitle'),
+      description: t('galleryDescription'),
+      url: localeUrl(locale, '/galeri'),
       type: 'website',
     },
   };
 }
 
-export default async function MenuPage({
+export default async function GaleriPage({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
   setRequestLocale(locale);
-  const { menu } = await getContent();
   const tn = await getTranslations({ locale, namespace: 'nav' });
   return (
     <PageShell
       locale={locale}
       homeLabel={tn('home')}
-      current={{ label: tn('menu'), path: '/menu' }}
+      current={{ label: tn('galeri'), path: '/galeri' }}
     >
-      <MenuFull menu={menu} />
+      <Gallery />
     </PageShell>
   );
 }

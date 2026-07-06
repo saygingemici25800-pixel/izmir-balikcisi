@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import styles from './Gallery.module.css';
 
 // Image sources + intrinsic dimensions stay in code; captions come from the
@@ -23,13 +24,13 @@ const SHOTS = [
 
 const SIZES = '(max-width: 600px) 92vw, (max-width: 980px) 46vw, 30vw';
 
-export function Gallery() {
+export function Gallery({ teaser = false }: { teaser?: boolean }) {
   const t = useTranslations('gallery');
   const caps = t.raw('caps') as string[];
   const cap = (i: number) => caps[i] ?? '';
 
   const [open, setOpen] = useState<number | null>(null);
-  const [shown, setShown] = useState(6);
+  const [shown, setShown] = useState(teaser ? 5 : 6);
   const [loaded, setLoaded] = useState<Record<number, boolean>>({});
   const markLoaded = (i: number) => setLoaded((s) => (s[i] ? s : { ...s, [i]: true }));
 
@@ -103,7 +104,7 @@ export function Gallery() {
         ))}
       </div>
 
-      {shown < SHOTS.length && (
+      {!teaser && shown < SHOTS.length && (
         <div className={styles.more}>
           <button
             type="button"
@@ -114,6 +115,14 @@ export function Gallery() {
           >
             {t('loadMore')}
           </button>
+        </div>
+      )}
+
+      {teaser && (
+        <div className={styles.more}>
+          <Link href="/galeri" className={styles.seeAllLink} data-magnetic data-cursor-label={t('moreCta')}>
+            {t('moreCta')} <span aria-hidden>→</span>
+          </Link>
         </div>
       )}
 
