@@ -158,7 +158,7 @@ export const MENU: MenuCategory[] = [
     title: L('Izgara Balıklar', 'Grilled Fish', 'الأسماك المشوية'),
     subtitle: L('Günlük fiyat · kilogram', 'Daily price · per kg', 'السعر يومي · بالكيلوغرام'),
     items: [
-      { name: L('Laos Şiş', 'Grouper skewer', 'أسياخ الهامور'), daily: true },
+      { name: L('Laos Şiş', 'Grouper skewer', 'أسياخ الهامور') },
       { name: L('Levrek Lokum', 'Sea bass cubes', 'مكعبات القاروص'), daily: true },
       { name: L('Deniz Levreği KG', 'Sea bass', 'قاروص بحري'), daily: true },
       { name: L('Deniz Çupra KG', 'Sea bream', 'دنيس بحري'), daily: true },
@@ -170,7 +170,7 @@ export const MENU: MenuCategory[] = [
       { name: L('Somon KG', 'Salmon', 'سلمون'), daily: true },
       { name: L('Dülger KG', 'John Dory', 'سمك الديك (جون دوري)'), daily: true },
       { name: L('Çinekop KG', 'Young bluefish', 'لوفر صغير (تشينيكوب)'), daily: true },
-      { name: L('Palamut Adet', 'Bonito (piece)', 'بلاميدة (بالحبة)'), daily: true },
+      { name: L('Palamut Adet', 'Bonito (piece)', 'بلاميدة (بالحبة)') },
       { name: L('Uskumru KG', 'Mackerel', 'إسقمري'), daily: true },
       { name: L('Kılıç KG', 'Marlin', 'سمك أبو سيف (مارلين)'), daily: true },
     ],
