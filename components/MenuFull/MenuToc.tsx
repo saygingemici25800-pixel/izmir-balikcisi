@@ -3,13 +3,13 @@
 import { useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import styles from './MenuFull.module.css';
-import type { MenuCategory } from '@/lib/menu';
+import { pickLocale, type MenuCategory } from '@/lib/menu';
 
 // Sticky TOC offset — nav (~64) + sticky TOC band (~48) + breathing room
 // Stays in sync with .category scroll-margin-top in MenuFull.module.css
 const SCROLL_OFFSET = -120;
 
-export default function MenuToc({ categories }: { categories: MenuCategory[] }) {
+export default function MenuToc({ categories, locale }: { categories: MenuCategory[]; locale: string }) {
   const t = useTranslations('menuFull');
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -40,7 +40,7 @@ export default function MenuToc({ categories }: { categories: MenuCategory[] }) 
             className={styles.tocLink}
             onClick={(e) => handleClick(e, c.id)}
           >
-            {c.title}
+            {pickLocale(c.title, locale)}
           </a>
         ))}
       </nav>

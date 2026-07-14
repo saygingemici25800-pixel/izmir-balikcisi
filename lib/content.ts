@@ -2,9 +2,9 @@ import 'server-only';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { unstable_cache, revalidateTag } from 'next/cache';
-import { MENU, type MenuCategory, type MenuItem } from './menu';
+import { MENU, type MenuCategory, type MenuItem, type Localized } from './menu';
 
-export type { MenuCategory, MenuItem };
+export type { MenuCategory, MenuItem, Localized };
 
 export type Seasonal = {
   title: string;
@@ -37,10 +37,54 @@ export const DEFAULT_CONTENT: SiteContent = {
 
 const useBlob = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 
+type LocLike = string | Partial<Localized> | undefined | null;
+
+/** Accept a plain string (legacy data) or a partial localized object. */
+const coerceLoc = (v: LocLike): Localized => {
+  if (typeof v === 'string') return { tr: v, en: v, ar: v };
+  const o = (v ?? {}) as Partial<Localized>;
+  const tr = typeof o.tr === 'string' ? o.tr : '';
+  return {
+    tr,
+    en: typeof o.en === 'string' ? o.en : tr,
+    ar: typeof o.ar === 'string' ? o.ar : tr,
+  };
+};
+
+/** Coerce arbitrary stored menu JSON into the current localized shape. */
+const coerceMenu = (raw: unknown): MenuCategory[] => {
+  if (!Array.isArray(raw)) return DEFAULT_CONTENT.menu;
+  return (raw as unknown[]).map((c) => {
+    const cat = (c ?? {}) as Record<string, unknown>;
+    const items = Array.isArray(cat.items) ? (cat.items as unknown[]) : [];
+    return {
+      id: typeof cat.id === 'string' ? cat.id : '',
+      title: coerceLoc(cat.title as LocLike),
+      subtitle: cat.subtitle != null ? coerceLoc(cat.subtitle as LocLike) : undefined,
+      items: items.map((r): MenuItem => {
+        const it = (r ?? {}) as Record<string, unknown>;
+        return {
+          name: coerceLoc(it.name as LocLike),
+          price:
+            typeof it.price === 'string'
+              ? it.price
+              : typeof it.price === 'number'
+                ? String(it.price)
+                : undefined,
+          unit: typeof it.unit === 'string' ? it.unit : undefined,
+          daily: it.daily === true,
+          img: typeof it.img === 'string' ? it.img : undefined,
+          featured: it.featured === true,
+        };
+      }),
+    };
+  });
+};
+
 /** Defensive coercion so a malformed store can never crash the site. */
 function normalize(input: unknown): SiteContent {
   const obj = (input ?? {}) as Partial<SiteContent>;
-  const menu = Array.isArray(obj.menu) ? (obj.menu as MenuCategory[]) : DEFAULT_CONTENT.menu;
+  const menu = coerceMenu(obj.menu);
   const s = (obj.seasonal ?? {}) as Partial<Seasonal>;
   return {
     menu,

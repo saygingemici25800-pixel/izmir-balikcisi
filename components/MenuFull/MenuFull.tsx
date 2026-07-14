@@ -5,7 +5,7 @@ import styles from './MenuFull.module.css';
 import MenuToc from './MenuToc';
 import MenuList from './MenuList';
 
-export default function MenuFull({ menu }: { menu: MenuCategory[] }) {
+export default function MenuFull({ menu, locale }: { menu: MenuCategory[]; locale: string }) {
   const t = useTranslations('menuFull');
   return (
     <article className={styles.page}>
@@ -21,9 +21,9 @@ export default function MenuFull({ menu }: { menu: MenuCategory[] }) {
         {t.rich('lede', { em: (chunks) => <em>{chunks}</em> })}
       </p>
 
-      <MenuToc categories={menu} />
+      <MenuToc categories={menu} locale={locale} />
 
-      <MenuList categories={menu} />
+      <MenuList categories={menu} locale={locale} />
 
       <aside className={styles.note}>
         <span className={styles.badge}>{t('noteBadge')}</span>

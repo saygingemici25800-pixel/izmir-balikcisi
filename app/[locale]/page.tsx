@@ -18,7 +18,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
       <About teaser />
 
-      <MenuScroll menu={menu} />
+      <MenuScroll menu={menu} locale={locale} />
 
       <Gallery teaser />
 

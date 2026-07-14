@@ -38,7 +38,7 @@ export default async function MenuPage({
       homeLabel={tn('home')}
       current={{ label: tn('menu'), path: '/menu' }}
     >
-      <MenuFull menu={menu} />
+      <MenuFull menu={menu} locale={locale} />
     </PageShell>
   );
 }

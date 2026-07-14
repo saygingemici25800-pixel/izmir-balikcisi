@@ -7,8 +7,18 @@ import styles from '../admin.module.css';
 
 const clone = <T,>(v: T): T => JSON.parse(JSON.stringify(v)) as T;
 
-const emptyItem = (): MenuItem => ({ name: '', desc: '', price: '', unit: '₺', daily: false, tags: [], featured: false });
-const emptyCat = (): MenuCategory => ({ id: '', title: 'Yeni Kategori', subtitle: '', items: [emptyItem()] });
+const emptyItem = (): MenuItem => ({
+  name: { tr: '', en: '', ar: '' },
+  price: '',
+  unit: '₺',
+  daily: false,
+  featured: false,
+});
+const emptyCat = (): MenuCategory => ({
+  id: '',
+  title: { tr: 'Yeni Kategori', en: 'New Category', ar: 'فئة جديدة' },
+  items: [emptyItem()],
+});
 
 export default function AdminEditor({ initial }: { initial: SiteContent }) {
   const [content, setContent] = useState<SiteContent>(() => clone(initial));
@@ -122,21 +132,58 @@ export default function AdminEditor({ initial }: { initial: SiteContent }) {
         {content.menu.map((cat, ci) => (
           <details key={ci} className={styles.cat}>
             <summary className={styles.catSummary}>
-              <span className={styles.catSummaryTitle}>{cat.title || 'Adsız kategori'}</span>
+              <span className={styles.catSummaryTitle}>{cat.title.tr || 'Adsız kategori'}</span>
               <span className={styles.catCount}>{cat.items.length} ürün</span>
             </summary>
 
             <div className={styles.catBody}>
-              <div className={`${styles.row} ${styles.row2}`}>
+              <label className={styles.label}>Kategori Adı</label>
+              <div className={`${styles.row} ${styles.row3}`}>
                 <div className={styles.field}>
-                  <label className={styles.label}>Kategori Adı</label>
-                  <input className={styles.input} value={cat.title}
-                    onChange={(e) => update((c) => { c.menu[ci].title = e.target.value; })} />
+                  <label className={styles.label}>Türkçe</label>
+                  <input className={styles.input} value={cat.title.tr}
+                    onChange={(e) => update((c) => { c.menu[ci].title.tr = e.target.value; })} />
                 </div>
                 <div className={styles.field}>
-                  <label className={styles.label}>Alt Başlık</label>
-                  <input className={styles.input} value={cat.subtitle || ''}
-                    onChange={(e) => update((c) => { c.menu[ci].subtitle = e.target.value; })} />
+                  <label className={styles.label}>English</label>
+                  <input className={styles.input} value={cat.title.en}
+                    onChange={(e) => update((c) => { c.menu[ci].title.en = e.target.value; })} />
+                </div>
+                <div className={styles.field}>
+                  <label className={styles.label}>العربية</label>
+                  <input className={styles.input} dir="rtl" value={cat.title.ar}
+                    onChange={(e) => update((c) => { c.menu[ci].title.ar = e.target.value; })} />
+                </div>
+              </div>
+
+              <label className={styles.label}>Alt Başlık (opsiyonel)</label>
+              <div className={`${styles.row} ${styles.row3}`}>
+                <div className={styles.field}>
+                  <label className={styles.label}>Türkçe</label>
+                  <input className={styles.input} value={cat.subtitle?.tr || ''}
+                    onChange={(e) => update((c) => {
+                      const k = c.menu[ci];
+                      if (!k.subtitle) k.subtitle = { tr: '', en: '', ar: '' };
+                      k.subtitle.tr = e.target.value;
+                    })} />
+                </div>
+                <div className={styles.field}>
+                  <label className={styles.label}>English</label>
+                  <input className={styles.input} value={cat.subtitle?.en || ''}
+                    onChange={(e) => update((c) => {
+                      const k = c.menu[ci];
+                      if (!k.subtitle) k.subtitle = { tr: '', en: '', ar: '' };
+                      k.subtitle.en = e.target.value;
+                    })} />
+                </div>
+                <div className={styles.field}>
+                  <label className={styles.label}>العربية</label>
+                  <input className={styles.input} dir="rtl" value={cat.subtitle?.ar || ''}
+                    onChange={(e) => update((c) => {
+                      const k = c.menu[ci];
+                      if (!k.subtitle) k.subtitle = { tr: '', en: '', ar: '' };
+                      k.subtitle.ar = e.target.value;
+                    })} />
                 </div>
               </div>
 
@@ -150,38 +197,36 @@ export default function AdminEditor({ initial }: { initial: SiteContent }) {
                     </button>
                   </div>
 
+                  <label className={styles.label}>Ad</label>
                   <div className={`${styles.row} ${styles.row3}`}>
                     <div className={styles.field}>
-                      <label className={styles.label}>Ad</label>
-                      <input className={styles.input} value={it.name}
-                        onChange={(e) => update((c) => { c.menu[ci].items[ii].name = e.target.value; })} />
+                      <label className={styles.label}>Türkçe</label>
+                      <input className={styles.input} value={it.name.tr}
+                        onChange={(e) => update((c) => { c.menu[ci].items[ii].name.tr = e.target.value; })} />
                     </div>
+                    <div className={styles.field}>
+                      <label className={styles.label}>English</label>
+                      <input className={styles.input} value={it.name.en}
+                        onChange={(e) => update((c) => { c.menu[ci].items[ii].name.en = e.target.value; })} />
+                    </div>
+                    <div className={styles.field}>
+                      <label className={styles.label}>العربية</label>
+                      <input className={styles.input} dir="rtl" value={it.name.ar}
+                        onChange={(e) => update((c) => { c.menu[ci].items[ii].name.ar = e.target.value; })} />
+                    </div>
+                  </div>
+
+                  <div className={`${styles.row} ${styles.row3}`}>
                     <div className={styles.field}>
                       <label className={styles.label}>Fiyat</label>
                       <input className={styles.input} value={it.price || ''} disabled={!!it.daily}
-                        placeholder={it.daily ? 'Günlük' : ''}
+                        placeholder={it.daily ? 'Günlük' : '—'}
                         onChange={(e) => update((c) => { c.menu[ci].items[ii].price = e.target.value; })} />
                     </div>
                     <div className={styles.field}>
                       <label className={styles.label}>Birim</label>
                       <input className={styles.input} value={it.unit || ''} placeholder="₺"
                         onChange={(e) => update((c) => { c.menu[ci].items[ii].unit = e.target.value; })} />
-                    </div>
-                  </div>
-
-                  <div className={styles.field} style={{ marginBottom: '0.75rem' }}>
-                    <label className={styles.label}>Açıklama</label>
-                    <textarea className={styles.textarea} value={it.desc}
-                      onChange={(e) => update((c) => { c.menu[ci].items[ii].desc = e.target.value; })} />
-                  </div>
-
-                  <div className={`${styles.row} ${styles.row2}`} style={{ marginBottom: 0 }}>
-                    <div className={styles.field}>
-                      <label className={styles.label}>Etiketler (virgülle ayır)</label>
-                      <input className={styles.input} value={(it.tags || []).join(', ')}
-                        onChange={(e) => update((c) => {
-                          c.menu[ci].items[ii].tags = e.target.value.split(',').map((s) => s.trim()).filter(Boolean);
-                        })} />
                     </div>
                     <div className={styles.field}>
                       <label className={styles.label}>Görsel URL (opsiyonel)</label>
@@ -214,7 +259,7 @@ export default function AdminEditor({ initial }: { initial: SiteContent }) {
                 </button>
                 <button type="button" className={`${styles.btn} ${styles.btnGhostDanger}`}
                   onClick={() => {
-                    if (confirm(`"${cat.title}" kategorisini silmek istediğinize emin misiniz?`)) {
+                    if (confirm(`"${cat.title.tr}" kategorisini silmek istediğinize emin misiniz?`)) {
                       update((c) => { c.menu.splice(ci, 1); });
                     }
                   }}>
