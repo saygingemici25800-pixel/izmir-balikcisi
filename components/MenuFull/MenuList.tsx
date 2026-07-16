@@ -23,7 +23,7 @@ export default function MenuList({ categories, locale }: Props) {
                   <h3 className={styles.itemName}>{pickLocale(item.name, locale)}</h3>
                   <span className={styles.leader} aria-hidden />
                   <span className={styles.itemPrice}>
-                    {item.daily ? t('daily') : item.price ? `${item.price}${item.unit ?? '₺'}` : '—'}
+                    {item.daily ? t('daily') : item.price ? `${item.price}${item.unit ?? '₺'}` : t('notSeasonal')}
                   </span>
                 </div>
               </li>

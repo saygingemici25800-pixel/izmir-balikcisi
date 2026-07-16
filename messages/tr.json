@@ -100,7 +100,8 @@
     "detail": "Detay",
     "plates": "{count} tabak",
     "all": "Menünün tamamı →",
-    "allMenu": "Tüm menü"
+    "allMenu": "Tüm menü",
+    "notSeasonal": "Sezon balığı değildir"
   },
   "manifesto": {
     "eyebrow": "№ 04",
@@ -272,7 +273,8 @@
     "sheetDailySmall": "₺ / kg",
     "sheetDaily": "Günlük taze — kiloyla satılır, güncel fiyat için lütfen sorunuz.",
     "sheetFoot": "ESC / Aşağı kaydır / Dışa tıkla — kapatmak için",
-    "close": "Kapat"
+    "close": "Kapat",
+    "notSeasonal": "Sezon balığı değildir"
   },
   "intro": {
     "sub": "Taze Deniz Lezzetleri"

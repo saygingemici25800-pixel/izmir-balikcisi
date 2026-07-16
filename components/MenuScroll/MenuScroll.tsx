@@ -28,7 +28,7 @@ export function MenuScroll({ menu, locale }: { menu: MenuCategory[]; locale: str
                   <span className={styles.name}>{pickLocale(item.name, locale)}</span>
                   <span className={styles.leader} aria-hidden />
                   <span className={styles.price}>
-                    {item.daily ? t('daily') : item.price ? `${item.price}${item.unit ?? '₺'}` : '—'}
+                    {item.daily ? t('daily') : item.price ? `${item.price}${item.unit ?? '₺'}` : t('notSeasonal')}
                   </span>
                 </li>
               ))}

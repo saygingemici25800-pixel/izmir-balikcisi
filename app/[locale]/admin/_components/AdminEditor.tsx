@@ -220,7 +220,7 @@ export default function AdminEditor({ initial }: { initial: SiteContent }) {
                     <div className={styles.field}>
                       <label className={styles.label}>Fiyat</label>
                       <input className={styles.input} value={it.price || ''} disabled={!!it.daily}
-                        placeholder={it.daily ? 'Günlük' : '—'}
+                        placeholder={it.daily ? 'Günlük' : 'Sezon balığı değildir'}
                         onChange={(e) => update((c) => { c.menu[ci].items[ii].price = e.target.value; })} />
                     </div>
                     <div className={styles.field}>

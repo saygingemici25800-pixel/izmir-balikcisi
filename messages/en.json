@@ -100,7 +100,8 @@
     "detail": "Details",
     "plates": "{count} plates",
     "all": "See the full menu →",
-    "allMenu": "Full menu"
+    "allMenu": "Full menu",
+    "notSeasonal": "Not a seasonal fish"
   },
   "manifesto": {
     "eyebrow": "№ 04",
@@ -272,7 +273,8 @@
     "sheetDailySmall": "₺ / kg",
     "sheetDaily": "Fresh daily — sold by the kilo, please ask for today's price.",
     "sheetFoot": "ESC / Swipe down / Tap outside — to close",
-    "close": "Close"
+    "close": "Close",
+    "notSeasonal": "Not a seasonal fish"
   },
   "intro": {
     "sub": "Fresh Seafood"
