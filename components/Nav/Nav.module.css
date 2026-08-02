@@ -47,37 +47,12 @@
   flex-shrink: 0;
 }
 
+/* Wrapper for the animated link group (see NavLinks.module.css). Kept as its
+   own element so the ≤860px hide rule below still governs the whole group. */
 .links {
   display: flex;
   justify-content: center;
-  gap: var(--s-7);
 }
-
-.link {
-  font-family: var(--f-body);
-  font-size: var(--t-small);
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--c-bone);
-  opacity: 0.82;
-  position: relative;
-  padding-block: var(--s-2);
-  transition: color var(--dur-med) var(--ease-out), opacity var(--dur-med) var(--ease-out);
-}
-.link:hover { opacity: 1; color: var(--c-gold-hi); }
-.link::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 100%;
-  bottom: 0;
-  height: 1px;
-  background: var(--c-gold);
-  transition: right var(--dur-slow) var(--ease-out);
-}
-.link:hover::after { right: 0; }
-/* active section indicator — persistent underline + colour */
-.linkActive { opacity: 1; color: var(--c-gold-hi); }
-.linkActive::after { right: 0; }
 
 .actions {
   position: relative;

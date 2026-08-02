@@ -1,0 +1,107 @@
+/* Animated primary nav — icon + label, with an underline sized to the active
+   label's measured width (--lineWidth, written from NavLinks.tsx).
+   --tracking mirrors the label's letter-spacing so the rule can drop the
+   trailing letter-space that offsetWidth includes. */
+.list {
+  --lineWidth: 0px;
+  --tracking: 0.22em;
+  display: flex;
+  align-items: center;
+  gap: var(--s-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Arabic is cursive — globals.css kills letter-spacing there, so there is no
+   trailing space to compensate for. */
+:global([lang='ar']) .list { --tracking: 0em; }
+
+.item { display: flex; }
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  padding-block: var(--s-2);
+  font-family: var(--f-body);
+  font-size: var(--t-small);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking);
+  color: var(--c-label);
+  white-space: nowrap;
+  transition: color var(--dur-med) var(--ease-out);
+}
+
+/* Icon — hidden and shrunk while passive, full accent colour when active. */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--c-label);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity var(--dur-med) var(--ease-out),
+              transform var(--dur-med) var(--ease-out),
+              color var(--dur-med) var(--ease-out);
+}
+.icon svg { width: 100%; height: 100%; }
+
+.label {
+  position: relative;
+  display: inline-block;
+}
+
+/* The rule under the active label — centred, so it mirrors correctly under
+   dir="rtl" without any physical-side override. */
+.label::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  height: 1.5px;
+  width: 0;
+  max-width: calc(var(--lineWidth) - var(--tracking));
+  border-radius: 1px;
+  background: var(--c-gold);
+  transform: translateX(-50%);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+/* Hover (passive) — a soft lift toward the accent, lavender halo on the icon. */
+.link:hover { color: var(--c-gold-lo); }
+.link:hover .icon {
+  opacity: 0.45;
+  transform: scale(0.88);
+  color: var(--c-lav);
+}
+
+/* Active ------------------------------------------------------------- */
+.link[data-active] { color: var(--c-gold); }
+.link[data-active] .icon {
+  opacity: 1;
+  transform: scale(1);
+  color: var(--c-gold);
+  animation: iconBounce var(--dur-slow) var(--ease-out);
+  animation-duration: 620ms;
+}
+.link[data-active]:hover .icon { color: var(--c-gold); opacity: 1; transform: scale(1); }
+.link[data-active] .label::after { width: calc(var(--lineWidth) - var(--tracking)); }
+
+@keyframes iconBounce {
+  0%   { transform: translateY(0) scale(1); }
+  20%  { transform: translateY(-0.3em) scale(1); }
+  40%  { transform: translateY(0) scale(1); }
+  60%  { transform: translateY(-0.1em) scale(1); }
+  80%  { transform: translateY(0) scale(1); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link[data-active] .icon { animation: none; }
+}

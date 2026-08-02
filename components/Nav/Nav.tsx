@@ -7,10 +7,11 @@ import styles from './Nav.module.css';
 import { RESTAURANT } from '@/lib/constants';
 import { SeasonalButton, type SeasonalData } from '@/components/SeasonalButton/SeasonalButton';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher';
+import { NavLinks, type NavLinkItem } from './NavLinks';
 
 // Primary nav — each section is now its own SEO route; labels come from the
 // `nav` message namespace.
-const LINKS = [
+const LINKS: readonly NavLinkItem[] = [
   { id: 'hikaye', href: '/hikaye' },
   { id: 'menu', href: '/menu' },
   { id: 'galeri', href: '/galeri' },
@@ -76,21 +77,7 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
         </Link>
 
         <div className={styles.links}>
-          {LINKS.map(({ id, href }) => {
-            const isActive = activeId === id;
-            return (
-              <Link
-                key={id}
-                href={href}
-                className={`${styles.link} ${isActive ? styles.linkActive : ''}`}
-                aria-current={isActive ? 'page' : undefined}
-                data-magnetic
-                data-cursor-label={t(id)}
-              >
-                {t(id)}
-              </Link>
-            );
-          })}
+          <NavLinks links={LINKS} activeId={activeId} />
         </div>
 
         <div className={styles.actions}>
