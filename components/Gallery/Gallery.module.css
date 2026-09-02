@@ -179,14 +179,14 @@
   inset: 0;
   z-index: 1000;
   background: rgba(7, 12, 22, 0.95);
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(12px);
   /* full-screen photo viewer stays dark → keep its controls/text light */
   --c-cream: #efe4cc;
   --c-bone: #f7f1e3;
   --c-gold: #d8a44a;
   --c-line: rgba(239, 228, 204, 0.14);
   --c-line-strong: rgba(239, 228, 204, 0.28);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
   display: grid;
   grid-template-rows: auto 1fr auto;
   padding: clamp(1rem, 3vw, 2rem);

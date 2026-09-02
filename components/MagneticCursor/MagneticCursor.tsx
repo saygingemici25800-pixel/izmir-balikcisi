@@ -22,6 +22,7 @@ export function MagneticCursor() {
     const onMove = (e: PointerEvent) => {
       target.current.x = e.clientX;
       target.current.y = e.clientY;
+      wake();
     };
 
     const onOver = (e: PointerEvent) => {
@@ -30,11 +31,13 @@ export function MagneticCursor() {
         magnet.current = null;
         setHover(false);
         setLabel('');
+        wake();
         return;
       }
       magnet.current = el.hasAttribute('data-magnetic') ? el : null;
       setHover(true);
       setLabel(el.getAttribute('data-cursor-label') || '');
+      wake();
     };
 
     const onOut = (e: PointerEvent) => {
@@ -43,6 +46,7 @@ export function MagneticCursor() {
         magnet.current = null;
         setHover(false);
         setLabel('');
+        wake();
       }
     };
 
@@ -51,6 +55,18 @@ export function MagneticCursor() {
     document.addEventListener('pointerout', onOut);
 
     let raf = 0;
+    let running = false;
+
+    // Below this the movement is sub-pixel — parking the loop here means an idle
+    // pointer costs nothing instead of compositing a full-screen layer at 60fps.
+    const EPS = 0.05;
+
+    const wake = () => {
+      if (running) return;
+      running = true;
+      raf = requestAnimationFrame(tick);
+    };
+
     const tick = () => {
       // magnetic pull
       if (magnet.current) {
@@ -80,11 +96,25 @@ export function MagneticCursor() {
         textRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y + 56}px, 0) translate(-50%, -50%)`;
       }
 
+      // A magnet keeps animating (its rect can move under a still pointer);
+      // otherwise stop once both dot and ring have settled on the target.
+      const settled =
+        !magnet.current &&
+        Math.abs(dotPos.current.x - target.current.x) < EPS &&
+        Math.abs(dotPos.current.y - target.current.y) < EPS &&
+        Math.abs(ringPos.current.x - dotPos.current.x) < EPS &&
+        Math.abs(ringPos.current.y - dotPos.current.y) < EPS;
+
+      if (settled) {
+        running = false;
+        return;
+      }
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
+    wake();
 
     return () => {
+      running = false;
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onMove);
       document.removeEventListener('pointerover', onOver);

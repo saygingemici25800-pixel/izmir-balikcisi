@@ -74,8 +74,8 @@
   inset: 0;
   z-index: 1100;
   background: rgba(8, 14, 30, 0.72);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   display: grid;
   place-items: center;
   padding: clamp(1rem, 3vw, 2rem);
@@ -96,8 +96,8 @@
   --c-gold-lo: #3a5292;
   --c-line: rgba(45, 66, 117, 0.14);
   --c-line-strong: rgba(45, 66, 117, 0.26);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   isolation: isolate;
   overflow: hidden;

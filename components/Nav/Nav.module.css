@@ -8,8 +8,8 @@
   gap: var(--s-6);
   padding: var(--s-3) clamp(1.25rem, 4vw, 3.5rem);
   background: rgba(244, 246, 248, 0.8);
-  -webkit-backdrop-filter: blur(12px) saturate(120%);
-  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid transparent;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
@@ -162,8 +162,8 @@
   z-index: 99;
   padding: calc(var(--s-3) + 56px) clamp(1.25rem, 4vw, 3.5rem) var(--s-7);
   background: rgba(248, 250, 252, 0.98);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--c-line-strong);
   transform: translateY(-105%);
   opacity: 0;

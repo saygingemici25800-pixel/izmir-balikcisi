@@ -24,11 +24,23 @@ export function Nav({ seasonal }: { seasonal: SeasonalData }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  // Coalesce scroll events into one rAF-aligned read; the state only flips at
+  // the 16px threshold, so React re-renders twice per page instead of per event.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
+    let frame = 0;
+    const compute = () => {
+      frame = 0;
+      setScrolled(window.scrollY > 16);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(compute);
+    };
+    compute();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   // ESC to close + lock body scroll while the panel is open

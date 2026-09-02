@@ -16,6 +16,14 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Touch devices keep native scrolling: the OS runs it off the main thread
+    // with real momentum, whereas Lenis pulls every frame back onto the thread
+    // that is already busy with the WebGL hero. Consumers of window.lenis all
+    // guard for its absence and fall back to native scrollTo.
+    const touchOnly = matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (touchOnly || reduce) return;
+
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -53,7 +61,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   // once it's in the DOM; otherwise reset to the top.
   useEffect(() => {
     const lenis = lenisRef.current;
-    if (!lenis) return;
 
     let timer: number | undefined;
 
@@ -62,10 +69,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const scrollToHash = () => {
       // After a route/content swap the cached scroll limit is stale (e.g. short
       // /menu → tall home), which would clamp scrollTo. Recompute first.
-      lenis.resize();
+      lenis?.resize();
       const hash = window.location.hash.slice(1);
       if (!hash) {
-        lenis.scrollTo(0, { immediate: true });
+        if (lenis) lenis.scrollTo(0, { immediate: true });
+        else window.scrollTo(0, 0);
         return;
       }
       const id = decodeURIComponent(hash);
@@ -73,8 +81,14 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       const seek = () => {
         const el = document.getElementById(id);
         if (!el) return false;
-        lenis.resize(); // a section's final offset depends on everything above it
-        lenis.scrollTo(el, { offset: -90 });
+        if (lenis) {
+          lenis.resize(); // a section's final offset depends on everything above it
+          lenis.scrollTo(el, { offset: -90 });
+        } else {
+          // Native path (touch / reduced motion): same -90px nav offset.
+          const top = el.getBoundingClientRect().top + window.scrollY - 90;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
         return true;
       };
       const tick = () => {

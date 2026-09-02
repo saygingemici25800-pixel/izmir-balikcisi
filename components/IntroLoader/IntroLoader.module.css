@@ -9,13 +9,13 @@
     linear-gradient(180deg, var(--c-bg), var(--c-bg-2));
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.75s var(--ease-out), visibility 0s linear 0.75s;
+  transition: opacity 0.4s var(--ease-out), visibility 0s linear 0.4s;
 }
 .done {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.75s var(--ease-out);
+  transition: opacity 0.4s var(--ease-out);
 }
 
 .inner {
@@ -35,7 +35,7 @@
   box-shadow: 0 0 34px rgba(216, 164, 74, 0.45);
   opacity: 0;
   transform: scale(0.6);
-  animation: introMark 0.9s var(--ease-out) 0.1s forwards;
+  animation: introMark 0.42s var(--ease-out) 0.02s forwards;
 }
 
 .word {
@@ -47,7 +47,7 @@
   color: var(--c-bone);
   opacity: 0;
   transform: translateY(14px);
-  animation: introRise 0.9s var(--ease-out) 0.35s forwards;
+  animation: introRise 0.42s var(--ease-out) 0.12s forwards;
 }
 
 .sub {
@@ -58,7 +58,7 @@
   color: var(--c-gold);
   opacity: 0;
   transform: translateY(10px);
-  animation: introRise 0.9s var(--ease-out) 0.6s forwards;
+  animation: introRise 0.42s var(--ease-out) 0.2s forwards;
 }
 
 .rule {
@@ -75,7 +75,7 @@
   background: linear-gradient(90deg, var(--c-gold-lo), var(--c-gold-hi));
   transform: scaleX(0);
   transform-origin: left center;
-  animation: introBar 1.45s var(--ease-out) 0.45s forwards;
+  animation: introBar 0.6s var(--ease-out) 0.05s forwards;
 }
 
 @keyframes introMark { to { opacity: 1; transform: scale(1); } }
