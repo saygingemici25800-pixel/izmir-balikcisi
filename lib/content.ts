@@ -56,6 +56,14 @@ const blobAuth = (): { token?: string } => {
 const useBlob = () =>
   Boolean(env('BLOB_READ_WRITE_TOKEN') || env('BLOB_STORE_ID') || env('VERCEL_OIDC_TOKEN'));
 
+/**
+ * Access level of the Blob store. Must match how the store is provisioned —
+ * a private store rejects `access: 'public'` outright. Override with
+ * BLOB_ACCESS=public if the store is ever switched back.
+ */
+const blobAccess = (): 'public' | 'private' =>
+  env('BLOB_ACCESS') === 'public' ? 'public' : 'private';
+
 type LocLike = string | Partial<Localized> | undefined | null;
 
 /** Accept a plain string (legacy data) or a partial localized object. */
@@ -120,11 +128,17 @@ function normalize(input: unknown): SiteContent {
 async function readRaw(): Promise<SiteContent> {
   try {
     if (useBlob()) {
-      const { head } = await import('@vercel/blob');
-      const meta = await head(BLOB_PATH, blobAuth());
-      const res = await fetch(meta.url, { cache: 'no-store' });
-      if (!res.ok) return DEFAULT_CONTENT;
-      return normalize(await res.json());
+      // `get` authenticates the read itself — a private blob's URL is not
+      // publicly fetchable, so the old head() + bare fetch() cannot work here.
+      // useCache:false keeps admin saves visible immediately.
+      const { get } = await import('@vercel/blob');
+      const res = await get(BLOB_PATH, {
+        access: blobAccess(),
+        useCache: false,
+        ...blobAuth(),
+      });
+      if (!res || res.statusCode !== 200) return DEFAULT_CONTENT;
+      return normalize(JSON.parse(await new Response(res.stream).text()));
     }
     const raw = await fs.readFile(FILE_PATH, 'utf8');
     return normalize(JSON.parse(raw));
@@ -149,7 +163,7 @@ export async function writeContent(content: SiteContent): Promise<void> {
   if (useBlob()) {
     const { put } = await import('@vercel/blob');
     await put(BLOB_PATH, json, {
-      access: 'public',
+      access: blobAccess(),
       addRandomSuffix: false,
       allowOverwrite: true,
       contentType: 'application/json',
