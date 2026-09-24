@@ -76,7 +76,11 @@ export async function saveContentAction(
   try {
     await writeContent(sanitize(content));
     return { ok: true };
-  } catch {
-    return { ok: false, error: 'Kaydedilemedi. Tekrar deneyin.' };
+  } catch (err) {
+    // Surface the real cause: this panel is behind auth, and a generic message
+    // here is what made this bug invisible in the first place.
+    console.error('[admin/save] writeContent failed:', err);
+    const detail = err instanceof Error ? err.message : String(err);
+    return { ok: false, error: `Kaydedilemedi: ${detail}` };
   }
 }

@@ -35,7 +35,26 @@ export const DEFAULT_CONTENT: SiteContent = {
   updatedAt: '1999-01-01T00:00:00.000Z',
 };
 
-const useBlob = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+/** Read an env var at call time, tolerating stray whitespace/quotes from the env UI. */
+const env = (key: string): string =>
+  (process.env[key] ?? '').trim().replace(/^["']|["']$/g, '');
+
+/**
+ * Auth for the Blob store, in @vercel/blob's own precedence order:
+ * an explicit read-write token wins, otherwise OIDC (VERCEL_OIDC_TOKEN +
+ * BLOB_STORE_ID) is resolved by the SDK itself.
+ *
+ * `token` must be omitted — not set to '' — when falling back to OIDC, because
+ * any truthy/!== undefined token short-circuits the SDK's OIDC path.
+ */
+const blobAuth = (): { token?: string } => {
+  const token = env('BLOB_READ_WRITE_TOKEN');
+  return token ? { token } : {};
+};
+
+/** OIDC stores inject BLOB_STORE_ID instead of a read-write token. */
+const useBlob = () =>
+  Boolean(env('BLOB_READ_WRITE_TOKEN') || env('BLOB_STORE_ID') || env('VERCEL_OIDC_TOKEN'));
 
 type LocLike = string | Partial<Localized> | undefined | null;
 
@@ -102,15 +121,20 @@ async function readRaw(): Promise<SiteContent> {
   try {
     if (useBlob()) {
       const { head } = await import('@vercel/blob');
-      const meta = await head(BLOB_PATH, { token: process.env.BLOB_READ_WRITE_TOKEN });
+      const meta = await head(BLOB_PATH, blobAuth());
       const res = await fetch(meta.url, { cache: 'no-store' });
       if (!res.ok) return DEFAULT_CONTENT;
       return normalize(await res.json());
     }
     const raw = await fs.readFile(FILE_PATH, 'utf8');
     return normalize(JSON.parse(raw));
-  } catch {
-    // not provisioned yet → serve the seed (site stays fully functional)
+  } catch (err) {
+    // Nothing saved yet (empty store / no file) is the normal first-run state —
+    // serve the seed quietly. Anything else is a real fault worth logging.
+    const code = (err as { code?: string } | null)?.code;
+    const notFound =
+      code === 'ENOENT' || (err as Error | null)?.name === 'BlobNotFoundError';
+    if (!notFound) console.error('[getContent] read failed, serving seed:', err);
     return DEFAULT_CONTENT;
   }
 }
@@ -129,8 +153,16 @@ export async function writeContent(content: SiteContent): Promise<void> {
       addRandomSuffix: false,
       allowOverwrite: true,
       contentType: 'application/json',
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      ...blobAuth(),
     });
+  } else if (process.env.VERCEL) {
+    // On Vercel the filesystem is read-only and resets every invocation, so a
+    // silent fallback would "succeed" and lose the edit. Fail loudly instead.
+    throw new Error(
+      'No Blob credentials at runtime: set BLOB_READ_WRITE_TOKEN, or connect the ' +
+        'Blob store so BLOB_STORE_ID + VERCEL_OIDC_TOKEN are injected (OIDC). ' +
+        'Env changes only apply to new deployments — redeploy after adding them.'
+    );
   } else {
     await fs.mkdir(path.dirname(FILE_PATH), { recursive: true });
     await fs.writeFile(FILE_PATH, json, 'utf8');
