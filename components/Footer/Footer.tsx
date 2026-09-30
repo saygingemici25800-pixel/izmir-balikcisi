@@ -3,11 +3,14 @@ import styles from './Footer.module.css';
 import { RESTAURANT } from '@/lib/constants';
 import { Link } from '@/i18n/navigation';
 import { SisterCta } from '@/components/SisterCta/SisterCta';
+import { FooterSpotlight } from '@/components/FooterSpotlight/FooterSpotlight';
 
 export function Footer() {
   const t = useTranslations('footer');
   const tn = useTranslations('nav');
   return (
+    <>
+    <FooterSpotlight />
     <footer className={styles.footer}>
       <div className={styles.grid}>
         <div className={styles.brand}>
@@ -41,5 +44,6 @@ export function Footer() {
         <span>{t('setIn')}</span>
       </div>
     </footer>
+    </>
   );
 }

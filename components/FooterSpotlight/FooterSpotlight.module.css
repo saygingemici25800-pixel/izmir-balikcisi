@@ -1,0 +1,81 @@
+/* Footer spotlight — stacked "İZMİR" layers on a solid light base.
+   Each layer paints its own background so it masks the one behind it;
+   that masking is what turns the cascade into the ghosted "staircase". */
+.spotlight {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  max-height: 1000px;
+  overflow: hidden;
+  background: var(--c-bg);
+  isolation: isolate;
+}
+
+.layer {
+  position: absolute;
+  inset: 0 0 auto 0;
+  padding: clamp(1rem, 2.2vw, 2rem);
+  background: var(--c-bg);
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.word {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  fill: var(--c-sea);
+}
+
+/* Falling İ — CSS transforms on SVG use user units + its own bbox as origin. */
+.stem {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+.stem path {
+  transition: fill var(--dur-med, 0.35s) var(--ease-out, ease-out);
+}
+.dot {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.cta {
+  cursor: pointer;
+  outline: none;
+}
+.cta:hover .stem path,
+.cta:focus-visible .stem path {
+  fill: var(--c-tide);
+}
+.cta:focus-visible .stem {
+  outline: none;
+}
+.cta:focus-visible .stem path {
+  stroke: var(--c-lav);
+  stroke-width: 18;
+}
+
+.label {
+  fill: var(--c-bg);
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 58px;
+  letter-spacing: 0.14em;
+  pointer-events: none;
+  user-select: none;
+}
+[lang='ar'] .label {
+  letter-spacing: 0;
+  font-size: 66px;
+}
+
+@media (max-width: 720px) {
+  .spotlight {
+    height: 62svh;
+  }
+}
