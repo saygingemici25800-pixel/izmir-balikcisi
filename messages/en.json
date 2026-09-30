@@ -157,7 +157,7 @@
   "gallery": {
     "eyebrow": "№ 04 — Gallery",
     "frames": "{count} frames",
-    "title": "One evening, <em>nine frames</em>",
+    "title": "Frames from <em>the table</em>",
     "enlarge": "Enlarge",
     "enlargeAria": "Enlarge photo of {cap}",
     "lbTitle": "İzmir Balıkçısı / Gallery",
@@ -165,19 +165,13 @@
     "prev": "Previous",
     "next": "Next",
     "hint": "← → / Esc",
-    "loadMore": "Load more",
-    "caps": [
-      "Entrance",
-      "The chef's table",
-      "Dining room",
-      "Sea bass bites",
-      "Terrace",
-      "Grilled octopus",
-      "Arches",
-      "Grilled sea bream",
-      "Wood & blue"
-    ],
-    "moreCta": "See the full gallery"
+    "moreCta": "See the full gallery",
+    "hint2": "Hover a frame — the others make way",
+    "groups": {
+      "venue": "The place",
+      "meze": "Meze",
+      "sea": "Hot, from the sea"
+    }
   },
   "philosophy": {
     "eyebrow": "№ 05 — Philosophy",

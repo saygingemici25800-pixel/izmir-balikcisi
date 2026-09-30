@@ -5,7 +5,7 @@
  *
  * Files: public/menu-media/posters/<slug>.webp · public/menu-media/videos/<slug>.mp4
  */
-const MEDIA_BY_NAME: Record<string, string> = {
+export const MEDIA_BY_NAME: Record<string, string> = {
   'Balık Çorbası': 'balik-corbasi',
   'Atom Borani': 'atom',
   'Havuç Tarator': 'bademli-havuc-tarator',

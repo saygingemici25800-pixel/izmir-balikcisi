@@ -1,45 +1,51 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { createPortal } from 'react-dom';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { pickLocale } from '@/lib/menu';
+import { MEZE, SEA, TEASER, VENUE, type GalleryShot } from '@/lib/gallery';
+import { MakeWayGrid, type MakeWayConfig } from './MakeWayGrid';
 import styles from './Gallery.module.css';
 
-// Image sources + intrinsic dimensions stay in code; captions come from the
-// `gallery.caps` messages. Dimensions let next/image reserve space (no CLS) and
-// emit a responsive srcset (AVIF/WebP, downscaled per viewport).
-const SHOTS = [
-  { src: '/images/mekan/giris.webp', w: 2272, h: 2428 },
-  { src: '/images/mekan/sef-sofrasi.webp', w: 2472, h: 3076 },
-  { src: '/images/mekan/salon.webp', w: 2120, h: 2696 },
-  { src: '/images/yemek/levrek-lokum.webp', w: 1152, h: 2048 },
-  { src: '/images/mekan/teras.webp', w: 2120, h: 2500 },
-  { src: '/images/yemek/ahtapot-izgara.webp', w: 2048, h: 1152 },
-  { src: '/images/mekan/salon-detay.webp', w: 2088, h: 2752 },
-  { src: '/images/yemek/cupra-izgara.webp', w: 928, h: 1664 },
-  { src: '/images/mekan/ahsap-detay.webp', w: 2084, h: 2744 },
+type Group = {
+  key: 'venue' | 'meze' | 'sea';
+  shots: GalleryShot[];
+  variant: 'default' | 'teaser' | 'medium' | 'narrow' | 'dense';
+  config: Partial<MakeWayConfig>;
+};
+
+// Full /galeri page — three grids, each with its own "make way" character
+// (same idea as the Codrops demo: calm / elastic / skewed).
+const GROUPS: Group[] = [
+  { key: 'venue', shots: VENUE, variant: 'medium', config: { scale: 1.6, maxRotation: 8, spread: 70, maxDistance: 1400, duration: 0.8 } },
+  { key: 'meze', shots: MEZE, variant: 'narrow', config: { scale: 3, maxRotation: 18, spread: 150, maxDistance: 700, duration: 1, ease: 'elastic' } },
+  { key: 'sea', shots: SEA, variant: 'dense', config: { scale: 3, maxRotation: 10, skew: 10, spread: 120, maxDistance: 600, duration: 0.6, ease: 'power3' } },
 ];
 
-const SIZES = '(max-width: 600px) 92vw, (max-width: 980px) 46vw, 30vw';
+const TOTAL = VENUE.length + MEZE.length + SEA.length;
 
 export function Gallery({ teaser = false }: { teaser?: boolean }) {
   const t = useTranslations('gallery');
-  const caps = t.raw('caps') as string[];
-  const cap = (i: number) => caps[i] ?? '';
+  const locale = useLocale();
+  const capOf = useCallback((s: GalleryShot) => pickLocale(s.cap, locale), [locale]);
 
-  const [open, setOpen] = useState<number | null>(null);
-  const [shown, setShown] = useState(teaser ? 5 : 6);
-  const [loaded, setLoaded] = useState<Record<number, boolean>>({});
-  const markLoaded = (i: number) => setLoaded((s) => (s[i] ? s : { ...s, [i]: true }));
+  const [open, setOpen] = useState<{ list: GalleryShot[]; index: number } | null>(null);
+  const current = open ? open.list[open.index] : null;
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const close = useCallback(() => setOpen(null), []);
-  const prev  = useCallback(() => setOpen((i) => (i === null ? null : (i - 1 + SHOTS.length) % SHOTS.length)), []);
-  const next  = useCallback(() => setOpen((i) => (i === null ? null : (i + 1) % SHOTS.length)), []);
+  const prev = useCallback(
+    () => setOpen((o) => (o ? { ...o, index: (o.index - 1 + o.list.length) % o.list.length } : o)),
+    []
+  );
+  const next = useCallback(() => setOpen((o) => (o ? { ...o, index: (o.index + 1) % o.list.length } : o)), []);
 
   useEffect(() => {
-    if (open === null) return;
+    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close();
       else if (e.key === 'ArrowLeft') prev();
@@ -47,18 +53,31 @@ export function Gallery({ teaser = false }: { teaser?: boolean }) {
     };
     window.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
+    window.lenis?.stop();
     return () => {
       window.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
+      window.lenis?.start();
     };
   }, [open, close, prev, next]);
+
+  const grid = (shots: GalleryShot[], variant: Group['variant'] = 'default', config?: Partial<MakeWayConfig>) => (
+    <MakeWayGrid
+      shots={shots}
+      captions={shots.map(capOf)}
+      variant={variant}
+      config={config}
+      openLabel={(cap) => t('enlargeAria', { cap })}
+      onOpen={(index) => setOpen({ list: shots, index })}
+    />
+  );
 
   return (
     <section className={styles.section} id="galeri">
       <header className={styles.header}>
         <span className="eyebrow">{t('eyebrow')}</span>
         <span className={styles.rule} aria-hidden />
-        <span className={styles.meta}>{t('frames', { count: SHOTS.length })}</span>
+        <span className={styles.meta}>{t('frames', { count: teaser ? TEASER.length : TOTAL })}</span>
       </header>
 
       <motion.h2
@@ -71,63 +90,31 @@ export function Gallery({ teaser = false }: { teaser?: boolean }) {
         {t.rich('title', { em: (chunks) => <em>{chunks}</em> })}
       </motion.h2>
 
-      <div className={styles.grid}>
-        {SHOTS.slice(0, shown).map((s, i) => (
-          <motion.button
-            key={s.src}
-            type="button"
-            className={`${styles.item} ${loaded[i] ? styles.itemLoaded : ''}`}
-            onClick={() => setOpen(i)}
-            data-magnetic
-            data-cursor-label={t('enlarge')}
-            aria-label={t('enlargeAria', { cap: cap(i) })}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-8% 0px' }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Image
-              className={styles.itemImg}
-              src={s.src}
-              alt={cap(i)}
-              width={s.w}
-              height={s.h}
-              sizes={SIZES}
-              onLoad={() => markLoaded(i)}
-              onError={() => markLoaded(i)}
-            />
-            <span className={styles.itemMeta}>
-              <span className={styles.itemNum}>{String(i + 1).padStart(2, '0')}</span>
-              <span className={styles.itemCap}>{cap(i)}</span>
-            </span>
-          </motion.button>
-        ))}
-      </div>
-
-      {!teaser && shown < SHOTS.length && (
-        <div className={styles.more}>
-          <button
-            type="button"
-            className={styles.moreBtn}
-            onClick={() => setShown(SHOTS.length)}
-            data-magnetic
-            data-cursor-label={t('loadMore')}
-          >
-            {t('loadMore')}
-          </button>
-        </div>
+      {teaser ? (
+        <>
+          {grid(TEASER, 'teaser')}
+          <p className={styles.mwHint}>{t('hint2')}</p>
+          <div className={styles.more}>
+            <Link href="/galeri" className={styles.seeAllLink} data-magnetic data-cursor-label={t('moreCta')}>
+              {t('moreCta')} <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </>
+      ) : (
+        GROUPS.map((g) => (
+          <div key={g.key} className={styles.group}>
+            <h3 className={styles.groupTitle}>
+              {t(`groups.${g.key}`)}
+              <span className={styles.groupCount}>{String(g.shots.length).padStart(2, '0')}</span>
+            </h3>
+            {grid(g.shots, g.variant, g.config)}
+          </div>
+        ))
       )}
 
-      {teaser && (
-        <div className={styles.more}>
-          <Link href="/galeri" className={styles.seeAllLink} data-magnetic data-cursor-label={t('moreCta')}>
-            {t('moreCta')} <span aria-hidden>→</span>
-          </Link>
-        </div>
-      )}
-
+      {mounted && createPortal(
       <AnimatePresence>
-        {open !== null && (
+        {open !== null && current && (
           <motion.div
             className={styles.lightbox}
             initial={{ opacity: 0 }}
@@ -146,10 +133,10 @@ export function Gallery({ teaser = false }: { teaser?: boolean }) {
               <button className={`${styles.nav} ${styles.prev}`} onClick={prev} aria-label={t('prev')} data-magnetic>‹</button>
               {/* Full-screen on-demand image — plain <img> (loaded only when opened) */}
               <motion.img
-                key={SHOTS[open].src}
+                key={current.src}
                 className={styles.lbImg}
-                src={SHOTS[open].src.replace('w=900', 'w=1600')}
-                alt={cap(open)}
+                src={current.src}
+                alt={capOf(current)}
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
@@ -159,15 +146,17 @@ export function Gallery({ teaser = false }: { teaser?: boolean }) {
             </div>
 
             <div className={styles.lbFoot}>
-              <span>{cap(open)}</span>
+              <span>{capOf(current)}</span>
               <span className={styles.lbCounter}>
-                {String(open + 1).padStart(2, '0')} / {String(SHOTS.length).padStart(2, '0')}
+                {String(open.index + 1).padStart(2, '0')} / {String(open.list.length).padStart(2, '0')}
               </span>
               <span>{t('hint')}</span>
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </section>
   );
 }

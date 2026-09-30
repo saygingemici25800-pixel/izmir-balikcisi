@@ -157,7 +157,7 @@
   "gallery": {
     "eyebrow": "№ 04 — Galeri",
     "frames": "{count} kare",
-    "title": "Bir akşam, <em>dokuz kare</em>",
+    "title": "Sofradan <em>kareler</em>",
     "enlarge": "Büyüt",
     "enlargeAria": "{cap} fotoğrafını büyüt",
     "lbTitle": "İzmir Balıkçısı / Galeri",
@@ -165,19 +165,13 @@
     "prev": "Önceki",
     "next": "Sonraki",
     "hint": "← → / Esc",
-    "loadMore": "Daha fazla",
-    "caps": [
-      "Giriş",
-      "Şefin sofrası",
-      "Salon",
-      "Levrek lokum",
-      "Teras",
-      "Ahtapot ızgara",
-      "Kemerler",
-      "Çupra ızgara",
-      "Ahşap ve mavi"
-    ],
-    "moreCta": "Tüm galeriyi gör"
+    "moreCta": "Tüm galeriyi gör",
+    "hint2": "Bir kareye yaklaş — diğerleri yol açsın",
+    "groups": {
+      "venue": "Mekân",
+      "meze": "Mezeler",
+      "sea": "Denizden sıcaklar"
+    }
   },
   "philosophy": {
     "eyebrow": "№ 05 — Felsefe",
