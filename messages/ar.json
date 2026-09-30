@@ -257,6 +257,8 @@
     "label": "الموسم"
   },
   "menuFull": {
+    "mediaOpen": "شاهد الفيديو",
+    "mediaClose": "إغلاق",
     "eyebrow": "№ 03 — القائمة",
     "meta": "ربيع 2026 · {count} طبقًا",
     "title": "القائمة",

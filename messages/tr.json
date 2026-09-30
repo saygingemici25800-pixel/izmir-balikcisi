@@ -257,6 +257,8 @@
     "label": "Mevsim"
   },
   "menuFull": {
+    "mediaOpen": "Videoyu izle",
+    "mediaClose": "Kapat",
     "eyebrow": "№ 03 — Menü",
     "meta": "Bahar 2026 · {count} tabak",
     "title": "Menü",

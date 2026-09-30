@@ -257,6 +257,8 @@
     "label": "Season"
   },
   "menuFull": {
+    "mediaOpen": "Watch video",
+    "mediaClose": "Close",
     "eyebrow": "№ 03 — Menu",
     "meta": "Spring 2026 · {count} plates",
     "title": "Menu",
