@@ -13,19 +13,18 @@ import styles from './Hero.module.css';
  * another (accelerating), then the window opens up to the full-bleed hero and
  * the headline reveals line by line.
  *
- * PHOTOS: Unsplash placeholders. Swap for real restaurant shots — the LAST one
- * is the hero image that stays on screen.
+ * PHOTOS: real restaurant shots (public/images). The LAST one is the hero
+ * image that stays on screen.
  */
 const SEQUENCE = [
-  'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=70',
-  'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=70',
-  'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=70',
-  'https://images.unsplash.com/photo-1485921325833-c519f76c4927?auto=format&fit=crop&w=1200&q=70',
-  'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=1200&q=70',
-  'https://images.unsplash.com/photo-1514516345957-556ca7d90a29?auto=format&fit=crop&w=1200&q=70',
+  '/images/mekan/tabela.webp',
+  '/images/mekan/giris.webp',
+  '/images/mekan/teras.webp',
+  '/images/yemek/karisik-deniz-mahsulu.webp',
+  '/images/mekan/ahsap-detay.webp',
+  '/images/mekan/sef-sofrasi.webp',
 ];
-const HERO_IMG =
-  'https://images.unsplash.com/photo-1535007813616-79dc02ba4021?auto=format&fit=crop&w=1920&q=80';
+const HERO_IMG = '/images/mekan/salon.webp';
 const SLIDES = [...SEQUENCE, HERO_IMG];
 
 const SEEN_KEY = 'ib:hero-seen';

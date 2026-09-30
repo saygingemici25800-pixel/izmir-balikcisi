@@ -11,15 +11,15 @@ import styles from './Gallery.module.css';
 // `gallery.caps` messages. Dimensions let next/image reserve space (no CLS) and
 // emit a responsive srcset (AVIF/WebP, downscaled per viewport).
 const SHOTS = [
-  { src: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80', w: 900, h: 1200 },
-  { src: 'https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=900&q=80', w: 900, h: 600 },
-  { src: 'https://images.unsplash.com/photo-1535007813616-79dc02ba4021?auto=format&fit=crop&w=900&q=80', w: 900, h: 900 },
-  { src: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=900&q=80', w: 900, h: 1100 },
-  { src: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=900&q=80', w: 900, h: 600 },
-  { src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80', w: 900, h: 1300 },
-  { src: 'https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=80', w: 900, h: 700 },
-  { src: 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?auto=format&fit=crop&w=900&q=80', w: 900, h: 1100 },
-  { src: 'https://images.unsplash.com/photo-1514516345957-556ca7d90a29?auto=format&fit=crop&w=900&q=80', w: 900, h: 600 }
+  { src: '/images/mekan/giris.webp', w: 2272, h: 2428 },
+  { src: '/images/mekan/sef-sofrasi.webp', w: 2472, h: 3076 },
+  { src: '/images/mekan/salon.webp', w: 2120, h: 2696 },
+  { src: '/images/yemek/levrek-lokum.webp', w: 1152, h: 2048 },
+  { src: '/images/mekan/teras.webp', w: 2120, h: 2500 },
+  { src: '/images/yemek/ahtapot-izgara.webp', w: 2048, h: 1152 },
+  { src: '/images/mekan/salon-detay.webp', w: 2088, h: 2752 },
+  { src: '/images/yemek/cupra-izgara.webp', w: 928, h: 1664 },
+  { src: '/images/mekan/ahsap-detay.webp', w: 2084, h: 2744 },
 ];
 
 const SIZES = '(max-width: 600px) 92vw, (max-width: 980px) 46vw, 30vw';

@@ -8,9 +8,8 @@ import { RESTAURANT } from '@/lib/constants';
 import styles from './About.module.css';
 import { TextReveal } from '@/components/TextReveal/TextReveal';
 
-// Our Story photo — Unsplash placeholder (swap for a real archive/ambiance shot).
-const STORY_IMG =
-  'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1600&q=80';
+// Our Story photo — the chef at the table in front of the restaurant sign.
+const STORY_IMG = '/images/mekan/sef-sofrasi.webp';
 
 const reveal = {
   initial: { opacity: 0, y: 24 },
@@ -32,7 +31,7 @@ export function About({ teaser = false }: { teaser?: boolean }) {
         </div>
 
         <motion.div className={styles.photo} {...reveal}>
-          <Image src={STORY_IMG} alt="" fill sizes="(max-width: 980px) 92vw, 1080px" className={styles.photoImg} />
+          <Image src={STORY_IMG} alt="" fill sizes="(max-width: 980px) 92vw, 1080px" className={styles.photoImg} style={{ objectPosition: 'center 90%' }} />
         </motion.div>
 
         <motion.p className={styles.teaserText} {...reveal}>
@@ -56,7 +55,7 @@ export function About({ teaser = false }: { teaser?: boolean }) {
       </div>
 
       <motion.div className={styles.photo} {...reveal}>
-        <Image src={STORY_IMG} alt="" fill sizes="(max-width: 980px) 92vw, 1080px" className={styles.photoImg} />
+        <Image src={STORY_IMG} alt="" fill sizes="(max-width: 980px) 92vw, 1080px" className={styles.photoImg} style={{ objectPosition: 'center 90%' }} />
       </motion.div>
 
       <div className={styles.columns}>
