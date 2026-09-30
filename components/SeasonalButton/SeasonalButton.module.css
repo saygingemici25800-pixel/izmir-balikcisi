@@ -85,6 +85,28 @@
 }
 .popEmpty { font-size: 0.9rem; color: var(--c-cream); opacity: 0.7; }
 
-@media (max-width: 600px) {
+@media (max-width: 860px) {
+  .wrap { flex-shrink: 0; }
+  .pill { padding: 6px 11px; }
   .title { display: none; } /* compact: dot + date range only */
+}
+
+/* Narrow phones: the date range is the widest part of the bar — drop it and
+   leave a dot-only pill so the phone CTA has room. */
+@media (max-width: 600px) {
+  .range { display: none; }
+  .pill {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    gap: 0;
+  }
+  .pop {
+    /* dot-only pill is narrow; keep the popover on-screen */
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: min(230px, calc(100vw - 2.5rem));
+  }
 }

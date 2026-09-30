@@ -40,6 +40,8 @@ export function SeasonalButton({ seasonal }: { seasonal: SeasonalData }) {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="dialog"
+        /* label text is hidden on narrow screens — keep an accessible name */
+        aria-label={seasonal.dateRange ? `${seasonal.title} · ${seasonal.dateRange}` : seasonal.title}
         data-magnetic
         data-cursor-label={t('label')}
       >

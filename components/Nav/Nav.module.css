@@ -235,14 +235,53 @@
 }
 
 @media (max-width: 860px) {
-  .nav { gap: var(--s-3); }
+  .nav {
+    gap: var(--s-3);
+    /* auto columns are content-locked and can push the actions off-screen;
+       minmax(0,…) lets the brand give way so the bar always fits. */
+    grid-template-columns: minmax(0, auto) 1fr auto;
+  }
   .links { display: none; }
   .burger { display: inline-flex; }
   .scrim { display: block; }
   .panel { display: block; }
-  .brand { font-size: 0.98rem; }
+
+  /* Brand is the flexible part: it truncates before any button is clipped. */
+  .brand { font-size: 0.98rem; min-width: 0; }
+  .brandName {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Actions never shrink or wrap — the phone CTA stays fully legible. */
+  .actions {
+    gap: var(--s-2);
+    flex-shrink: 0;
+  }
+  .cta {
+    flex-shrink: 0;
+    padding: var(--s-2) var(--s-4);
+    letter-spacing: 0.12em;
+  }
 }
 
-@media (max-width: 380px) {
-  .brandName { display: none; } /* mark + burger stay; keeps the bar tidy */
+/* Compact bar: trim the seasonal pill and tighten the CTA so the phone
+   button keeps its full label on narrow phones. */
+@media (max-width: 600px) {
+  .actions { gap: 7px; }
+  .cta {
+    padding: var(--s-2) var(--s-3);
+    letter-spacing: 0.08em;
+    gap: var(--s-2);
+  }
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 420px) {
+  .brandName { display: none; } /* mark + buttons stay; keeps the bar tidy */
 }

@@ -54,3 +54,20 @@
 .panel .opt[lang='ar'] {
   font-size: 1.05rem;
 }
+
+/* Nav bar is tight on phones — trim the segmented toggle (the mobile menu
+   still carries the full-size .panel variant). */
+@media (max-width: 860px) {
+  .switch:not(.panel) { flex-shrink: 0; }
+  .switch:not(.panel) .opt {
+    min-width: 0;
+    padding: 5px 7px;
+    letter-spacing: 0.04em;
+  }
+}
+@media (max-width: 600px) {
+  .switch:not(.panel) .opt {
+    padding: 5px 6px;
+    font-size: 0.68rem;
+  }
+}
