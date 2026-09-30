@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { RESTAURANT } from '@/lib/constants';
 import styles from './About.module.css';
+import { TextReveal } from '@/components/TextReveal/TextReveal';
 
 // Our Story photo — Unsplash placeholder (swap for a real archive/ambiance shot).
 const STORY_IMG =
@@ -25,10 +26,10 @@ export function About({ teaser = false }: { teaser?: boolean }) {
   if (teaser) {
     return (
       <section className={styles.section} id="hikaye">
-        <motion.div className={styles.head} {...reveal}>
-          <span className="eyebrow">{t('eyebrow')}</span>
-          <h2 className={styles.heading}>{t('heading')}</h2>
-        </motion.div>
+        <div className={styles.head}>
+          <motion.span className="eyebrow" {...reveal}>{t('eyebrow')}</motion.span>
+          <TextReveal as="h2" className={styles.heading}>{t('heading')}</TextReveal>
+        </div>
 
         <motion.div className={styles.photo} {...reveal}>
           <Image src={STORY_IMG} alt="" fill sizes="(max-width: 980px) 92vw, 1080px" className={styles.photoImg} />
@@ -49,10 +50,10 @@ export function About({ teaser = false }: { teaser?: boolean }) {
 
   return (
     <section className={styles.section} id="hikaye">
-      <motion.div className={styles.head} {...reveal}>
-        <span className="eyebrow">{t('eyebrow')}</span>
-        <h2 className={styles.heading}>{t('heading')}</h2>
-      </motion.div>
+      <div className={styles.head}>
+        <motion.span className="eyebrow" {...reveal}>{t('eyebrow')}</motion.span>
+        <TextReveal as="h2" className={styles.heading}>{t('heading')}</TextReveal>
+      </div>
 
       <motion.div className={styles.photo} {...reveal}>
         <Image src={STORY_IMG} alt="" fill sizes="(max-width: 980px) 92vw, 1080px" className={styles.photoImg} />

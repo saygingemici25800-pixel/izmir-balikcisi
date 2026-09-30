@@ -31,7 +31,8 @@ export function SiteShell({
 
   return (
     <>
-      <IntroLoader />
+      {/* Home has its own photo intro in the Hero — no loader overlay there. */}
+      {pathname !== '/' && <IntroLoader />}
       <OceanBackground />
       <MagneticCursor />
       <SmoothScroll>

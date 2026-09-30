@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import styles from './Philosophy.module.css';
+import { TextReveal } from '@/components/TextReveal/TextReveal';
 
 const reveal = {
   initial: { opacity: 0, y: 24 },
@@ -21,8 +22,8 @@ export function Philosophy({ teaser = false }: { teaser?: boolean }) {
       <section className={`${styles.section} darkSurface`} id="felsefe">
         <div className={styles.inner}>
           <motion.span className="eyebrow" {...reveal}>{t('eyebrow')}</motion.span>
-          <motion.h2 className={styles.heading} {...reveal}>{t('heading')}</motion.h2>
-          <motion.p className={styles.lead} {...reveal}>{t('lead')}</motion.p>
+          <TextReveal as="h2" className={styles.heading}>{t('heading')}</TextReveal>
+          <TextReveal as="p" className={styles.lead} delay={0.2}>{t('lead')}</TextReveal>
           <motion.span className={styles.rule} aria-hidden {...reveal} />
           <motion.div {...reveal}>
             <Link href="/hikaye" className={styles.more} data-magnetic data-cursor-label={t('moreCta')}>
@@ -38,8 +39,8 @@ export function Philosophy({ teaser = false }: { teaser?: boolean }) {
     <section className={`${styles.section} darkSurface`} id="felsefe">
       <div className={styles.inner}>
         <motion.span className="eyebrow" {...reveal}>{t('eyebrow')}</motion.span>
-        <motion.h2 className={styles.heading} {...reveal}>{t('heading')}</motion.h2>
-        <motion.p className={styles.lead} {...reveal}>{t('lead')}</motion.p>
+        <TextReveal as="h2" className={styles.heading}>{t('heading')}</TextReveal>
+        <TextReveal as="p" className={styles.lead} delay={0.2}>{t('lead')}</TextReveal>
         <motion.span className={styles.rule} aria-hidden {...reveal} />
         <motion.div className={styles.body} {...reveal}>
           {t.rich('body', { p: (chunks) => <p>{chunks}</p> })}

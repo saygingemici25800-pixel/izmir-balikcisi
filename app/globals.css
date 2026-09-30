@@ -272,3 +272,23 @@ a { color: inherit; text-decoration: none; }
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ---------- TextReveal (components/TextReveal) ----------
+   Word masks are created imperatively, so the rules live here (global). */
+.tr-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* room for İ dots, descenders (ç ş g y) and italic overhang */
+  padding: 0.14em 0.08em 0.16em;
+  margin: -0.14em -0.08em -0.16em;
+}
+.tr-word {
+  display: inline-block;
+  transform: translate3d(0, 115%, 0);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) var(--tr-d, 0s);
+  will-change: transform;
+}
+.tr-in .tr-word {
+  transform: translate3d(0, 0, 0);
+}

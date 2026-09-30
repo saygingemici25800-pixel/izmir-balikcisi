@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { pickLocale, type MenuCategory } from '@/lib/menu';
 import styles from './MenuScroll.module.css';
+import { TextReveal } from '@/components/TextReveal/TextReveal';
 
 // Home menu PREVIEW — calm typographic two-column list (first two categories),
 // serif names + price / "Günlük", optional food photos, link to the full menu.
@@ -15,7 +16,7 @@ export function MenuScroll({ menu, locale }: { menu: MenuCategory[]; locale: str
     <section className={styles.section} id="menu">
       <header className={styles.head}>
         <span className="eyebrow">{t('eyebrow')}</span>
-        <h2 className={styles.heading}>{t.rich('title', { em: (chunks) => <em>{chunks}</em> })}</h2>
+        <TextReveal as="h2" className={styles.heading}>{t.rich('title', { em: (chunks) => <em>{chunks}</em> })}</TextReveal>
       </header>
 
       <div className={styles.cols}>

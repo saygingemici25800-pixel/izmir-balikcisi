@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import styles from './Contact.module.css';
 import { RESTAURANT } from '@/lib/constants';
+import { TextReveal } from '@/components/TextReveal/TextReveal';
 
 const SISTER_URL = 'https://calis-balikcisi.vercel.app';
 
@@ -31,10 +32,10 @@ export function Contact({ teaser = false }: { teaser?: boolean }) {
   if (teaser) {
     return (
       <section className={styles.section} id="iletisim">
-        <motion.div className={styles.head} {...reveal}>
-          <span className="eyebrow">{t('eyebrow')}</span>
-          <h2 className={styles.heading}>{t('heading')}</h2>
-        </motion.div>
+        <div className={styles.head}>
+          <motion.span className="eyebrow" {...reveal}>{t('eyebrow')}</motion.span>
+          <TextReveal as="h2" className={styles.heading}>{t('heading')}</TextReveal>
+        </div>
 
         <motion.div className={styles.teaserInfo} {...reveal}>
           <a className={styles.phone} href={`tel:${RESTAURANT.phoneE164}`} data-magnetic data-cursor-label={t('call')}>
@@ -59,10 +60,10 @@ export function Contact({ teaser = false }: { teaser?: boolean }) {
 
   return (
     <section className={styles.section} id="iletisim">
-      <motion.div className={styles.head} {...reveal}>
-        <span className="eyebrow">{t('eyebrow')}</span>
-        <h2 className={styles.heading}>{t('heading')}</h2>
-      </motion.div>
+      <div className={styles.head}>
+        <motion.span className="eyebrow" {...reveal}>{t('eyebrow')}</motion.span>
+        <TextReveal as="h2" className={styles.heading}>{t('heading')}</TextReveal>
+      </div>
 
       <div className={styles.grid}>
         <motion.div className={styles.info} {...reveal}>
