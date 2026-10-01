@@ -27,8 +27,6 @@ const HERO_IMG = '/images/mekan/salon.webp';
 const SLIDES = [...SEQUENCE, HERO_IMG];
 
 const SEEN_KEY = 'ib:hero-seen';
-const HIDDEN = 'inset(0% 0% 100% 0%)';
-const SHOWN = 'inset(0% 0% 0% 0%)';
 
 const wasSeen = () => {
   try {
@@ -55,18 +53,19 @@ export function Hero() {
   const [revealed, setRevealed] = useState(false); // window fully open
   const skipIntro = useRef(false);
 
-  // Start once every photo is in (images may finish before hydration, so
-  // check .complete instead of relying on onLoad) — but never wait > 2.6s.
+  // Start once every photo is downloaded AND decoded (decode() keeps the GPU
+  // upload out of the animation frames) — but never wait > 2.6s.
   useEffect(() => {
     const imgs = Array.from(stageRef.current?.querySelectorAll('img') ?? []);
     let alive = true;
     const loaded = imgs.map((img) =>
-      img.complete
+      (img.complete
         ? Promise.resolve()
         : new Promise<void>((res) => {
             img.addEventListener('load', () => res(), { once: true });
             img.addEventListener('error', () => res(), { once: true });
           })
+      ).then(() => img.decode?.().catch(() => undefined))
     );
     const timeout = new Promise<void>((res) => window.setTimeout(res, 2600));
     Promise.race([Promise.all(loaded), timeout]).then(() => alive && setReady(true));
@@ -78,11 +77,19 @@ export function Hero() {
   // Repeat visit in this tab / reduced motion → final state at once, just the text.
   useEffect(() => {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduce && !wasSeen()) return;
+    if (!reduce && !wasSeen()) {
+      // Tell heavy background work (WebGL ocean) to wait until the intro ends.
+      document.documentElement.dataset.intro = 'playing';
+      return;
+    }
+    document.documentElement.dataset.intro = 'done';
     skipIntro.current = true;
-    stageRef.current?.style.setProperty('clip-path', SHOWN);
-    if (slidesRef.current) slidesRef.current.style.transform = 'none';
-    slideRefs.current.forEach((s) => s?.style.setProperty('clip-path', SHOWN));
+    slideRefs.current.forEach((s) => {
+      if (!s) return;
+      s.style.transform = 'none';
+      const img = s.firstElementChild as HTMLElement | null;
+      if (img) img.style.transform = 'none';
+    });
     if (overlayRef.current) overlayRef.current.style.opacity = '1';
     setRevealed(true);
   }, []);
@@ -95,10 +102,10 @@ export function Hero() {
     const slides = slideRefs.current.filter(Boolean) as HTMLDivElement[];
     if (!stage || !slidesEl || !overlay || !slides.length) return;
 
-    // Full-screen cascade: every photo wipes in over the whole hero while
-    // settling from a slight zoom; it speeds up, then the hero photo lands.
-    stage.style.clipPath = SHOWN;
-    slidesEl.style.transform = 'none';
+    // One continuous take: each photo rises in from the bottom (the mask moves
+    // up while the photo inside counter-moves, so the picture itself stays
+    // put) and slowly settles from a slight zoom. Only transform/opacity are
+    // animated → GPU-composited, no per-frame repaint on phones.
 
     // Scroll lock while the intro plays; any input skips to the end.
     document.body.style.overflow = 'hidden';
@@ -106,16 +113,22 @@ export function Hero() {
 
     const seq: AnimationSequence = [];
     const last = slides.length - 1;
-    let at = 0.1;
+    const wipe = [0.65, 0, 0.35, 1] as const;
+    const settle = [0.22, 1, 0.36, 1] as const;
+    let at = 0.15;
     slides.forEach((s, i) => {
       const img = s.firstElementChild as HTMLElement | null;
       const isLast = i === last;
-      const dur = isLast ? 1.3 : Math.max(0.5, 0.85 - i * 0.09);
-      seq.push([s, { clipPath: [HIDDEN, SHOWN] }, { duration: dur, at, ease: [0.76, 0, 0.24, 1] }]);
-      if (img) seq.push([img, { scale: [isLast ? 1.25 : 1.18, 1] }, { duration: dur + 0.5, at, ease: [0.22, 1, 0.36, 1] }]);
-      at += isLast ? dur : dur * 0.5;
+      const dur = isLast ? 1.4 : Math.max(0.75, 1.05 - i * 0.07);
+      seq.push([s, { y: ['100%', '0%'] }, { duration: dur, at, ease: wipe }]);
+      if (img) {
+        seq.push([img, { y: ['-100%', '0%'] }, { duration: dur, at, ease: wipe }]);
+        seq.push([img, { scale: [isLast ? 1.22 : 1.15, 1] }, { duration: dur + 1.2, at, ease: settle }]);
+      }
+      // next photo starts before this one lands → no cut between shots
+      at += isLast ? dur : dur * 0.62;
     });
-    seq.push([overlay, { opacity: [0, 1] }, { duration: 1, at: at - 0.7, ease: 'easeOut' }]);
+    seq.push([overlay, { opacity: [0, 1] }, { duration: 1.1, at: at - 0.8, ease: 'easeOut' }]);
 
     const controls = animate(seq);
 
@@ -136,11 +149,17 @@ export function Hero() {
       setRevealed(true);
       markSeen();
       unlock();
+      // covered photos are no longer visible → drop them from the compositor
+      slides.slice(0, -1).forEach((s) => (s.style.visibility = 'hidden'));
+      document.documentElement.dataset.intro = 'done';
+      window.dispatchEvent(new Event('ib:intro-done'));
     });
 
     return () => {
       window.clearTimeout(textTimer);
       controls.stop();
+      document.documentElement.dataset.intro = 'done';
+      window.dispatchEvent(new Event('ib:intro-done'));
       unlock();
     };
   }, [ready]);

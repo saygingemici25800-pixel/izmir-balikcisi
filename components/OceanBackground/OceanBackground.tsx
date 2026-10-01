@@ -90,6 +90,22 @@ export function OceanBackground() {
   const [coarse, setCoarse] = useState(false);
   const [active, setActive] = useState(true);
   const [ready, setReady] = useState(false); // WebGL context created → fade canvas in over the gradient
+  // Don't compile/run the shader while the home hero intro is playing — it
+  // competes with the photo cascade for the main thread on phones.
+  const [introDone, setIntroDone] = useState(false);
+  useEffect(() => {
+    if (document.documentElement.dataset.intro !== 'playing') {
+      setIntroDone(true);
+      return;
+    }
+    const done = () => setIntroDone(true);
+    window.addEventListener('ib:intro-done', done, { once: true });
+    const fallback = window.setTimeout(done, 9000);
+    return () => {
+      window.removeEventListener('ib:intro-done', done);
+      window.clearTimeout(fallback);
+    };
+  }, []);
 
   // capability detection (client only)
   useEffect(() => {
@@ -138,7 +154,7 @@ export function OceanBackground() {
   }, [reduced]);
 
   // Reduced motion → never mount the WebGL canvas; the static gradient stands in.
-  const showCanvas = mounted && !reduced;
+  const showCanvas = mounted && !reduced && introDone;
 
   return (
     <div className={styles.root} aria-hidden>

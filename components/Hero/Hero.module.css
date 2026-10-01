@@ -13,8 +13,8 @@
 }
 
 /* Intro stage — dark navy; photos wipe in full-screen one after another.
-   Slides start clipped in CSS so the server-rendered frame never flashes a
-   photo before the cascade runs. */
+   Slides start off-frame in CSS so the server-rendered frame never flashes
+   a photo before the cascade runs. */
 .hero {
   background: var(--c-abyss);
 }
@@ -31,12 +31,13 @@
 .slide {
   position: absolute;
   inset: 0;
-  clip-path: inset(0% 0% 100% 0%);
-  will-change: clip-path;
+  overflow: hidden;
+  transform: translateY(100%); /* hidden until the intro raises it */
 }
 .bgImg {
   object-fit: cover;
-  will-change: transform;
+  transform: translateY(-100%) scale(1.15);
+  backface-visibility: hidden;
 }
 .overlay {
   position: absolute;
