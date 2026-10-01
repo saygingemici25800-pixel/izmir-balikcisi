@@ -9,15 +9,14 @@ import { TextReveal } from '@/components/TextReveal/TextReveal';
 import styles from './Hero.module.css';
 
 /*
- * Hero intro — a small window on a dark navy stage; photos wipe in one after
- * another (accelerating), then the window opens up to the full-bleed hero and
- * the headline reveals line by line.
+ * Hero intro — full-screen photo cascade on a dark navy stage: each photo
+ * wipes in over the whole hero (accelerating, settling from a slight zoom),
+ * the hero photo lands last and the headline reveals line by line.
  *
  * PHOTOS: real restaurant shots (public/images). The LAST one is the hero
  * image that stays on screen.
  */
 const SEQUENCE = [
-  '/images/mekan/tabela.webp',
   '/images/mekan/giris.webp',
   '/images/mekan/teras.webp',
   '/images/yemek/karisik-deniz-mahsulu.webp',
@@ -28,7 +27,6 @@ const HERO_IMG = '/images/mekan/salon.webp';
 const SLIDES = [...SEQUENCE, HERO_IMG];
 
 const SEEN_KEY = 'ib:hero-seen';
-const START_SCALE = 0.55; // photos inside the small window
 const HIDDEN = 'inset(0% 0% 100% 0%)';
 const SHOWN = 'inset(0% 0% 0% 0%)';
 
@@ -97,32 +95,27 @@ export function Hero() {
     const slides = slideRefs.current.filter(Boolean) as HTMLDivElement[];
     if (!stage || !slidesEl || !overlay || !slides.length) return;
 
-    // Small window, centred. Sized in px so the inset() strings interpolate.
-    const w = stage.clientWidth;
-    const h = stage.clientHeight;
-    const frameW = Math.min(440, Math.max(210, w * (w < 720 ? 0.58 : 0.24)));
-    const frameH = frameW / 1.55;
-    const x = (w - frameW) / 2;
-    const y = (h - frameH) / 2;
-    const small = `inset(${y}px ${x}px ${y}px ${x}px)`;
-    const full = 'inset(0px 0px 0px 0px)';
-    stage.style.clipPath = small;
+    // Full-screen cascade: every photo wipes in over the whole hero while
+    // settling from a slight zoom; it speeds up, then the hero photo lands.
+    stage.style.clipPath = SHOWN;
+    slidesEl.style.transform = 'none';
 
     // Scroll lock while the intro plays; any input skips to the end.
     document.body.style.overflow = 'hidden';
     window.lenis?.stop();
 
     const seq: AnimationSequence = [];
-    let at = 0;
+    const last = slides.length - 1;
+    let at = 0.1;
     slides.forEach((s, i) => {
-      const dur = Math.max(0.2, 0.62 - i * 0.07);
+      const img = s.firstElementChild as HTMLElement | null;
+      const isLast = i === last;
+      const dur = isLast ? 1.3 : Math.max(0.5, 0.85 - i * 0.09);
       seq.push([s, { clipPath: [HIDDEN, SHOWN] }, { duration: dur, at, ease: [0.76, 0, 0.24, 1] }]);
-      at += dur * (i === 0 ? 0.85 : 0.6);
+      if (img) seq.push([img, { scale: [isLast ? 1.25 : 1.18, 1] }, { duration: dur + 0.5, at, ease: [0.22, 1, 0.36, 1] }]);
+      at += isLast ? dur : dur * 0.5;
     });
-    at += 0.2; // brief hold on the hero photo
-    seq.push([stage, { clipPath: [small, full] }, { duration: 1.25, at, ease: [0.87, 0, 0.13, 1] }]);
-    seq.push([slidesEl, { scale: [START_SCALE, 1] }, { duration: 1.25, at, ease: [0.87, 0, 0.13, 1] }]);
-    seq.push([overlay, { opacity: [0, 1] }, { duration: 0.9, at: at + 0.45, ease: 'easeOut' }]);
+    seq.push([overlay, { opacity: [0, 1] }, { duration: 1, at: at - 0.7, ease: 'easeOut' }]);
 
     const controls = animate(seq);
 
@@ -136,8 +129,8 @@ export function Hero() {
     const removeSkip = () => events.forEach((e) => window.removeEventListener(e, skip));
     events.forEach((e) => window.addEventListener(e, skip, { passive: true }));
 
-    // Kick the text off slightly before the window finishes opening.
-    const textTimer = window.setTimeout(() => setRevealed(true), (at + 0.85) * 1000);
+    // Kick the text off while the hero photo is still settling.
+    const textTimer = window.setTimeout(() => setRevealed(true), (at - 0.4) * 1000);
     controls.then(() => {
       window.clearTimeout(textTimer);
       setRevealed(true);
@@ -178,7 +171,7 @@ export function Hero() {
                   fill
                   priority={last || i === 0}
                   loading={last || i === 0 ? undefined : 'eager'}
-                  sizes={last ? '100vw' : '(max-width: 720px) 70vw, 40vw'}
+                  sizes="100vw"
                   className={styles.bgImg}
                 />
               </div>

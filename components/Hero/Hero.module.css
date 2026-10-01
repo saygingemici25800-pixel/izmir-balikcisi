@@ -12,9 +12,9 @@
   overflow: hidden;
 }
 
-/* Intro stage — dark navy; photos wipe in inside a small window, then the
-   window (clip-path) opens to full-bleed. Initial states live in CSS so the
-   server-rendered frame never flashes the full photo. */
+/* Intro stage — dark navy; photos wipe in full-screen one after another.
+   Slides start clipped in CSS so the server-rendered frame never flashes a
+   photo before the cascade runs. */
 .hero {
   background: var(--c-abyss);
 }
@@ -23,14 +23,10 @@
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  clip-path: inset(50% 50% 50% 50%);
-  will-change: clip-path;
 }
 .slides {
   position: absolute;
   inset: 0;
-  transform: scale(0.55);
-  will-change: transform;
 }
 .slide {
   position: absolute;
@@ -40,6 +36,7 @@
 }
 .bgImg {
   object-fit: cover;
+  will-change: transform;
 }
 .overlay {
   position: absolute;

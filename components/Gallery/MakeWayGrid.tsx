@@ -23,12 +23,18 @@ export type MakeWayConfig = {
 };
 
 export const MAKEWAY_DEFAULT: MakeWayConfig = {
-  scale: 2.2,
-  maxRotation: 6,
-  spread: 90,
-  maxDistance: 520,
-  duration: 0.7,
+  scale: 1.35,
+  maxRotation: 2,
+  spread: 32,
+  maxDistance: 440,
+  duration: 1.1,
   ease: 'expo',
+};
+
+/** Stable pseudo-random in [-1, 1] per tile — no tilt jitter when moving between tiles. */
+const tilt = (i: number) => {
+  const x = Math.sin(i * 12.9898 + 78.233) * 43758.5453;
+  return (x - Math.floor(x)) * 2 - 1;
 };
 
 type Props = {
@@ -73,8 +79,8 @@ export function MakeWayGrid({ shots, captions, config, variant = 'default', open
         const f = 1 - dist / cfg.maxDistance;
         const tx = (dx / dist) * cfg.spread * f;
         const ty = (dy / dist) * cfg.spread * f;
-        const rot = (Math.random() * 2 - 1) * cfg.maxRotation * f;
-        const skew = cfg.skew ? (Math.random() * 2 - 1) * cfg.skew * f : 0;
+        const rot = tilt(j) * cfg.maxRotation * f;
+        const skew = cfg.skew ? tilt(j + 31) * cfg.skew * f : 0;
         el.style.transform = `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px) rotate(${rot.toFixed(2)}deg)${
           skew ? ` skewX(${skew.toFixed(2)}deg)` : ''
         }`;

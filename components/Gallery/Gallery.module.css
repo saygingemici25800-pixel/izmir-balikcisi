@@ -84,7 +84,7 @@
 
 .mw {
   --mw-dur: 0.7s;
-  --mw-ease: cubic-bezier(0.16, 1, 0.3, 1); /* expo.out */
+  --mw-ease: cubic-bezier(0.25, 0.8, 0.25, 1); /* soft ease-out */
   --mw-cols: 6;
   --mw-gap: clamp(0.6rem, 1.4vw, 1.25rem);
   position: relative;
@@ -130,7 +130,7 @@
   outline-offset: 3px;
 }
 .mwItem[style*='scale'] {
-  box-shadow: 0 30px 60px -28px rgba(22, 34, 63, 0.55);
+  box-shadow: 0 24px 48px -26px rgba(22, 34, 63, 0.45);
 }
 
 .mwHint {

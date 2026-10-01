@@ -17,12 +17,11 @@ type Group = {
   config: Partial<MakeWayConfig>;
 };
 
-// Full /galeri page — three grids, each with its own "make way" character
-// (same idea as the Codrops demo: calm / elastic / skewed).
+// Full /galeri page — three grids with a calm, gentle "make way" hover.
 const GROUPS: Group[] = [
-  { key: 'venue', shots: VENUE, variant: 'medium', config: { scale: 1.6, maxRotation: 8, spread: 70, maxDistance: 1400, duration: 0.8 } },
-  { key: 'meze', shots: MEZE, variant: 'narrow', config: { scale: 3, maxRotation: 18, spread: 150, maxDistance: 700, duration: 1, ease: 'elastic' } },
-  { key: 'sea', shots: SEA, variant: 'dense', config: { scale: 3, maxRotation: 10, skew: 10, spread: 120, maxDistance: 600, duration: 0.6, ease: 'power3' } },
+  { key: 'venue', shots: VENUE, variant: 'medium', config: { scale: 1.18, maxRotation: 1.5, spread: 28, maxDistance: 900, duration: 1.2 } },
+  { key: 'meze', shots: MEZE, variant: 'narrow', config: { scale: 1.4, maxRotation: 2.5, spread: 36, maxDistance: 480, duration: 1.15 } },
+  { key: 'sea', shots: SEA, variant: 'dense', config: { scale: 1.4, maxRotation: 2.5, spread: 36, maxDistance: 480, duration: 1.15 } },
 ];
 
 const TOTAL = VENUE.length + MEZE.length + SEA.length;
