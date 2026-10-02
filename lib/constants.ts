@@ -30,7 +30,7 @@ export const RESTAURANT = {
 
 export const SITE = {
   name: 'İzmir Balıkçısı',
-  url: 'https://izmir-balikcisi.vercel.app',
+  url: 'https://izmirbalik.com',
   locale: 'tr_TR',
 } as const;
 
